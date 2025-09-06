@@ -46,6 +46,8 @@ dependencies {
 
     // Para usar Maps en Compose
     implementation("com.google.maps.android:maps-compose:4.3.3")
+    //Zoom en imagenes
+    implementation("net.engawapg.lib:zoomable:1.6.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

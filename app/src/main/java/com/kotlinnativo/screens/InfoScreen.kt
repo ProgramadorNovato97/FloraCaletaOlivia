@@ -43,7 +43,7 @@ fun InfoScreen() {
         ) {
             Column {
                 Text(
-                    text = "Distancia de Dania: $distanciaCasa",
+                    text = "Distancia a lugar x: $distanciaCasa",
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(top = 16.dp)
                 )
