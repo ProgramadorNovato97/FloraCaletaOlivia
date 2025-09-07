@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun MainScreen() {
     var selectedTab by remember { mutableIntStateOf(1) } // Empezar en Mapa
+    var currentPlant by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
         bottomBar = {
@@ -21,7 +22,10 @@ fun MainScreen() {
                     icon = { Icon(Icons.Default.Menu, contentDescription = "Flora") },
                     label = { Text("Flora") },
                     selected = selectedTab == 0,
-                    onClick = { selectedTab = 0 }
+                    onClick = {
+                        selectedTab = 0
+                        currentPlant = null // Reset al cambiar de tab
+                    }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.LocationOn, contentDescription = "Mapa") },
@@ -46,7 +50,20 @@ fun MainScreen() {
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             when (selectedTab) {
-                0 -> FloraScreen()
+                0 -> {
+                    // Tab Flora - puede mostrar lista o detalle de planta
+                    if (currentPlant == null) {
+                        FloraScreen(onNavigate = { plantName ->
+                            currentPlant = plantName
+                        })
+                    } else {
+                        when(currentPlant) {
+                            "fabiana" -> FabianaScreen(onBack = { currentPlant = null })
+                            "cactus" -> CactusScreen(onBack = { currentPlant = null })
+
+                        }
+                    }
+                }
                 1 -> MapasScreen()
                 2 -> FavoritosScreen()
                 3 -> InfoScreen()

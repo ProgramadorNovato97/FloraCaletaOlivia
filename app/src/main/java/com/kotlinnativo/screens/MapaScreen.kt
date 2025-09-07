@@ -4,7 +4,8 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
+
+import androidx.compose.ui.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
@@ -12,7 +13,6 @@ import android.location.Location
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,7 +27,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.Dash
 import com.google.android.gms.maps.model.Dot
 import com.google.android.gms.maps.model.Gap
 import com.google.android.gms.maps.model.LatLng
@@ -36,33 +35,28 @@ import com.google.maps.android.compose.*
 
 
 
-private fun createNumberedMarker(context: android.content.Context, number: String): BitmapDescriptor {
-    // Crear bitmap
+
+private fun createNumberedMarker(context: android.content.Context, number: String, circleColor: androidx.compose.ui.graphics.Color): BitmapDescriptor {
     val bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
     val canvas = Canvas(bitmap)
 
-    // Dibujar círculo
     val paint = Paint().apply {
-        color = androidx.compose.ui.graphics.Color.Green.toArgb()
+        color = circleColor.toArgb()
         isAntiAlias = true
     }
-    canvas.drawCircle(50f, 50f, 40f, paint)
-
+    canvas.drawCircle(40f, 40f, 30f, paint)
     // Dibujar texto (número)
     val textPaint = Paint().apply {
-        color = Color.BLACK
+        color = Color.Black.toArgb()
         textSize = 30f
         textAlign = Paint.Align.CENTER
         isAntiAlias = true
         typeface = Typeface.DEFAULT_BOLD
     }
-
     val textBounds = Rect()
     textPaint.getTextBounds(number, 0, number.length, textBounds)
-    val textY = 50f + textBounds.height() / 2f
-
-    canvas.drawText(number, 50f, textY, textPaint)
-
+    val textY = 40f + textBounds.height() / 2f
+    canvas.drawText(number, 40f, textY, textPaint)
     return BitmapDescriptorFactory.fromBitmap(bitmap)
 }
 
@@ -85,7 +79,6 @@ fun MapasScreen() {
     ) { permissions ->
         hasLocationPermission = permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true ||
                 permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
-
         if (hasLocationPermission) {
             // Obtener ubicación inmediatamente después de dar permisos
             isLoadingLocation = true
@@ -99,12 +92,10 @@ fun MapasScreen() {
             }
         }
     }
-
     LaunchedEffect(Unit) {
         hasLocationPermission = ContextCompat.checkSelfPermission(
             context, Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
-
         if (hasLocationPermission) {
             isLoadingLocation = true
             try {
@@ -179,15 +170,19 @@ fun MapasScreen() {
                     )
                 ) {
                     Marker(
-                        state = MarkerState(position = LatLng(-46.45677411633962, -67.5200897410983)),
-                        title = "Punto 1",
-                        icon = createNumberedMarker(context, "1")
+                        state = MarkerState(position = LatLng(-46.42259543739387, -67.52280032391299)),
+                        title = "Cartel de bienvenida",
+                        icon = createNumberedMarker(context, "Ini", Color(0xFF3EC287))
                     )
-
                     Marker(
-                        state = MarkerState(position = LatLng(-46.454084709359535, -67.51711944780367)),
-                        title = "Punto 2",
-                        icon = createNumberedMarker(context, "2")
+                        state = MarkerState(position = LatLng(-46.418020652385955, -67.52814378788271)),
+                        title = "Fina de recorrido",
+                        icon = createNumberedMarker(context, "Fin", Color(0xFFF08080))
+                    )
+                    Marker(
+                        state = MarkerState(position = LatLng(-46.45676127715445, -67.52002212577646)),
+                        title = "Marker de pruebas",
+                        icon = createNumberedMarker(context, "0", Color(0xFF3EC245))
                     )
 
                     // Línea que conecta los dos puntos
@@ -198,15 +193,13 @@ fun MapasScreen() {
                             LatLng(-46.45512176734035, -67.51686444789506),
                             LatLng(-46.454084709359535, -67.51711944780367)
                         ),
-                        color = androidx.compose.ui.graphics.Color.Blue,
+                        color = Color.Blue,
                         width = 8f,
-
                         pattern = listOf(
                         Dot(), // Puntos
-                        Gap(10f)   // Un espacio de 10 puntos
+                        Gap(8f)   // Un espacio de 8 puntos
+                        )
                     )
-                    )
-
                 }
             }
 

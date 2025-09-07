@@ -49,6 +49,8 @@ dependencies {
     //Zoom en imagenes
     implementation("net.engawapg.lib:zoomable:1.6.1")
 
+    implementation("androidx.navigation:navigation-compose:2.7.3")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
