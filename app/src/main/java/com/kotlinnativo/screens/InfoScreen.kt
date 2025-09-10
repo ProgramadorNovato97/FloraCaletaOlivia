@@ -1,4 +1,5 @@
 package com.kotlinnativo.screens
+import com.kotlinnativo.services.MapasService
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.kotlinnativo.services.DistanciaService
+
 import kotlinx.coroutines.delay
 
 @Preview
@@ -30,7 +31,7 @@ fun InfoScreen() {
     // Actualizar cada 10 segundos
     LaunchedEffect(Unit) {
         while (true) {
-            distancia = DistanciaService.calcularDistancia(context, -46.42245345008987, -67.52397626334698)
+            distancia = MapasService.calcularDistancia(context, -46.42245345008987, -67.52397626334698)
             delay(10000)
         }
     }

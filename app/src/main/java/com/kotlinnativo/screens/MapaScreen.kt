@@ -1,14 +1,9 @@
 package com.kotlinnativo.screens
+import com.kotlinnativo.services.MapasService
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
-
 import androidx.compose.ui.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.Typeface
 import android.location.Location
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,15 +12,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.Dot
 import com.google.android.gms.maps.model.Gap
@@ -34,41 +25,14 @@ import com.google.maps.android.compose.*
 
 
 
-
-
-private fun createNumberedMarker(context: android.content.Context, number: String, circleColor: androidx.compose.ui.graphics.Color): BitmapDescriptor {
-    val bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
-    val canvas = Canvas(bitmap)
-
-    val paint = Paint().apply {
-        color = circleColor.toArgb()
-        isAntiAlias = true
-    }
-    canvas.drawCircle(40f, 40f, 30f, paint)
-    // Dibujar texto (número)
-    val textPaint = Paint().apply {
-        color = Color.Black.toArgb()
-        textSize = 30f
-        textAlign = Paint.Align.CENTER
-        isAntiAlias = true
-        typeface = Typeface.DEFAULT_BOLD
-    }
-    val textBounds = Rect()
-    textPaint.getTextBounds(number, 0, number.length, textBounds)
-    val textY = 40f + textBounds.height() / 2f
-    canvas.drawText(number, 40f, textY, textPaint)
-    return BitmapDescriptorFactory.fromBitmap(bitmap)
-}
-
-
-
 @Preview
 @Composable
 fun MapasScreen() {
-    val context = LocalContext.current
+    val context = LocalContext.current // Contexto para icons de markers
+
     val fusedLocationClient = remember {
         LocationServices.getFusedLocationProviderClient(context)
-    }
+    }// Ultima localización proporcionada por el usuario
 
     var hasLocationPermission by remember { mutableStateOf(false) }
     var currentLocation by remember { mutableStateOf<Location?>(null) }
@@ -138,8 +102,8 @@ fun MapasScreen() {
                 }
             }
 
+            // Mensaje mientras se Obteniene la ubicación
             isLoadingLocation -> {
-                // Cargando ubicación
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -170,31 +134,32 @@ fun MapasScreen() {
                         zoomControlsEnabled = true
                     )
                 ) {
+                    //******************* Colocacion de Markers **********************
                     Marker(
                         state = MarkerState(position = LatLng(-46.42259543739387, -67.52280032391299)),
                         title = "Cartel de bienvenida",
-                        icon = createNumberedMarker(context, "Ini", Color(0xFF3EC287))
+                        icon = MapasService.NumMarker(context, "Ini", Color(0xFF3EC287))
                     )
                     Marker(
                         state = MarkerState(position = LatLng(-46.418020652385955, -67.52814378788271)),
                         title = "Fina de recorrido",
-                        icon = createNumberedMarker(context, "Fin", Color(0xFFF08080))
+                        icon = MapasService.NumMarker(context, "Fin", Color(0xFFF08080))
                     )
                     Marker(
                         state = MarkerState(position = LatLng(-46.42245345008987, -67.52397626334698)),
                         title = "Uña de gato",
-                        icon = createNumberedMarker(context, "1", Color(0xFF3EC288))
+                        icon = MapasService.NumMarker(context, "1", Color(0xFF3EC288))
                     )
                     Marker(
                         state = MarkerState(position = LatLng(-46.42232549558373, -67.52434386665593)),
                         title = "Zampa",
-                        icon = createNumberedMarker(context, "2", Color(0xFF3EC288))
+                        icon = MapasService.NumMarker(context, "2", Color(0xFF3EC288))
                     )
 
                     Marker(
                         state = MarkerState(position = LatLng(-46.421224693345955, -67.52543549188105)),
                         title = "Cactus Austral y Falso Tomillo ",
-                        icon = createNumberedMarker(context, "3", Color(0xFF3EC288))
+                        icon = MapasService.NumMarker(context, "3", Color(0xFF3EC288))
                     )
 
 
@@ -203,10 +168,11 @@ fun MapasScreen() {
                     Marker(
                         state = MarkerState(position = LatLng(-46.45676127715445, -67.52002212577646)),
                         title = "Marker de pruebas",
-                        icon = createNumberedMarker(context, "0", Color(0xFF3EC245))
+                        icon = MapasService.NumMarker(context, "0", Color(0xFF3EC245))
                     )
 
-                    // Línea que conecta los dos puntos
+                    //======================= Fin Markers =============================
+                    // ***************** Unir markers con puntos ************
                     Polyline(
                         points = listOf(
                             LatLng(-46.42259543739387, -67.52280032391299),
@@ -215,19 +181,20 @@ fun MapasScreen() {
                             LatLng(-46.421224693345955, -67.52543549188105),
                             LatLng(-46.418020652385955, -67.52814378788271),
 
-                        ),
+                            ),
                         color = Color.Blue,
                         width = 8f,
                         pattern = listOf(
-                        Dot(), // Puntos
-                        Gap(8f)   // Un espacio de 8 puntos
+                            Dot(), // Puntos
+                            Gap(8f)   // Un espacio de 8 puntos
                         )
                     )
+                    //========================================================
                 }
             }
 
             else -> {
-                // No se pudo obtener ubicación
+                // Caso de que falle y No se pudo obtener ubicación
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
