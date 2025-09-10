@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 
 @Preview
@@ -17,19 +18,21 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            NavigationBar (
+                containerColor = Color(0xFFf4efef)
+            ) {
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Menu, contentDescription = "Flora") },
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Flora") },
                     label = { Text("Flora") },
                     selected = selectedTab == 0,
                     onClick = {
                         selectedTab = 0
-                        currentPlant = null // Reset al cambiar de tab
+                        currentPlant = null // Reset al volver a flora
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.LocationOn, contentDescription = "Mapa") },
-                    label = { Text("Mapa") },
+                    icon = { Icon(Icons.Default.Place, contentDescription = "Circuito") },
+                    label = { Text("Circuito") },
                     selected = selectedTab == 1,
                     onClick = { selectedTab = 1 }
                 )
@@ -51,14 +54,12 @@ fun MainScreen() {
         Box(modifier = Modifier.padding(paddingValues)) {
             when (selectedTab) {
                 0 -> {
-                    // Tab Flora - puede mostrar lista o detalle de planta
+                    // Info de las plantas
                     if (currentPlant == null) {
-                        FloraScreen(onNavigate = { plantName ->
-                            currentPlant = plantName
-                        })
+                        FloraScreen(onNavigate = { plantName -> currentPlant = plantName })
                     } else {
                         when(currentPlant) {
-                            "fabiana" -> FabianaScreen(onBack = { currentPlant = null })
+                            "unadegato" -> UnadegatoScreen(onBack = { currentPlant = null })
                             "cactus" -> CactusScreen(onBack = { currentPlant = null })
 
                         }

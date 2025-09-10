@@ -155,14 +155,15 @@ fun MapasScreen() {
                 // Mostrar mapa con mi ubicación
                 val myLatLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
                 val cameraPositionState = rememberCameraPositionState {
-                    position = CameraPosition.fromLatLngZoom(myLatLng, 15f)
+                    position = CameraPosition.fromLatLngZoom(myLatLng, 13f)
                 }
 
                 GoogleMap(
                     modifier = Modifier.fillMaxSize(),
                     cameraPositionState = cameraPositionState,
                     properties = MapProperties(
-                        isMyLocationEnabled = true
+                        isMyLocationEnabled = true,
+                        //mapType = MapType.SATELLITE //Vista satelite de mapa
                     ),
                     uiSettings = MapUiSettings(
                         myLocationButtonEnabled = true,
@@ -180,6 +181,26 @@ fun MapasScreen() {
                         icon = createNumberedMarker(context, "Fin", Color(0xFFF08080))
                     )
                     Marker(
+                        state = MarkerState(position = LatLng(-46.42245345008987, -67.52397626334698)),
+                        title = "Uña de gato",
+                        icon = createNumberedMarker(context, "1", Color(0xFF3EC288))
+                    )
+                    Marker(
+                        state = MarkerState(position = LatLng(-46.42232549558373, -67.52434386665593)),
+                        title = "Zampa",
+                        icon = createNumberedMarker(context, "2", Color(0xFF3EC288))
+                    )
+
+                    Marker(
+                        state = MarkerState(position = LatLng(-46.421224693345955, -67.52543549188105)),
+                        title = "Cactus Austral y Falso Tomillo ",
+                        icon = createNumberedMarker(context, "3", Color(0xFF3EC288))
+                    )
+
+
+
+
+                    Marker(
                         state = MarkerState(position = LatLng(-46.45676127715445, -67.52002212577646)),
                         title = "Marker de pruebas",
                         icon = createNumberedMarker(context, "0", Color(0xFF3EC245))
@@ -188,10 +209,12 @@ fun MapasScreen() {
                     // Línea que conecta los dos puntos
                     Polyline(
                         points = listOf(
-                            LatLng(-46.45677411633962, -67.5200897410983),
-                            LatLng(-46.455609400936915, -67.52002394452384),
-                            LatLng(-46.45512176734035, -67.51686444789506),
-                            LatLng(-46.454084709359535, -67.51711944780367)
+                            LatLng(-46.42259543739387, -67.52280032391299),
+                            LatLng(-46.42245345008987, -67.52397626334698),
+                            LatLng(-46.42232549558373, -67.52434386665593),
+                            LatLng(-46.421224693345955, -67.52543549188105),
+                            LatLng(-46.418020652385955, -67.52814378788271),
+
                         ),
                         color = Color.Blue,
                         width = 8f,
