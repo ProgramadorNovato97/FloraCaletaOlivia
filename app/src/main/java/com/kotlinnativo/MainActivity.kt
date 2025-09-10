@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 
 import com.kotlinnativo.screens.MainScreen
@@ -16,15 +15,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Color de status bar
+        // ********* Color de status bar ********
         window.statusBarColor = android.graphics.Color.parseColor("#f4efef")
         // Iconos oscuros
         WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
 
-        // Pantallas
+        // ************** Pantalla inicial **************
         setContent {
             MaterialTheme {
-            MainScreen()
+            MainScreen() //Navbar y navegaciones
             }
         }
     }
