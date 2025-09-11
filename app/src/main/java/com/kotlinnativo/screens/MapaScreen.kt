@@ -44,11 +44,6 @@ import com.kotlinnativo.R
 @Composable
 fun MapasScreen() {
 
-
-
-
-
-
     val context = LocalContext.current // Contexto para icons de markers
 
     val fusedLocationClient = remember {
@@ -155,7 +150,7 @@ fun MapasScreen() {
                         zoomControlsEnabled = true
                     )
                 ) {
-                    // Mostramos Marker Inicio y Fin
+                    // ***** Mostramos Marker Inicio y Fin ****
                     Marker(
                         state = MarkerState(LatLng(-46.42253982376904, -67.52278891074239)),
                         title = "Entrada a Caleta",
@@ -167,8 +162,7 @@ fun MapasScreen() {
                         icon = MapasService.NumMarker(context, "fin", Color(0xFFF56D53)),
                     )
 
-
-                    // Mostramos todos nuetra lista de marker propios
+                    // **** Mostramos todos nuetra lista de marker propios ****
                     ListadeMarkers.forEach { markerPropio ->
                     Marker(
                         state = MarkerState(position = markerPropio.posicion),
@@ -184,18 +178,17 @@ fun MapasScreen() {
                     // ***************** Aca va Polylines ************
 
                 }
-                // Mostramos los card
+                // **** Mostramos los card ***
                 markerState.markerSeleccionado?.let { marker ->
                     CardMarker(
                         marker = marker,
                         onCerrar = { markerState.cerrarCard() }
                     )
                 }
-
             }
 
             else -> {
-                // Caso de que falle y No se pudo obtener ubicación
+                // Caso de fallo en obtener ubicación
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -230,7 +223,6 @@ fun MapasScreen() {
 
 
 //Lista de mis marcadores propios
-
 val ListadeMarkers = listOf(
     MarkerPropio(
         id = 1,
@@ -263,9 +255,7 @@ val ListadeMarkers = listOf(
         )
     )
 )
-
 )
-
 
 
 // ***** Clases necesarias ****
@@ -281,14 +271,21 @@ data class MarkerPropio(
     val imagenes: List<ImagenMarker>
 )
 
+// Estado para manejar los markers y el card
 class MarkerState {
     var markerSeleccionado by mutableStateOf<MarkerPropio?>(null)
         private set
 
     fun onMarkerClick(marker: MarkerPropio) {
-        markerSeleccionado = marker
+        if (markerSeleccionado?.id == marker.id) {
+            // Si clickeo el mismo marker, lo cierro
+            markerSeleccionado = null
+        } else {
+            // Si es diferente, cierro el actual y abro el nuevo
+            markerSeleccionado = null // Primero cierro
+            markerSeleccionado = marker // Luego abro el nuevo
+        }
     }
-
     fun cerrarCard() {
         markerSeleccionado = null
     }
@@ -300,12 +297,19 @@ fun rememberMarkerState(): MarkerState {
     return remember { MarkerState() }
 }
 
+//Carousel reutilizable
 @Composable
 fun CarouselSimple(
     imagenes: List<ImagenMarker>,
+    markerId: Int,
     modifier: Modifier = Modifier
 ) {
     var imagenActual by remember { mutableIntStateOf(0) }
+
+    // Validar que el índice esté dentro del rango
+    if (imagenActual >= imagenes.size) {
+        imagenActual = 0
+    }
 
     if (imagenes.isEmpty()) return
 
@@ -422,6 +426,7 @@ fun CarouselSimple(
     }
 }
 
+
 @Composable
 fun CardMarker(
     marker: MarkerPropio,
@@ -430,7 +435,7 @@ fun CardMarker(
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         shape = RoundedCornerShape(12.dp)
     ) {
         Column(
@@ -462,6 +467,7 @@ fun CardMarker(
             // Carousel (sin Spacer)
             CarouselSimple(
                 imagenes = marker.imagenes,
+                markerId = marker.id, // Agregado para resetear estado
                 modifier = Modifier.fillMaxWidth()
             )
         }
