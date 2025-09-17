@@ -71,7 +71,7 @@ fun MainScreen() {
                     }
                 }
                 1 -> MapasScreen()
-                2 -> FavoritosScreen()
+                2 -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
                 3 -> InfoScreen()
             }
         }

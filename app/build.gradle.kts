@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -48,8 +51,14 @@ dependencies {
     implementation("com.google.maps.android:maps-compose:4.3.3")
     //Zoom en imagenes
     implementation("net.engawapg.lib:zoomable:1.6.1")
-
     implementation("androidx.navigation:navigation-compose:2.7.3")
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation("androidx.compose.material:material-icons-extended:1.7.6")
 
 
     implementation(libs.androidx.core.ktx)
