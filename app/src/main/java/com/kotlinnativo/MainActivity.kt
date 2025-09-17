@@ -5,15 +5,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-
 import com.kotlinnativo.screens.MainScreen
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // *** Colores de app ***
+        val colorHeader = Color(0xFFf4efef)
 
         // ********* Color de status bar ********
         window.statusBarColor = android.graphics.Color.parseColor("#f4efef")

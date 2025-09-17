@@ -9,7 +9,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -33,8 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.Dot
-import com.google.android.gms.maps.model.Gap
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 import com.kotlinnativo.R
@@ -43,7 +39,6 @@ import com.kotlinnativo.R
 @Preview
 @Composable
 fun MapasScreen() {
-
     val context = LocalContext.current // Contexto para icons de markers
 
     val fusedLocationClient = remember {
@@ -98,6 +93,7 @@ fun MapasScreen() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
+
                     Text(
                         text = "Se necesita acceso a la ubicación",
                         style = MaterialTheme.typography.titleMedium
@@ -125,6 +121,7 @@ fun MapasScreen() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
+
                     CircularProgressIndicator()
                     Spacer(modifier = Modifier.height(16.dp))
                     Text("Obteniendo ubicación...")
@@ -137,29 +134,33 @@ fun MapasScreen() {
                 val cameraPositionState = rememberCameraPositionState {
                     position = CameraPosition.fromLatLngZoom(myLatLng, 13f)
                 }
+
+
+
                 val markerState = rememberMarkerState() //***** Para Markers ****
                 GoogleMap(
                     modifier = Modifier.fillMaxSize(),
                     cameraPositionState = cameraPositionState,
                     properties = MapProperties(
                         isMyLocationEnabled = true,
-                        //mapType = MapType.SATELLITE //Vista satelite de mapa
+                        mapType = MapType.SATELLITE //Vista satelite de mapa
                     ),
                     uiSettings = MapUiSettings(
                         myLocationButtonEnabled = true,
                         zoomControlsEnabled = true
                     )
                 ) {
+
                     // ***** Mostramos Marker Inicio y Fin ****
                     Marker(
                         state = MarkerState(LatLng(-46.42253982376904, -67.52278891074239)),
-                        title = "Entrada a Caleta",
-                        icon = MapasService.NumMarker(context, "ini", Color(0xFF6BD16B)),
+                        title = "Inicio del circuito",
+                        icon = MapasService.NumMarker(context, "Ini", Color(0xFF1FFF49)),
                     )
                     Marker(
                         state = MarkerState(LatLng(-46.417927440656086, -67.52823705796133)),
-                        title = "Final",
-                        icon = MapasService.NumMarker(context, "fin", Color(0xFFF56D53)),
+                        title = "Final del circuito",
+                        icon = MapasService.NumMarker(context, "Fin", Color(0xFFFF4747)),
                     )
 
                     // **** Mostramos todos nuetra lista de marker propios ****
@@ -167,7 +168,7 @@ fun MapasScreen() {
                     Marker(
                         state = MarkerState(position = markerPropio.posicion),
                         title = markerPropio.titulo,
-                        icon = MapasService.NumMarker(context, markerPropio.id.toString(), Color(0xFF3EC245)),
+                        icon = MapasService.NumMarker(context, markerPropio.id.toString(), Color(0xFFFF9A24)),
                         onClick = {
                             markerState.onMarkerClick(markerPropio)
                             true // Evento
@@ -175,7 +176,8 @@ fun MapasScreen() {
                     )
                 }
 
-                    // ***************** Aca va Polylines ************
+                 // ************** Polyline para conectar markers ****************
+                 MapasService.MiPolyline()
 
                 }
                 // **** Mostramos los card ***
@@ -194,6 +196,7 @@ fun MapasScreen() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
+
                     Text("No se pudo obtener la ubicación")
                     Button(
                         onClick = {
@@ -349,7 +352,8 @@ fun CarouselSimple(
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowLeft,
                         contentDescription = "Anterior",
-                        tint = Color.White
+                        tint = Color.White,
+                        modifier = Modifier.size(50.dp)
                     )
                 }
 
@@ -368,7 +372,8 @@ fun CarouselSimple(
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowRight,
                         contentDescription = "Siguiente",
-                        tint = Color.White
+                        tint = Color.White,
+                        modifier = Modifier.size(50.dp)
                     )
                 }
             }
@@ -436,12 +441,12 @@ fun CardMarker(
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(16.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(horizontal = 8.dp, vertical = 1.dp),
         ) {
             // Header con título y botón cerrar
             Row(
@@ -453,7 +458,7 @@ fun CardMarker(
                     text = marker.titulo,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(1f)
+
                 )
 
                 IconButton(onClick = onCerrar) {

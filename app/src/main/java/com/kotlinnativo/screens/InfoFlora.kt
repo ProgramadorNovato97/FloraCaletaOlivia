@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -27,7 +25,6 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -49,6 +46,9 @@ import androidx.compose.ui.unit.sp
 import com.kotlinnativo.R
 import net.engawapg.lib.zoomable.rememberZoomState
 import net.engawapg.lib.zoomable.zoomable
+
+
+
 
 //============ Uso de plantillas para realizar las pantallas ============
 @Composable
@@ -90,46 +90,8 @@ fun PlantInfo(
     var esFavorito by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        // Barra superior fija
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            color = Color(0xFFf4efef),
-            shadowElevation = 4.dp
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                IconButton(onClick = onBack) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Volver",
-                        tint = Color.Black
-                    )
-                }
-
-                Text(
-                    text = titulo,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(1f),
-                    textAlign = TextAlign.Center
-                )
-
-                IconButton(onClick = { esFavorito = !esFavorito }) {
-                    Icon(
-                        imageVector = if (esFavorito) Icons.Filled.Favorite else Icons.Outlined.Favorite,
-                        contentDescription = "Favorito",
-                        tint = if (esFavorito) Color.Blue else Color.Gray
-                    )
-                }
-            }
-        }
+        //*** Header Caleta en un click ***
+        HeaderCaletaClick()
 
         // Contenido scrollable
         Column(
@@ -177,7 +139,7 @@ fun PlantInfo(
                             imageVector = Icons.Default.KeyboardArrowLeft,
                             contentDescription = "Anterior",
                             tint = Color.White,
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier.size(72.dp)
                         )
                     }
 
@@ -198,7 +160,7 @@ fun PlantInfo(
                             imageVector = Icons.Default.KeyboardArrowRight,
                             contentDescription = "Siguiente",
                             tint = Color.White,
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier.size(72.dp)
                         )
                     }
 
@@ -228,7 +190,38 @@ fun PlantInfo(
             }
 
             Spacer(modifier = Modifier.height(6.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                IconButton(onClick = onBack) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Volver",
+                        tint = Color.Black
+                    )
+                }
 
+                Text(
+                    text = titulo,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center
+                )
+
+                IconButton(onClick = { esFavorito = !esFavorito }) {
+                    Icon(
+                        imageVector = if (esFavorito) Icons.Filled.Favorite else Icons.Outlined.Favorite,
+                        contentDescription = "Favorito",
+                        tint = if (esFavorito) Color.Blue else Color.Gray
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = descripcion,
                 style = MaterialTheme.typography.bodyMedium,

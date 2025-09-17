@@ -10,10 +10,17 @@ import android.graphics.Typeface
 import android.location.Location
 import android.location.LocationManager
 import androidx.annotation.RequiresPermission
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Dot
+import com.google.android.gms.maps.model.Gap
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.Polyline
+
+
 
 object MapasService {
 
@@ -77,5 +84,29 @@ object MapasService {
         val textY = 40f + textBounds.height() / 2f
         canvas.drawText(number, 40f, textY, textPaint)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
+    // ************** Polyline para marcar camino y unir los markers ****************
+    @Composable
+    fun MiPolyline(){
+         Polyline(
+            points = listOf(
+                LatLng(-46.42253982376904, -67.52278891074239),
+                LatLng(-46.422257603168156, -67.52327479706966),
+                LatLng(-46.4223919797367, -67.52360286614024),
+                LatLng(-46.422434735916326, -67.52419717983501),
+                LatLng(-46.42205240607076, -67.5246725728372),
+                LatLng(-46.4217247851242, -67.52472679777637),
+                LatLng(-46.42135758348134, -67.52520844277981),
+                LatLng(-46.4211717828787, -67.52574590757747),
+                LatLng(-46.417927440656086, -67.52823705796133),
+            ),
+            color = Color.Blue,
+            width = 8f,
+            pattern = listOf(
+                Dot(),
+                Gap(12f)
+            )
+        )
     }
 }
