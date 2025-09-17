@@ -63,7 +63,6 @@ fun PlantaDetalleScreen(
     }
 
     val plantaActual = planta!!
-    // Obtener recursos drawable por nombre
     // Obtener recursos drawable por nombre (.jpg)
     val imagenesRes = plantaActual.imagenesRes.split(",").map { nombreImagen ->
         context.resources.getIdentifier(
@@ -74,8 +73,8 @@ fun PlantaDetalleScreen(
     }.filter { it != 0 } // Filtrar IDs inválidos
 
     Column(modifier = Modifier.fillMaxSize()) {
-        // Tu HeaderCaletaClick (mantenlo como está)
-        // HeaderCaletaClick()
+        //*** Header superior ***
+         HeaderCaletaClick()
 
         // Contenido scrollable con TUS datos de BD
         Column(

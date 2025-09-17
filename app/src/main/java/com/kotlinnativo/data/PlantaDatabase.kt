@@ -61,7 +61,25 @@ abstract class PlantaDatabase : RoomDatabase() {
                     nombre = "Cactus Austral",
                     descripcion = "Esta planta se encuentra en las zonas aridas de la ",
                     imagenesRes = "cactusaustral,cactusaustral2".toString()
-                )
+                ),
+                Planta(
+                    id = "unadegato",
+                    nombre = "Uña de gato",
+                    descripcion = "Esta planta lorem ipsum  en las zonas aridas de la ",
+                    imagenesRes = "unadegato,unadegato2".toString()
+                ),
+                Planta(
+                    id = "tuna",
+                    nombre = "Tuna",
+                    descripcion = "Esta planta lorem ipsum  en las zonas aridas de la ",
+                    imagenesRes = "tuna,tuna2,tuna3".toString()
+                ),
+                Planta(
+                    id = "sulupe",
+                    nombre = "Sulupe",
+                    descripcion = "Esta planta lorem ipsum  en las zonas aridas de la ",
+                    imagenesRes = "sulupe,sulupe2,sulupe3".toString()
+                ),
                 // ... Agregamos mas plantas ...
             )
 

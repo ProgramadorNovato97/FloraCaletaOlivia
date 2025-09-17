@@ -64,14 +64,18 @@ fun MainScreen() {
                         FloraScreen(onNavigate = { plantName -> currentPlant = plantName })
                     } else {
                         when(currentPlant) {
-                            "unadegato" -> UnadegatoScreen(onBack = { currentPlant = null })
-                            "cactus" -> CactusScreen(onBack = { currentPlant = null })
+                           // "unadegato" -> UnadegatoScreen(onBack = { currentPlant = null })
+                            //"cactus" -> CactusScreen(onBack = { currentPlant = null })
+                            "tuna" -> PlantaDetalleScreen(plantaId = "tuna") { }
+                            "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") { }
+                            "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
+
 
                         }
                     }
                 }
                 1 -> MapasScreen()
-                2 -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
+                2 -> PlantaDetalleScreen(plantaId = "maihuenia") { }
                 3 -> InfoScreen()
             }
         }
