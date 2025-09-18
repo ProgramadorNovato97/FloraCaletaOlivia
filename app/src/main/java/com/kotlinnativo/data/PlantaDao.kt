@@ -36,4 +36,11 @@ interface FavoritosDao {
             quitarFavorito(id)
         }
     }
+
+    @Query("""
+        SELECT plantas.* FROM plantas 
+        INNER JOIN favoritos ON plantas.id = favoritos.plantaId 
+        ORDER BY plantas.nombre ASC
+    """)
+    fun obtenerPlantasFavoritas(): Flow<List<Planta>>
 }

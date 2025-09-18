@@ -30,8 +30,6 @@ import kotlinx.coroutines.delay
 @Preview
 @Composable
 fun InfoScreen() {
-
-
     //******************************
     val context = LocalContext.current
     var distancia by remember { mutableStateOf("Calculando...") }
@@ -42,9 +40,6 @@ fun InfoScreen() {
             delay(10000)
         }
     }
-
-
-
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -80,19 +75,12 @@ fun InfoScreen() {
             }
         }
 
-
         Column {
             Text(
                 text = "Distancia a Uña de gato es: $distancia",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(top = 16.dp)
             )
-
-
             }
-
-
-
-
     }
 }

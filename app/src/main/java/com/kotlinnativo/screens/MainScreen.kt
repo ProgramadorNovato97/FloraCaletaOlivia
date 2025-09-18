@@ -27,12 +27,12 @@ fun MainScreen() {
                 containerColor = Color(0xFFf4efef)
             ) {
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Flora") },
-                    label = { Text("Flora") },
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
+                    label = { Text("Inicio") },
                     selected = selectedTab == 0,
                     onClick = {
                         selectedTab = 0
-                        currentPlant = null // Reset al volver a flora
+                        currentPlant = null // Reset al volver a inicio
                     }
                 )
                 NavigationBarItem(
@@ -64,8 +64,6 @@ fun MainScreen() {
                         FloraScreen(onNavigate = { plantName -> currentPlant = plantName })
                     } else {
                         when(currentPlant) {
-                           // "unadegato" -> UnadegatoScreen(onBack = { currentPlant = null })
-                            //"cactus" -> CactusScreen(onBack = { currentPlant = null })
                             "tuna" -> PlantaDetalleScreen(plantaId = "tuna") { }
                             "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") { }
                             "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
@@ -75,7 +73,7 @@ fun MainScreen() {
                     }
                 }
                 1 -> MapasScreen()
-                2 -> PlantaDetalleScreen(plantaId = "maihuenia") { }
+                2 -> FavoritosScreen { plantaId -> currentPlant = plantaId }
                 3 -> InfoScreen()
             }
         }
@@ -119,7 +117,5 @@ fun HeaderCaletaClick() {
             }
         }
     }
-
-
 }
 

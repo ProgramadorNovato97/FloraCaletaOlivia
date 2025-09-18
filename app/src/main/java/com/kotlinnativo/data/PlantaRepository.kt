@@ -17,4 +17,7 @@ class PlantaRepository(private val database: PlantaDatabase) {
     suspend fun cambiarFavorito(id: String, esFavorito: Boolean) {
         database.favoritosDao().cambiarFavorito(id, esFavorito)
     }
+    // Obtener favoritos
+    fun obtenerPlantasFavoritas(): Flow<List<Planta>> =
+        database.favoritosDao().obtenerPlantasFavoritas()
 }

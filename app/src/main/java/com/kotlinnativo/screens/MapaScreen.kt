@@ -84,141 +84,152 @@ fun MapasScreen() {
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        when {
-            !hasLocationPermission -> {
-                // Sin permisos - mostrar botón centrado
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
 
-                    Text(
-                        text = "Se necesita acceso a la ubicación",
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = {
-                            locationPermissionLauncher.launch(
-                                arrayOf(
-                                    Manifest.permission.ACCESS_FINE_LOCATION,
-                                    Manifest.permission.ACCESS_COARSE_LOCATION
-                                )
-                            )
-                        }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        //*** Header Caleta en un click ***
+        HeaderCaletaClick()
+
+        Box(modifier = Modifier.fillMaxSize()) {
+            when {
+                !hasLocationPermission -> {
+                    // Sin permisos - mostrar botón centrado
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
                     ) {
-                        Text("Solicitar Permisos")
+
+                        Text(
+                            text = "Se necesita acceso a la ubicación",
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = {
+                                locationPermissionLauncher.launch(
+                                    arrayOf(
+                                        Manifest.permission.ACCESS_FINE_LOCATION,
+                                        Manifest.permission.ACCESS_COARSE_LOCATION
+                                    )
+                                )
+                            }
+                        ) {
+                            Text("Solicitar Permisos")
+                        }
                     }
                 }
-            }
 
-            // Mensaje mientras se Obteniene la ubicación
-            isLoadingLocation -> {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
+                // Mensaje mientras se Obteniene la ubicación
+                isLoadingLocation -> {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
 
-                    CircularProgressIndicator()
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text("Obteniendo ubicación...")
-                }
-            }
-
-            currentLocation != null -> {
-                // Mostrar mapa con mi ubicación
-                val myLatLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
-                val cameraPositionState = rememberCameraPositionState {
-                    position = CameraPosition.fromLatLngZoom(myLatLng, 13f)
+                        CircularProgressIndicator()
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text("Obteniendo ubicación...")
+                    }
                 }
 
+                currentLocation != null -> {
+                    // Mostrar mapa con mi ubicación
+                    val myLatLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
+                    val cameraPositionState = rememberCameraPositionState {
+                        position = CameraPosition.fromLatLngZoom(myLatLng, 13f)
+                    }
 
 
-                val markerState = rememberMarkerState() //***** Para Markers ****
-                GoogleMap(
-                    modifier = Modifier.fillMaxSize(),
-                    cameraPositionState = cameraPositionState,
-                    properties = MapProperties(
-                        isMyLocationEnabled = true,
-                        mapType = MapType.SATELLITE //Vista satelite de mapa
-                    ),
-                    uiSettings = MapUiSettings(
-                        myLocationButtonEnabled = true,
-                        zoomControlsEnabled = true
-                    )
-                ) {
+                    val markerState = rememberMarkerState() //***** Para Markers ****
+                    GoogleMap(
+                        modifier = Modifier.fillMaxSize(),
+                        cameraPositionState = cameraPositionState,
+                        properties = MapProperties(
+                            isMyLocationEnabled = true,
+                            mapType = MapType.SATELLITE //Vista satelite de mapa
+                        ),
+                        uiSettings = MapUiSettings(
+                            myLocationButtonEnabled = true,
+                            zoomControlsEnabled = true
+                        )
+                    ) {
 
-                    // ***** Mostramos Marker Inicio y Fin ****
-                    Marker(
-                        state = MarkerState(LatLng(-46.42253982376904, -67.52278891074239)),
-                        title = "Inicio del circuito",
-                        icon = MapasService.NumMarker(context, "Ini", Color(0xFF1FFF49)),
-                    )
-                    Marker(
-                        state = MarkerState(LatLng(-46.417927440656086, -67.52823705796133)),
-                        title = "Final del circuito",
-                        icon = MapasService.NumMarker(context, "Fin", Color(0xFFFF4747)),
-                    )
+                        // ***** Mostramos Marker Inicio y Fin ****
+                        Marker(
+                            state = MarkerState(LatLng(-46.42253982376904, -67.52278891074239)),
+                            title = "Inicio del circuito",
+                            icon = MapasService.NumMarker(context, "Ini", Color(0xFF1FFF49)),
+                        )
+                        Marker(
+                            state = MarkerState(LatLng(-46.417927440656086, -67.52823705796133)),
+                            title = "Final del circuito",
+                            icon = MapasService.NumMarker(context, "Fin", Color(0xFFFF4747)),
+                        )
 
-                    // **** Mostramos todos nuetra lista de marker propios ****
-                    ListadeMarkers.forEach { markerPropio ->
-                    Marker(
-                        state = MarkerState(position = markerPropio.posicion),
-                        title = markerPropio.titulo,
-                        icon = MapasService.NumMarker(context, markerPropio.id.toString(), Color(0xFFFF9A24)),
-                        onClick = {
-                            markerState.onMarkerClick(markerPropio)
-                            true // Evento
+                        // **** Mostramos todos nuetra lista de marker propios ****
+                        ListadeMarkers.forEach { markerPropio ->
+                            Marker(
+                                state = MarkerState(position = markerPropio.posicion),
+                                title = markerPropio.titulo,
+                                icon = MapasService.NumMarker(
+                                    context,
+                                    markerPropio.id.toString(),
+                                    Color(0xFFFF9A24)
+                                ),
+                                onClick = {
+                                    markerState.onMarkerClick(markerPropio)
+                                    true // Evento
+                                }
+                            )
                         }
-                    )
+
+                        // ************** Polyline para conectar markers ****************
+                        MapasService.MiPolyline()
+
+                    }
+                    // **** Mostramos los card ***
+                    markerState.markerSeleccionado?.let { marker ->
+                        CardMarker(
+                            marker = marker,
+                            onCerrar = { markerState.cerrarCard() }
+                        )
+                    }
                 }
 
-                 // ************** Polyline para conectar markers ****************
-                 MapasService.MiPolyline()
+                else -> {
+                    // Caso de fallo en obtener ubicación
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
 
-                }
-                // **** Mostramos los card ***
-                markerState.markerSeleccionado?.let { marker ->
-                    CardMarker(
-                        marker = marker,
-                        onCerrar = { markerState.cerrarCard() }
-                    )
-                }
-            }
-
-            else -> {
-                // Caso de fallo en obtener ubicación
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-
-                    Text("No se pudo obtener la ubicación")
-                    Button(
-                        onClick = {
-                            isLoadingLocation = true
-                            try {
-                                fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                                    currentLocation = location
+                        Text("No se pudo obtener la ubicación")
+                        Button(
+                            onClick = {
+                                isLoadingLocation = true
+                                try {
+                                    fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                                        currentLocation = location
+                                        isLoadingLocation = false
+                                    }
+                                } catch (e: SecurityException) {
                                     isLoadingLocation = false
                                 }
-                            } catch (e: SecurityException) {
-                                isLoadingLocation = false
                             }
+                        ) {
+                            Text("Reintentar")
                         }
-                    ) {
-                        Text("Reintentar")
                     }
                 }
             }
         }
     }
 }
-
 
 
 

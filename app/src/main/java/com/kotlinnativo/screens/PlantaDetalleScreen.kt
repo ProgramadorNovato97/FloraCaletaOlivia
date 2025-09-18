@@ -22,14 +22,16 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -38,62 +40,65 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kotlinnativo.R
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kotlinnativo.data.PlantaDatabase
+import com.kotlinnativo.data.PlantaRepository
+import com.kotlinnativo.viewmodel.PlantaViewModel
 import net.engawapg.lib.zoomable.rememberZoomState
 import net.engawapg.lib.zoomable.zoomable
 
-
-
-
-//============ Uso de plantillas para realizar las pantallas ============
 @Composable
-fun CactusScreen(onBack: () -> Unit) {
-    PlantInfo(
-        titulo = "Cactus Austral",
-        imagenesRes = listOf(
-            R.drawable.cactusaustral,
-            R.drawable.cactusaustral2,
-        ),
-        descripcion = "Información detallada sobre cactus austral...",
-        onBack = onBack
-    )
-}
-
-@Composable
-fun UnadegatoScreen(onBack: () -> Unit) {
-    PlantInfo(
-        titulo = "Uña de gato",
-        imagenesRes = listOf(
-            R.drawable.unadegato,
-            R.drawable.unadegato2,
-        ),
-        descripcion = "Es una planta baja y leñosa de hojas delgadas como agujas. De allí, se denomina también pinchabola o colchón de suegra. Se extiende sobre el suelo formando almohadones de gran magnitud y en terrenos bajos. A finales de noviembre, se cubre de flores de color amarillo – dorado. Cuando fructifican, los panaderos se diseminan lentamente. Por largo tiempo, permanecen en la planta restos secos y brillantes del mismo color de las flores que, por su aspecto, semejan las conocidas siemprevivas de los arreglos florales.",
-        onBack = onBack
-    )
-}
-//========================================================
-
-// Plantilla para mostrar la informacion completa de la planta
-@Composable
-fun PlantInfo(
-    titulo: String,
-    imagenesRes: List<Int>,
-    descripcion: String,
+fun PlantaDetalleScreen(
+    plantaId: String,
     onBack: () -> Unit
 ) {
+    val context = LocalContext.current
+    val database = PlantaDatabase.getDatabase(context)
+    val repository = PlantaRepository(database)
+    val viewModel: PlantaViewModel = viewModel { PlantaViewModel(repository) }
+
+    val planta by viewModel.planta.collectAsState()
+    val esFavorito by viewModel.esFavorito.collectAsState()
+
     var imagenActual by remember { mutableIntStateOf(0) }
-    var esFavorito by remember { mutableStateOf(false) }
+
+    // Cargar planta cuando se crea la screen
+    LaunchedEffect(plantaId) {
+        viewModel.cargarPlanta(plantaId)
+    }
+
+    // Mostrar loading mientras carga
+    if (planta == null) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+        return
+    }
+
+    val plantaActual = planta!!
+    // Obtener recursos drawable por nombre (.jpg)
+    val imagenesRes = plantaActual.imagenesRes.split(",").map { nombreImagen ->
+        context.resources.getIdentifier(
+            nombreImagen.trim(), // quitar espacios
+            "drawable",
+            context.packageName
+        )
+    }.filter { it != 0 } // Filtrar IDs inválidos
 
     Column(modifier = Modifier.fillMaxSize()) {
-        //*** Header Caleta en un click ***
+        //*** Header superior ***
         HeaderCaletaClick()
 
-        // Contenido scrollable
+        // Contenido scrollable con TUS datos de BD
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -108,14 +113,16 @@ fun PlantInfo(
                     .height(500.dp)
                     .clipToBounds()
             ) {
-                Image(
-                    painter = painterResource(id = imagenesRes[imagenActual]),
-                    contentDescription = titulo,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .zoomable(rememberZoomState()),
-                    contentScale = ContentScale.Crop
-                )
+                if (imagenesRes.isNotEmpty()) {
+                    Image(
+                        painter = painterResource(id = imagenesRes[imagenActual]),
+                        contentDescription = plantaActual.nombre,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .zoomable(rememberZoomState()),
+                        contentScale = ContentScale.Crop
+                    )
+                }
 
                 // Botones de navegación (solo si hay más de una imagen)
                 if (imagenesRes.size > 1) {
@@ -190,6 +197,7 @@ fun PlantInfo(
             }
 
             Spacer(modifier = Modifier.height(6.dp))
+
             Row(
                 modifier = Modifier
                     .fillMaxSize()
@@ -197,23 +205,24 @@ fun PlantInfo(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconButton(onClick = onBack) {
+
+               /* IconButton(onClick = onBack) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Volver",
                         tint = Color.Black
                     )
-                }
+                } */
 
                 Text(
-                    text = titulo,
+                    text = plantaActual.nombre, // DESDE LA BD
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center
                 )
 
-                IconButton(onClick = { esFavorito = !esFavorito }) {
+                IconButton(onClick = { viewModel.cambiarFavorito() }) { // CONECTADO A BD
                     Icon(
                         imageVector = if (esFavorito) Icons.Filled.Favorite else Icons.Outlined.Favorite,
                         contentDescription = "Favorito",
@@ -221,9 +230,11 @@ fun PlantInfo(
                     )
                 }
             }
+
             Spacer(modifier = Modifier.height(6.dp))
+
             Text(
-                text = descripcion,
+                text = plantaActual.descripcion, // DESDE LA BD
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Justify,
                 lineHeight = 20.sp
