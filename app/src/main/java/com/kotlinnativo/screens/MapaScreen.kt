@@ -9,6 +9,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,7 +37,6 @@ import com.google.maps.android.compose.*
 import com.kotlinnativo.R
 
 
-@Preview
 @Composable
 fun MapasScreen() {
     val context = LocalContext.current // Contexto para icons de markers
@@ -140,7 +140,7 @@ fun MapasScreen() {
                     // Mostrar mapa con mi ubicación
                     val myLatLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
                     val cameraPositionState = rememberCameraPositionState {
-                        position = CameraPosition.fromLatLngZoom(myLatLng, 13f)
+                        position = CameraPosition.fromLatLngZoom(myLatLng, 14f)
                     }
 
 
@@ -235,32 +235,31 @@ fun MapasScreen() {
 
 //***********************************************
 
-
 //Lista de mis marcadores propios
 val ListadeMarkers = listOf(
     MarkerPropio(
         id = 1,
-        titulo = "Parada 1",
+        titulo = "Parada 1:",
         posicion = LatLng(-46.45676127715445, -67.52002212577646),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.maihuenia,
-                descripcion = "Maihuenia"
+                descripcion = "MAIHUENIA"
             ),
             ImagenMarker(
                 drawable = R.drawable.cactusaustral,
-                descripcion = "Cactus"
+                descripcion = "CACTUS AUSTRAL"
             ),
             ImagenMarker(
                 drawable = R.drawable.fabiana,
-                descripcion = "Fabiana"
+                descripcion = "FABIANA"
             ),
         )
     ),
 
     MarkerPropio(
     id = 2,
-    titulo = "PARADA 2",
+    titulo = "Parada 2: ",
     posicion = LatLng(-46.45726631838521, -67.52119080036859),
     imagenes = listOf(
         ImagenMarker(
@@ -442,7 +441,6 @@ fun CarouselSimple(
     }
 }
 
-
 @Composable
 fun CardMarker(
     marker: MarkerPropio,
@@ -452,7 +450,7 @@ fun CardMarker(
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(12.dp)
     ) {
         Column(
             modifier = Modifier
@@ -472,7 +470,12 @@ fun CardMarker(
 
                 )
 
-                IconButton(onClick = onCerrar) {
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clickable { onCerrar() },
+                    contentAlignment = Alignment.Center
+                ) {
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Cerrar"
@@ -480,7 +483,7 @@ fun CardMarker(
                 }
             }
 
-            // Carousel (sin Spacer)
+            Spacer(modifier = Modifier.height(1.dp))
             CarouselSimple(
                 imagenes = marker.imagenes,
                 markerId = marker.id, // Agregado para resetear estado

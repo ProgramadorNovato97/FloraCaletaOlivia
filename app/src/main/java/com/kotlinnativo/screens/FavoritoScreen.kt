@@ -35,50 +35,65 @@ fun FavoritosScreen(
         //*** Header Caleta en un click ***
         HeaderCaletaClick()
 
-        Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-            // Lista
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                items(plantasFavoritas) { planta ->
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .padding(4.dp)) {
+            //Verificamos si hay favoritos
+            if (plantasFavoritas.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Todavia no tienes favoritos",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
+            } else {
+                // Lista
+                LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    items(plantasFavoritas) { planta ->
 
-                    // Card simple
-                    Card {
-                        Column(modifier = Modifier.padding(16.dp)) {
+                        // Card simple
+                        Card {
+                            Column(modifier = Modifier.padding(16.dp)) {
 
-                            // Imagen
-                            val imagenRes = context.resources.getIdentifier(
-                                planta.imagenesRes.split(",").first().trim(),
-                                "drawable",
-                                context.packageName
-                            )
-
-                            if (imagenRes != 0) {
-                                Image(
-                                    painter = painterResource(id = imagenRes),
-                                    contentDescription = planta.nombre,
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(200.dp),
-                                    contentScale = ContentScale.Crop
+                                // Imagen
+                                val imagenRes = context.resources.getIdentifier(
+                                    planta.imagenesRes.split(",").first().trim(),
+                                    "drawable",
+                                    context.packageName
                                 )
-                            }
 
-                            Spacer(modifier = Modifier.height(8.dp))
+                                if (imagenRes != 0) {
+                                    Image(
+                                        painter = painterResource(id = imagenRes),
+                                        contentDescription = planta.nombre,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(200.dp),
+                                        contentScale = ContentScale.Crop
+                                    )
+                                }
 
-                            // Nombre
-                            Text(
-                                text = planta.nombre,
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold
-                            )
+                                Spacer(modifier = Modifier.height(8.dp))
 
-                            Spacer(modifier = Modifier.height(8.dp))
+                                // Nombre
+                                Text(
+                                    text = planta.nombre,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
 
-                            // Botón con navegación
-                            Button(
-                                onClick = { onNavigateToDetalle(planta.id) },
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Text("Ver más")
+                                Spacer(modifier = Modifier.height(8.dp))
+
+                                // Botón con navegación
+                                Button(
+                                    onClick = { onNavigateToDetalle(planta.id) },
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    Text("Ver más")
+                                }
                             }
                         }
                     }

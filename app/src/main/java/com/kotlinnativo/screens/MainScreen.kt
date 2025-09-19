@@ -45,7 +45,9 @@ fun MainScreen() {
                     icon = { Icon(Icons.Default.Favorite, contentDescription = "Favoritos") },
                     label = { Text("Favoritos") },
                     selected = selectedTab == 2,
-                    onClick = { selectedTab = 2 }
+                    onClick = {
+                        selectedTab = 2
+                        currentPlant = null}
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Info, contentDescription = "Info") },
@@ -73,7 +75,15 @@ fun MainScreen() {
                     }
                 }
                 1 -> MapasScreen()
-                2 -> FavoritosScreen { plantaId -> currentPlant = plantaId }
+                2 -> {
+                    if (currentPlant == null) {
+                        FavoritosScreen { plantaId -> currentPlant = plantaId }
+                    } else {
+                        PlantaDetalleScreen(plantaId = currentPlant!!) {
+                            currentPlant = null  // Volver a favoritos
+                        }
+                    }
+                }
                 3 -> InfoScreen()
             }
         }
