@@ -23,7 +23,7 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar (
+            NavigationBar(
                 containerColor = Color(0xFFf4efef)
             ) {
                 NavigationBarItem(
@@ -32,14 +32,17 @@ fun MainScreen() {
                     selected = selectedTab == 0,
                     onClick = {
                         selectedTab = 0
-                        currentPlant = null // Reset al volver a inicio
+                        currentPlant = null // Reset
                     }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Place, contentDescription = "Circuito") },
                     label = { Text("Circuito") },
                     selected = selectedTab == 1,
-                    onClick = { selectedTab = 1 }
+                    onClick = {
+                        selectedTab = 1
+                        currentPlant = null
+                    }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Favorite, contentDescription = "Favoritos") },
@@ -47,13 +50,17 @@ fun MainScreen() {
                     selected = selectedTab == 2,
                     onClick = {
                         selectedTab = 2
-                        currentPlant = null}
+                        currentPlant = null
+                    }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Info, contentDescription = "Info") },
                     label = { Text("Info") },
                     selected = selectedTab == 3,
-                    onClick = { selectedTab = 3 }
+                    onClick = {
+                        selectedTab = 3
+                        currentPlant = null
+                    }
                 )
             }
         }
@@ -65,7 +72,7 @@ fun MainScreen() {
                     if (currentPlant == null) {
                         FloraScreen(onNavigate = { plantName -> currentPlant = plantName })
                     } else {
-                        when(currentPlant) {
+                        when (currentPlant) {
                             "tuna" -> PlantaDetalleScreen(plantaId = "tuna") { }
                             "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") { }
                             "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
@@ -75,7 +82,23 @@ fun MainScreen() {
                         }
                     }
                 }
-                1 -> MapasScreen()
+
+                //1 -> MapasScreen()
+
+
+                 1 -> {
+                    if (currentPlant == null) {
+                    MapasScreen { plantaId -> currentPlant = plantaId }
+                        } else {
+                        PlantaDetalleScreen(plantaId = currentPlant!!) {
+                        currentPlant = null  // Volver a mapas
+                            }
+                        }
+                    }
+
+
+
+
                 2 -> {
                     if (currentPlant == null) {
                         FavoritosScreen { plantaId -> currentPlant = plantaId }
@@ -85,6 +108,7 @@ fun MainScreen() {
                         }
                     }
                 }
+
                 3 -> InfoScreen()
             }
         }

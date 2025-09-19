@@ -49,7 +49,7 @@ fun InfoScreen() {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp),
+                .height(36.dp),
             color = ColorsService.Header,
             shadowElevation = 4.dp
         ) {

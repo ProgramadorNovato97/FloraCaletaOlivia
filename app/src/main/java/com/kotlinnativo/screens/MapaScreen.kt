@@ -38,7 +38,9 @@ import com.kotlinnativo.R
 
 
 @Composable
-fun MapasScreen() {
+fun MapasScreen(
+    onNavigateToPlanta: (String) -> Unit = {    }
+) {
     val context = LocalContext.current // Contexto para icons de markers
 
     val fusedLocationClient = remember {
@@ -191,11 +193,14 @@ fun MapasScreen() {
                         MapasService.MiPolyline()
 
                     }
+
+                    // **** Mostramos los card ***
                     // **** Mostramos los card ***
                     markerState.markerSeleccionado?.let { marker ->
                         CardMarker(
                             marker = marker,
-                            onCerrar = { markerState.cerrarCard() }
+                            onCerrar = { markerState.cerrarCard() },
+                            onNavigateToPlanta = onNavigateToPlanta
                         )
                     }
                 }
@@ -244,15 +249,18 @@ val ListadeMarkers = listOf(
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.maihuenia,
-                descripcion = "MAIHUENIA"
+                descripcion = "MAIHUENIA",
+                plantaId = "maihuenia"
             ),
             ImagenMarker(
                 drawable = R.drawable.cactusaustral,
-                descripcion = "CACTUS AUSTRAL"
+                descripcion = "CACTUS AUSTRAL",
+                plantaId = "cactusaustral"
             ),
             ImagenMarker(
-                drawable = R.drawable.fabiana,
-                descripcion = "FABIANA"
+                drawable = R.drawable.sulupe,
+                descripcion = "SULUPE",
+                plantaId = "sulupe"
             ),
         )
     ),
@@ -274,7 +282,8 @@ val ListadeMarkers = listOf(
 // ***** Clases necesarias ****
 data class ImagenMarker(
     val drawable: Int, // R.drawable.imagen1
-    val descripcion: String
+    val descripcion: String,
+    val plantaId: String? = null
 )
 
 data class MarkerPropio(
@@ -315,6 +324,7 @@ fun rememberMarkerState(): MarkerState {
 fun CarouselSimple(
     imagenes: List<ImagenMarker>,
     markerId: Int,
+    onImagenClick: (String) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var imagenActual by remember { mutableIntStateOf(0) }
@@ -338,7 +348,12 @@ fun CarouselSimple(
                 contentDescription = imagenes[imagenActual].descripcion,
                 modifier = Modifier
                     .fillMaxSize()
-                    .clip(RoundedCornerShape(8.dp)),
+                    .clip(RoundedCornerShape(8.dp))
+                    .clickable {
+                        imagenes[imagenActual].plantaId?.let { plantaId ->
+                            onImagenClick(plantaId)
+                        }
+                    },
                 contentScale = ContentScale.Crop
             )
 
@@ -445,6 +460,7 @@ fun CarouselSimple(
 fun CardMarker(
     marker: MarkerPropio,
     onCerrar: () -> Unit,
+    onNavigateToPlanta: (String) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -487,6 +503,7 @@ fun CardMarker(
             CarouselSimple(
                 imagenes = marker.imagenes,
                 markerId = marker.id, // Agregado para resetear estado
+                onImagenClick = onNavigateToPlanta,
                 modifier = Modifier.fillMaxWidth()
             )
         }
