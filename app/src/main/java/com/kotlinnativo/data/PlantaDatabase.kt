@@ -47,25 +47,24 @@ abstract class PlantaDatabase : RoomDatabase() {
 
         private suspend fun precargarDatos(plantaDao: PlantaDao) {
 
-
-            // AQUÍ VAN LAS PLANTAS ESTÁTICAS
+            //  PLANTAS ESTÁTICAS
             val plantas = listOf(
                 Planta(
                     id = "maihuenia",
-                    nombre = "Maihuenia",
-                    descripcion = "Planta verde de la patagonia",
+                    nombre = "Maihuenia patagonica",
+                    descripcion = "Estas plantas forman densos cojines de no mucha altura pero que pueden alcanzar varios metros de diámetro. Presentan espinas en grupos de a tres, todas aplanadas lateralmente. Las hojas son pequeñas y se encuentran agrupadas sobre las ramas jóvenes la mayoría de las veces. Las flores son blancas y muy frecuentadas por los insectos polinizadores. Es una planta bastante común en distintos tipos de suelos áridos. Su floración se da principalmente en el mes de diciembre.",
                     imagenesRes = "maihuenia"
                 ),
                 Planta(
                     id = "cactusaustral",
-                    nombre = "Cactus Austral",
-                    descripcion = "Esta planta se encuentra en las zonas aridas de la ",
+                    nombre = "Cactus Austral (Austrocactus bertinii)",
+                    descripcion = "Es una planta columnar con costillas rectas y espinas radiales y o centrales algo arqueadas. Las flores son acampanadas rosado – amarillentas, dispuestas próximas al ápice en número de tres – cinco o más, recubiertas externamente por mechones lanosos y cerdas oscuras. El estigma de la flor está formado por 16 lóbulos de color púrpura. Fácilmente observable debajo de otros arbustos. La época de floración es en el comienzo del verano. Sus flores atraen una gran diversidad e insectos polinizadores. Las semillas germinan con mucha facilidad.",
                     imagenesRes = "cactusaustral,cactusaustral2".toString()
                 ),
                 Planta(
                     id = "unadegato",
-                    nombre = "Uña de gato",
-                    descripcion = "Esta planta lorem ipsum  en las zonas aridas de la ",
+                    nombre = "Uña de gato (Chuquiraga aurea)",
+                    descripcion = "Es una planta baja y leñosa de hojas delgadas como agujas. De allí, se denomina también pinchabola o colchón de suegra. Se extiende sobre el suelo formando almohadones de gran magnitud y en terrenos bajos. A finales de noviembre, se cubre de flores de color amarillo – dorado. Cuando fructifican, los panaderos se diseminan lentamente. Por largo tiempo, permanecen en la planta restos secos y brillantes del mismo color de las flores que, por su aspecto, semejan las conocidas siemprevivas de los arreglos florales. ",
                     imagenesRes = "unadegato,unadegato2".toString()
                 ),
                 Planta(

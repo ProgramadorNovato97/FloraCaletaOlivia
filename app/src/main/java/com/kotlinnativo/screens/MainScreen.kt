@@ -69,7 +69,8 @@ fun MainScreen() {
                             "tuna" -> PlantaDetalleScreen(plantaId = "tuna") { }
                             "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") { }
                             "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
-
+                            "maihuenia" -> PlantaDetalleScreen(plantaId = "maihuenia") { }
+                            "unadegato" -> PlantaDetalleScreen(plantaId = "unadegato") { }
 
                         }
                     }

@@ -219,7 +219,7 @@ fun PlantaDetalleScreen(
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Justify
                 )
 
                 IconButton(onClick = { viewModel.cambiarFavorito() }) { // CONECTADO A BD

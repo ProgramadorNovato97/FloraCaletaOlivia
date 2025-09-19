@@ -55,9 +55,23 @@ fun FloraScreen(onNavigate: (String) -> Unit) {
 
             item {
                 ItemCard(
-                    nombre = "sulupe",
+                    nombre = "Sulupe",
                     imagenRes = R.drawable.sulupe,
                     onClick = { onNavigate("sulupe") }
+                )
+            }
+            item {
+                ItemCard(
+                    nombre = "Maihuenia",
+                    imagenRes = R.drawable.maihuenia,
+                    onClick = { onNavigate("maihuenia") }
+                )
+            }
+            item {
+                ItemCard(
+                    nombre = "Uña de gato",
+                    imagenRes = R.drawable.unadegato,
+                    onClick = { onNavigate("unadegato") }
                 )
             }
         //===================================
