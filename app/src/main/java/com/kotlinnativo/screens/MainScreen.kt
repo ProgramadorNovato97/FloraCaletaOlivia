@@ -67,10 +67,10 @@ fun MainScreen() {
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             when (selectedTab) {
+
                 0 -> {
-                    // Info de las plantas
                     if (currentPlant == null) {
-                        FloraScreen(onNavigate = { plantName -> currentPlant = plantName })
+                        FloraScreen { plantaId -> currentPlant = plantaId }
                     } else {
                         when (currentPlant) {
                             "tuna" -> PlantaDetalleScreen(plantaId = "tuna") { }
@@ -78,25 +78,21 @@ fun MainScreen() {
                             "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
                             "maihuenia" -> PlantaDetalleScreen(plantaId = "maihuenia") { }
                             "unadegato" -> PlantaDetalleScreen(plantaId = "unadegato") { }
-
+                            "cactusaustral" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
                         }
                     }
                 }
 
-                //1 -> MapasScreen()
 
-
-                 1 -> {
+                1 -> {
                     if (currentPlant == null) {
-                    MapasScreen { plantaId -> currentPlant = plantaId }
-                        } else {
+                        MapasScreen { plantaId -> currentPlant = plantaId }
+                    } else {
                         PlantaDetalleScreen(plantaId = currentPlant!!) {
-                        currentPlant = null  // Volver a mapas
-                            }
+                            currentPlant = null  // Volver a mapas
                         }
                     }
-
-
+                }
 
 
                 2 -> {

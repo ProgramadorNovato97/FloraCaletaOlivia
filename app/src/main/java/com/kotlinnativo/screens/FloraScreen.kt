@@ -1,91 +1,104 @@
 package com.kotlinnativo.screens
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kotlinnativo.R
-
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kotlinnativo.data.Planta
+import com.kotlinnativo.data.PlantaDatabase
+import com.kotlinnativo.data.PlantaRepository
+import com.kotlinnativo.viewmodel.FloraViewModel
 
 @Composable
-fun FloraScreen(onNavigate: (String) -> Unit) {
+fun FloraScreen(
+    onNavigateToPlanta: (String) -> Unit = {}
+) {
+    val context = LocalContext.current
+    val database = PlantaDatabase.getDatabase(context)
+    val repository = PlantaRepository(database)
+    val viewModel: FloraViewModel = viewModel { FloraViewModel(repository) }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    val plantas by viewModel.plantas.collectAsState()
+
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         //*** Header Caleta en un click ***
         HeaderCaletaClick()
 
-        Spacer(modifier = Modifier.height(6.dp))
-        // Grilla de cards
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .weight(1f),
-            contentPadding = PaddingValues(top = 0.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .padding(horizontal = 8.dp, vertical = 4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            //======================= Todos los cards de flora ===========================
-            item {
-                ItemCard(
-                    nombre = "Tuna",
-                    imagenRes = R.drawable.tuna,
-                    onClick = { onNavigate("tuna") }
-                )
-            }
 
-            item {
-                ItemCard(
-                    nombre = "Cactus",
-                    imagenRes = R.drawable.cactusaustral,
-                    onClick = { onNavigate("cactus") }
-                )
-            }
 
-            item {
-                ItemCard(
-                    nombre = "Sulupe",
-                    imagenRes = R.drawable.sulupe,
-                    onClick = { onNavigate("sulupe") }
-                )
+            // Grid de plantas
+            if (plantas.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+
+                    CircularProgressIndicator()
+                    Text(
+                        text = "Plantas disponibles",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            } else {
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(plantas) { planta ->
+                        PlantaCard(
+                            planta = planta,
+                            onClick = { onNavigateToPlanta(planta.id) }
+                        )
+                    }
+                }
             }
-            item {
-                ItemCard(
-                    nombre = "Maihuenia",
-                    imagenRes = R.drawable.maihuenia,
-                    onClick = { onNavigate("maihuenia") }
-                )
-            }
-            item {
-                ItemCard(
-                    nombre = "Uña de gato",
-                    imagenRes = R.drawable.unadegato,
-                    onClick = { onNavigate("unadegato") }
-                )
-            }
-        //===================================
-    }
+        }
     }
 }
 
-// Plantilla reutilizable de card para mostar flora
+
 @Composable
-fun ItemCard(
-    nombre: String,
-    imagenRes: Int,
+private fun PlantaCard(
+    planta: Planta,
     onClick: () -> Unit
 ) {
+    val context = LocalContext.current
+
+    // Obtener primera imagen
+    val primeraImagen = planta.imagenesRes.split(",").first().trim()
+    val imagenRes = context.resources.getIdentifier(
+        primeraImagen,
+        "drawable",
+        context.packageName
+    )
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,25 +106,40 @@ fun ItemCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
-            Image(
-                painter = painterResource(id = imagenRes),
-                contentDescription = nombre,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
-                    .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
-            )
+            if (imagenRes != 0) {
+                Image(
+                    painter = painterResource(id = imagenRes),
+                    contentDescription = planta.nombre,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp)
+                        .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
+                )
+            } else {
+                // Placeholder si no hay imagen
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(100.dp)
+                        .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "🌱",
+                        fontSize = 32.sp
+                    )
+                }
+            }
 
             Text(
-                text = nombre,
+                text = planta.nombre,
                 style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 16.sp),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(2.dp) // Sin padding
+                    .padding(4.dp)
             )
         }
     }
 }
-

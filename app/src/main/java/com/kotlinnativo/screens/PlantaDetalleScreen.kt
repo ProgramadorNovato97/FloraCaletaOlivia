@@ -26,6 +26,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -44,11 +45,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kotlinnativo.data.PlantaDatabase
 import com.kotlinnativo.data.PlantaRepository
+import com.kotlinnativo.services.ColorsService
 import com.kotlinnativo.viewmodel.PlantaViewModel
 import net.engawapg.lib.zoomable.rememberZoomState
 import net.engawapg.lib.zoomable.zoomable
@@ -95,8 +98,28 @@ fun PlantaDetalleScreen(
     }.filter { it != 0 } // Filtrar IDs inválidos
 
     Column(modifier = Modifier.fillMaxSize()) {
-        //*** Header superior ***
-        HeaderCaletaClick()
+       // *** Boton volver ***
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            color = ColorsService.Header,
+            shadowElevation = 4.dp
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(start = 8.dp)
+            ) {
+                IconButton(onClick = {  }) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Atrás",
+                        tint = Color.Black
+                    )
+                }
+            }
+        }
+
 
         // Contenido scrollable con TUS datos de BD
         Column(
@@ -226,7 +249,7 @@ fun PlantaDetalleScreen(
                     Icon(
                         imageVector = if (esFavorito) Icons.Filled.Favorite else Icons.Outlined.Favorite,
                         contentDescription = "Favorito",
-                        tint = if (esFavorito) Color.Blue else Color.Gray
+                        tint = if (esFavorito) Color.Red else Color.Gray
                     )
                 }
             }

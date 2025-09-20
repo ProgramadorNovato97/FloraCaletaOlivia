@@ -1,22 +1,26 @@
 package com.kotlinnativo.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kotlinnativo.data.PlantaDatabase
 import com.kotlinnativo.data.PlantaRepository
 import com.kotlinnativo.viewmodel.FavoritosViewModel
-import androidx.compose.foundation.lazy.items
-import androidx.compose.ui.Alignment
 
 @Composable
 fun FavoritosScreen(
@@ -26,7 +30,10 @@ fun FavoritosScreen(
     val database = PlantaDatabase.getDatabase(context)
     val repository = PlantaRepository(database)
     val viewModel: FavoritosViewModel = viewModel { FavoritosViewModel(repository) }
+
     val plantasFavoritas by viewModel.plantasFavoritas.collectAsState()
+
+
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -34,18 +41,18 @@ fun FavoritosScreen(
     ) {
         //*** Header Caleta en un click ***
         HeaderCaletaClick()
-
         Column(modifier = Modifier
             .fillMaxSize()
-            .padding(4.dp)) {
-            //Verificamos si hay favoritos
+            .padding(horizontal = 8.dp, vertical = 4.dp))
+            {
+
             if (plantasFavoritas.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Todavia no tienes favoritos",
+                        text = "Todavía no tienes favoritos",
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
@@ -55,8 +62,12 @@ fun FavoritosScreen(
                     items(plantasFavoritas) { planta ->
 
                         // Card simple
-                        Card {
-                            Column(modifier = Modifier.padding(16.dp)) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onNavigateToDetalle(planta.id) }
+                        ) {
+                            Column(modifier = Modifier.fillMaxWidth()) {
 
                                 // Imagen
                                 val imagenRes = context.resources.getIdentifier(
@@ -71,29 +82,40 @@ fun FavoritosScreen(
                                         contentDescription = planta.nombre,
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .height(200.dp),
+                                            .height(250.dp),
                                         contentScale = ContentScale.Crop
                                     )
                                 }
 
-                                Spacer(modifier = Modifier.height(8.dp))
-
-                                // Nombre
-                                Text(
-                                    text = planta.nombre,
-                                    style = MaterialTheme.typography.titleMedium,
-                                    fontWeight = FontWeight.Bold
-                                )
-
-                                Spacer(modifier = Modifier.height(8.dp))
-
-                                // Botón con navegación
-                                Button(
-                                    onClick = { onNavigateToDetalle(planta.id) },
-                                    modifier = Modifier.fillMaxWidth()
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 8.dp, vertical = 4.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Text("Ver más")
+                                    // Nombre
+                                    Text(
+                                        text = planta.nombre,
+                                        style = MaterialTheme.typography.titleMedium
+                                    )
+
+                                    // Distancia con ícono
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(
+                                            imageVector = Icons.Default.LocationOn,
+                                            contentDescription = "Ubicación",
+                                            tint = Color.Red, // o el color que prefieras
+                                            modifier = Modifier.size(18.dp)
+                                        )
+                                        Spacer(modifier = Modifier.width(4.dp))
+                                        Text(
+                                            text = "2.3 km",
+                                            style = MaterialTheme.typography.titleMedium
+                                        )
+                                    }
                                 }
+
                             }
                         }
                     }

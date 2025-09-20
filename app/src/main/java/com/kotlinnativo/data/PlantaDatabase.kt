@@ -57,13 +57,13 @@ abstract class PlantaDatabase : RoomDatabase() {
                 ),
                 Planta(
                     id = "cactusaustral",
-                    nombre = "Cactus Austral (Austrocactus bertinii)",
+                    nombre = "Cactus Austral",
                     descripcion = "Es una planta columnar con costillas rectas y espinas radiales y o centrales algo arqueadas. Las flores son acampanadas rosado – amarillentas, dispuestas próximas al ápice en número de tres – cinco o más, recubiertas externamente por mechones lanosos y cerdas oscuras. El estigma de la flor está formado por 16 lóbulos de color púrpura. Fácilmente observable debajo de otros arbustos. La época de floración es en el comienzo del verano. Sus flores atraen una gran diversidad e insectos polinizadores. Las semillas germinan con mucha facilidad.",
                     imagenesRes = "cactusaustral,cactusaustral2".toString()
                 ),
                 Planta(
                     id = "unadegato",
-                    nombre = "Uña de gato (Chuquiraga aurea)",
+                    nombre = "Uña de gato",
                     descripcion = "Es una planta baja y leñosa de hojas delgadas como agujas. De allí, se denomina también pinchabola o colchón de suegra. Se extiende sobre el suelo formando almohadones de gran magnitud y en terrenos bajos. A finales de noviembre, se cubre de flores de color amarillo – dorado. Cuando fructifican, los panaderos se diseminan lentamente. Por largo tiempo, permanecen en la planta restos secos y brillantes del mismo color de las flores que, por su aspecto, semejan las conocidas siemprevivas de los arreglos florales. ",
                     imagenesRes = "unadegato,unadegato2".toString()
                 ),

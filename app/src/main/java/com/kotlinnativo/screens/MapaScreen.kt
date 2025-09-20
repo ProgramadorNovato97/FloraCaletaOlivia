@@ -1,4 +1,5 @@
 package com.kotlinnativo.screens
+
 import com.kotlinnativo.services.MapasService
 
 import android.Manifest
@@ -39,7 +40,7 @@ import com.kotlinnativo.R
 
 @Composable
 fun MapasScreen(
-    onNavigateToPlanta: (String) -> Unit = {    }
+    onNavigateToPlanta: (String) -> Unit = { }
 ) {
     val context = LocalContext.current // Contexto para icons de markers
 
@@ -237,7 +238,6 @@ fun MapasScreen(
 }
 
 
-
 //***********************************************
 
 //Lista de mis marcadores propios
@@ -266,16 +266,17 @@ val ListadeMarkers = listOf(
     ),
 
     MarkerPropio(
-    id = 2,
-    titulo = "Parada 2: ",
-    posicion = LatLng(-46.45726631838521, -67.52119080036859),
-    imagenes = listOf(
-        ImagenMarker(
-            drawable = R.drawable.unadegato,
-            descripcion = "UÑA DE GATO"
+        id = 2,
+        titulo = "Parada 2: ",
+        posicion = LatLng(-46.45726631838521, -67.52119080036859),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.unadegato,
+                descripcion = "UÑA DE GATO",
+                plantaId = "unadegato"
+            )
         )
     )
-)
 )
 
 
@@ -308,6 +309,7 @@ class MarkerState {
             markerSeleccionado = marker // Luego abro el nuevo
         }
     }
+
     fun cerrarCard() {
         markerSeleccionado = null
     }
@@ -484,7 +486,7 @@ fun CardMarker(
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
 
-                )
+                    )
 
                 Box(
                     modifier = Modifier
