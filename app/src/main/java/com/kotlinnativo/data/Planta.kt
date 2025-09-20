@@ -9,7 +9,9 @@ data class Planta(
     val id: String,
     val nombre: String,
     val descripcion: String,
-    val imagenesRes: String
+    val imagenesRes: String,
+    val latitud: Double? = null,
+    val longitud: Double? = null
 )
 
 @Entity(tableName = "favoritos")

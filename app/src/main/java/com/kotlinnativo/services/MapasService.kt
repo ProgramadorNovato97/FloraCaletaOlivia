@@ -31,31 +31,6 @@ object MapasService {
             Manifest.permission.ACCESS_COARSE_LOCATION
         ]
     )
-    fun calcularDistancia(
-        context: Context,
-        latitudDestino: Double,
-        longitudDestino: Double
-    ): String {
-        return try {
-            val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            val ubicacionActual = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-                ?: locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-                ?: return "Ubicación no disponible"
-
-            val ubicacionDestino = Location("").apply {
-                latitude = latitudDestino
-                longitude = longitudDestino
-            }
-
-            val distanciaKm = ubicacionActual.distanceTo(ubicacionDestino) / 1000
-            String.format("%.2f km", distanciaKm)
-
-        } catch (e: Exception) {
-            "Error"
-        }
-    }
-
-
 
     //****************** Funcion para numerar los markes ****************
     fun NumMarker(

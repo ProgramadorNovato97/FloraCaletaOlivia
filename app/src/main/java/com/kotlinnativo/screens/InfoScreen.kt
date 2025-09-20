@@ -30,22 +30,12 @@ import kotlinx.coroutines.delay
 @Preview
 @Composable
 fun InfoScreen() {
-    //******************************
-    val context = LocalContext.current
-    var distancia by remember { mutableStateOf("Calculando...") }
-    // Actualizar cada 10 segundos
-    LaunchedEffect(Unit) {
-        while (true) {
-            distancia = MapasService.calcularDistancia(context, -46.42245345008987, -67.52397626334698)
-            delay(10000)
-        }
-    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        //*** Header Caleta en un click ***
+        //*** Header Circuito Flora ***
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -75,12 +65,5 @@ fun InfoScreen() {
             }
         }
 
-        Column {
-            Text(
-                text = "Distancia a Uña de gato es: $distancia",
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(top = 16.dp)
-            )
-            }
     }
 }
