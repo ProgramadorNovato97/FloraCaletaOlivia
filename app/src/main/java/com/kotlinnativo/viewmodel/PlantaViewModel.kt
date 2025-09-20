@@ -17,6 +17,7 @@ class PlantaViewModel(private val repository: PlantaRepository) : ViewModel() {
     private val _esFavorito = MutableStateFlow(false)
     val esFavorito: StateFlow<Boolean> = _esFavorito.asStateFlow()
 
+    //*** Cargamos plantas apenas inicie y tambien recolectamos aquellos que son favs***
     fun cargarPlanta(plantaId: String) {
         viewModelScope.launch {
             _planta.value = repository.obtenerPlanta(plantaId)
@@ -26,7 +27,7 @@ class PlantaViewModel(private val repository: PlantaRepository) : ViewModel() {
             }
         }
     }
-
+    //*** Cambia de estado aquellos que son favs***
     fun cambiarFavorito() {
         viewModelScope.launch {
             _planta.value?.let { planta ->

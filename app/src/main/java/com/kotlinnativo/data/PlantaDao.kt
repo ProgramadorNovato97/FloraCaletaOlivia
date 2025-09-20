@@ -14,6 +14,7 @@ interface PlantaDao {
     @Query("SELECT * FROM plantas WHERE id = :id")
     suspend fun obtenerPlanta(id: String): Planta?
 
+    //Insertar datos a base de datos
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertarPlantas(plantas: List<Planta>)
 }

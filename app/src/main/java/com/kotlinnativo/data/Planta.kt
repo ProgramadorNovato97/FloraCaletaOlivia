@@ -3,6 +3,7 @@ package com.kotlinnativo.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//*** Tabla y Clase Planta***
 @Entity(tableName = "plantas")
 data class Planta(
     @PrimaryKey

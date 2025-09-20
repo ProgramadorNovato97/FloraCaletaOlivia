@@ -5,7 +5,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import android.content.Context
-import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,7 +47,7 @@ abstract class PlantaDatabase : RoomDatabase() {
 
         private suspend fun precargarDatos(plantaDao: PlantaDao) {
 
-            //  PLANTAS ESTÁTICAS
+            //*** Lista de plantas para agregar a BDD ***
             val plantas = listOf(
                 Planta(
                     id = "maihuenia",
