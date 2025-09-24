@@ -18,8 +18,10 @@ import com.kotlinnativo.services.ColorsService
 @Preview
 @Composable
 fun MainScreen() {
-    var selectedTab by remember { mutableIntStateOf(1) } // Empezar en Mapa
-    var currentPlant by remember { mutableStateOf<String?>(null) }
+    var selectedTab by remember { mutableIntStateOf(1) } //La app empieza en el tab en Mapa
+    var currentPlant by remember { mutableStateOf<String?>(null) } //Pasamos planta actual para mostrar en detalle
+    var plantOrigin by remember { mutableIntStateOf(0) } //Origen de donde se partio a detalle
+
 
     Scaffold(
         bottomBar = {
@@ -33,6 +35,7 @@ fun MainScreen() {
                     onClick = {
                         selectedTab = 0
                         currentPlant = null // Reset
+                        plantOrigin = 0
                     }
                 )
                 NavigationBarItem(
@@ -73,12 +76,35 @@ fun MainScreen() {
                         FloraScreen { plantaId -> currentPlant = plantaId }
                     } else {
                         when (currentPlant) {
-                            "tuna" -> PlantaDetalleScreen(plantaId = "tuna") { }
-                            "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") { }
-                            "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
-                            "maihuenia" -> PlantaDetalleScreen(plantaId = "maihuenia") { }
-                            "unadegato" -> PlantaDetalleScreen(plantaId = "unadegato") { }
-                            "cactusaustral" -> PlantaDetalleScreen(plantaId = "cactusaustral") { }
+                            "tuna" -> PlantaDetalleScreen(plantaId = "tuna") {
+                                currentPlant = null
+                                selectedTab = plantOrigin  // Para regresar
+                            }
+
+                            "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "maihuenia" -> PlantaDetalleScreen(plantaId = "maihuenia") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "unadegato" -> PlantaDetalleScreen(plantaId = "unadegato") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "cactusaustral" -> PlantaDetalleScreen(plantaId = "cactusaustral") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
                         }
                     }
                 }
@@ -86,10 +112,14 @@ fun MainScreen() {
 
                 1 -> {
                     if (currentPlant == null) {
-                        MapasScreen { plantaId -> currentPlant = plantaId }
+                        MapasScreen { plantaId ->
+                            currentPlant = plantaId
+                            plantOrigin = 1  // AGREGAR ESTA LÍNEA
+                        }
                     } else {
                         PlantaDetalleScreen(plantaId = currentPlant!!) {
-                            currentPlant = null  // Volver a mapas
+                            currentPlant = null
+                            selectedTab = plantOrigin  // CAMBIAR ESTAS DOS LÍNEAS
                         }
                     }
                 }
@@ -97,10 +127,14 @@ fun MainScreen() {
 
                 2 -> {
                     if (currentPlant == null) {
-                        FavoritosScreen { plantaId -> currentPlant = plantaId }
+                        FavoritosScreen { plantaId ->
+                            currentPlant = plantaId
+                            plantOrigin = 2  // AGREGAR ESTA LÍNEA
+                        }
                     } else {
                         PlantaDetalleScreen(plantaId = currentPlant!!) {
-                            currentPlant = null  // Volver a favoritos
+                            currentPlant = null
+                            selectedTab = plantOrigin
                         }
                     }
                 }

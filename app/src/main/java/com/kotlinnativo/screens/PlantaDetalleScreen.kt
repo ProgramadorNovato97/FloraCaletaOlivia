@@ -106,20 +106,36 @@ fun PlantaDetalleScreen(
             color = ColorsService.Header,
             shadowElevation = 4.dp
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(start = 8.dp)
-            ) {
-                IconButton(onClick = {  }) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                IconButton(
+                    onClick = onBack,
+                    modifier = Modifier.align(Alignment.CenterStart)
+                ) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Atrás",
                         tint = Color.Black
                     )
                 }
+
+                Column(
+                    modifier = Modifier.align(Alignment.Center),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Caleta en un Click",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        text = "Circuito Flora",
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
-
 
         // Contenido scrollable con TUS datos de BD
         Column(
@@ -228,14 +244,6 @@ fun PlantaDetalleScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-
-               /* IconButton(onClick = onBack) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Volver",
-                        tint = Color.Black
-                    )
-                } */
 
                 Text(
                     text = plantaActual.nombre, // DESDE LA BD
