@@ -100,6 +100,10 @@ fun MainScreen() {
                                 currentPlant = null
                                 selectedTab = plantOrigin
                             }
+                            "botondeoro" -> PlantaDetalleScreen(plantaId = "botondeoro") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
 
                             "cactusaustral" -> PlantaDetalleScreen(plantaId = "cactusaustral") {
                                 currentPlant = null
