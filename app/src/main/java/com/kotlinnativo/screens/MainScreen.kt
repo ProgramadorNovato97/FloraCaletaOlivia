@@ -58,7 +58,7 @@ fun MainScreen() {
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Info, contentDescription = "Info") },
-                    label = { Text("Info") },
+                    label = { Text("Información") },
                     selected = selectedTab == 3,
                     onClick = {
                         selectedTab = 3
