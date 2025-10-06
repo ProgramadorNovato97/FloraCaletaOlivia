@@ -113,7 +113,7 @@ private fun PlantaCard(
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(120.dp)
+                        .height(130.dp)
                         .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
                 )
             } else {
@@ -121,7 +121,7 @@ private fun PlantaCard(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(120.dp)
+                        .height(130.dp)
                         .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp)),
                     contentAlignment = Alignment.Center
                 ) {

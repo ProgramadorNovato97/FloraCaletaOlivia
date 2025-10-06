@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/pruebaic_launcherplaystore</item>
+        <item name="postSplashScreenTheme">@style/Theme.KotlinNativo</item>
+    </style>
 
     <style name="Theme.KotlinNativo" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
