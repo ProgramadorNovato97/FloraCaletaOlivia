@@ -1,6 +1,5 @@
 package com.kotlinnativo.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -14,11 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.kotlinnativo.data.Planta
 import com.kotlinnativo.data.PlantaDatabase
 import com.kotlinnativo.data.PlantaRepository
@@ -35,12 +34,10 @@ fun FloraScreen(
 
     val plantas by viewModel.plantas.collectAsState()
 
-
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        //*** Header Caleta en un click ***
         HeaderCaletaClick()
 
         Column(
@@ -49,15 +46,11 @@ fun FloraScreen(
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-
-            // Grid de plantas
             if (plantas.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-
                     CircularProgressIndicator()
                     Text(
                         text = "Cargando flora...",
@@ -71,7 +64,7 @@ fun FloraScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(plantas) { planta ->
+                    items(plantas, key = { it.id }) { planta ->  // <-- Agregado key
                         PlantaCard(
                             planta = planta,
                             onClick = { onNavigateToPlanta(planta.id) }
@@ -83,7 +76,6 @@ fun FloraScreen(
     }
 }
 
-
 @Composable
 private fun PlantaCard(
     planta: Planta,
@@ -91,13 +83,15 @@ private fun PlantaCard(
 ) {
     val context = LocalContext.current
 
-    // Obtener primera imagen
-    val primeraImagen = planta.imagenesRes.split(",").first().trim()
-    val imagenRes = context.resources.getIdentifier(
-        primeraImagen,
-        "drawable",
-        context.packageName
-    )
+    // Calcular el recurso de imagen una sola vez
+    val imagenRes = remember(planta.id) {
+        val primeraImagen = planta.imagenesRes.split(",").first().trim()
+        context.resources.getIdentifier(
+            primeraImagen,
+            "drawable",
+            context.packageName
+        )
+    }
 
     Card(
         modifier = Modifier
@@ -107,8 +101,8 @@ private fun PlantaCard(
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             if (imagenRes != 0) {
-                Image(
-                    painter = painterResource(id = imagenRes),
+                AsyncImage(  // <-- Cambio de Image a AsyncImage
+                    model = imagenRes,
                     contentDescription = planta.nombre,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -117,7 +111,6 @@ private fun PlantaCard(
                         .clip(RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp))
                 )
             } else {
-                // Placeholder si no hay imagen
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
