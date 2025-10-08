@@ -76,31 +76,23 @@ fun MainScreen() {
                         FloraScreen { plantaId -> currentPlant = plantaId }
                     } else {
                         when (currentPlant) {
-                            "tuna" -> PlantaDetalleScreen(plantaId = "tuna") {
-                                currentPlant = null
-                                selectedTab = plantOrigin  // Para regresar
-                            }
-
-                            "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") {
-                                currentPlant = null
-                                selectedTab = plantOrigin
-                            }
-
-                            "cactus" -> PlantaDetalleScreen(plantaId = "cactusaustral") {
-                                currentPlant = null
-                                selectedTab = plantOrigin
-                            }
-
-                            "maihuenia" -> PlantaDetalleScreen(plantaId = "maihuenia") {
-                                currentPlant = null
-                                selectedTab = plantOrigin
-                            }
-
+                            //****** parada 1 ******
                             "unadegato" -> PlantaDetalleScreen(plantaId = "unadegato") {
                                 currentPlant = null
+                                selectedTab = plantOrigin //Para regresar nuevamente
+                            }
+                            //****** parada 2 ******
+                            "zampa" -> PlantaDetalleScreen(plantaId = "zampa") {
+                                currentPlant = null
                                 selectedTab = plantOrigin
                             }
-                            "botondeoro" -> PlantaDetalleScreen(plantaId = "botondeoro") {
+
+                            "quilimbay" -> PlantaDetalleScreen(plantaId = "quilimbay") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** parada 3 ******
+                            "falsotomillo" -> PlantaDetalleScreen(plantaId = "falsotomillo") {
                                 currentPlant = null
                                 selectedTab = plantOrigin
                             }
@@ -109,6 +101,84 @@ fun MainScreen() {
                                 currentPlant = null
                                 selectedTab = plantOrigin
                             }
+                            //****** parada 4 ******
+                            "tuna" -> PlantaDetalleScreen(plantaId = "tuna") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "malaspina" -> PlantaDetalleScreen(plantaId = "malaspina") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "chilca" -> PlantaDetalleScreen(plantaId = "chilca") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "coiron" -> PlantaDetalleScreen(plantaId = "coiron") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** parada 5 ******
+                            "matalaguna" -> PlantaDetalleScreen(plantaId = "matalaguna") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "yaoyin" -> PlantaDetalleScreen(plantaId = "yaoyin") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** parada 6 ******
+                            "duraznillo" -> PlantaDetalleScreen(plantaId = "duraznillo") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "verbena" -> PlantaDetalleScreen(plantaId = "verbena") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "botondeoro" -> PlantaDetalleScreen(plantaId = "botondeoro") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** parada 7 ******
+                            "sulupe" -> PlantaDetalleScreen(plantaId = "sulupe") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** parada 8 ******
+                            "algarrobillo" -> PlantaDetalleScreen(plantaId = "algarrobillo") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** parada 9 ******
+                            "maihuenia" -> PlantaDetalleScreen(plantaId = "maihuenia") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** parada 10 ******
+                            "tomillo" -> PlantaDetalleScreen(plantaId = "tomillo") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "fabiana" -> PlantaDetalleScreen(plantaId = "fabiana") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+                            "brachiclados" -> PlantaDetalleScreen(plantaId = "brachiclados") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            //****** Más paradas******
+
+
                         }
                     }
                 }

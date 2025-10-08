@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -137,7 +138,7 @@ fun PlantaDetalleScreen(
             }
         }
 
-        // Contenido scrollable con TUS datos de BD
+        // Contenido scrollable
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -149,7 +150,7 @@ fun PlantaDetalleScreen(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(500.dp)
+                    .height(320.dp)
                     .clipToBounds()
             ) {
                 if (imagenesRes.isNotEmpty()) {
@@ -158,6 +159,7 @@ fun PlantaDetalleScreen(
                         contentDescription = plantaActual.nombre,
                         modifier = Modifier
                             .fillMaxSize()
+                            .clip(RoundedCornerShape(10.dp))
                             .zoomable(rememberZoomState()),
                         contentScale = ContentScale.Crop
                     )
@@ -210,7 +212,7 @@ fun PlantaDetalleScreen(
                         )
                     }
 
-                    // Indicadores en la parte inferior
+                    // Indicadores de imagen
                     Row(
                         modifier = Modifier
                             .align(Alignment.BottomCenter)

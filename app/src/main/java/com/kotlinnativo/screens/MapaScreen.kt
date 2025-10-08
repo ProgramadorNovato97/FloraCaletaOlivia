@@ -143,7 +143,7 @@ fun MapasScreen(
                     // Mostrar mapa con mi ubicación
                     val myLatLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
                     val cameraPositionState = rememberCameraPositionState {
-                        position = CameraPosition.fromLatLngZoom(myLatLng, 14f)
+                        position = CameraPosition.fromLatLngZoom(myLatLng, 16f)
                     }
 
 

@@ -60,7 +60,7 @@ fun FloraScreen(
 
                     CircularProgressIndicator()
                     Text(
-                        text = "Plantas disponibles",
+                        text = "Cargando flora...",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
