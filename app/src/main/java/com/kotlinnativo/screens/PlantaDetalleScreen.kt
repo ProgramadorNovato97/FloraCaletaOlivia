@@ -1,6 +1,5 @@
 package com.kotlinnativo.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -43,13 +42,12 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage  // <-- Nuevo import
 import com.kotlinnativo.data.PlantaDatabase
 import com.kotlinnativo.data.PlantaRepository
 import com.kotlinnativo.services.ColorsService
@@ -89,17 +87,20 @@ fun PlantaDetalleScreen(
     }
 
     val plantaActual = planta!!
-    // Obtener recursos drawable por nombre (.jpg)
-    val imagenesRes = plantaActual.imagenesRes.split(",").map { nombreImagen ->
-        context.resources.getIdentifier(
-            nombreImagen.trim(), // quitar espacios
-            "drawable",
-            context.packageName
-        )
-    }.filter { it != 0 } // Filtrar IDs inválidos
+
+    // Calcular recursos una sola vez y memorizarlos
+    val imagenesRes = remember(plantaActual.imagenesRes) {
+        plantaActual.imagenesRes.split(",").map { nombreImagen ->
+            context.resources.getIdentifier(
+                nombreImagen.trim(),
+                "drawable",
+                context.packageName
+            )
+        }.filter { it != 0 }
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
-       // *** Boton volver ***
+        // *** Boton volver ***
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -154,8 +155,8 @@ fun PlantaDetalleScreen(
                     .clipToBounds()
             ) {
                 if (imagenesRes.isNotEmpty()) {
-                    Image(
-                        painter = painterResource(id = imagenesRes[imagenActual]),
+                    AsyncImage(  // <-- Cambio de Image a AsyncImage
+                        model = imagenesRes[imagenActual],
                         contentDescription = plantaActual.nombre,
                         modifier = Modifier
                             .fillMaxSize()
@@ -248,14 +249,14 @@ fun PlantaDetalleScreen(
             ) {
 
                 Text(
-                    text = plantaActual.nombre, // DESDE LA BD
+                    text = plantaActual.nombre,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Justify
                 )
 
-                IconButton(onClick = { viewModel.cambiarFavorito() }) { // CONECTADO A BD
+                IconButton(onClick = { viewModel.cambiarFavorito() }) {
                     Icon(
                         imageVector = if (esFavorito) Icons.Filled.Favorite else Icons.Outlined.Favorite,
                         contentDescription = "Favorito",
@@ -267,7 +268,7 @@ fun PlantaDetalleScreen(
             Spacer(modifier = Modifier.height(6.dp))
 
             Text(
-                text = plantaActual.descripcion, // DESDE LA BD
+                text = plantaActual.descripcion,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Justify,
                 lineHeight = 20.sp
