@@ -238,9 +238,8 @@ fun MapasScreen(
 }
 
 
-//***********************************************
+//****** PARADAS DE PRUEBA ******
 
-//Lista de mis marcadores propios
 val ListadeMarkers = listOf(
     MarkerPropio(
         id = 1,
@@ -276,8 +275,166 @@ val ListadeMarkers = listOf(
                 plantaId = "unadegato"
             )
         )
-    )
+    ),
+
+    //****** PARADA 1 ******
+    MarkerPropio(
+        id = 11,
+        titulo = "Parada 1: ",
+        posicion = LatLng(-46.42242372486524, -67.5239205273016),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.unadegato,
+                descripcion = "UÑA DE GATO",
+                plantaId = "unadegato"
+            ),
+        )
+    ),
+    //****** PARADA 2 ******
+    MarkerPropio(
+        id = 12,
+        titulo = "Parada 2: ",
+        posicion = LatLng(-46.42230547859598, -67.52437057863882),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.zampa,
+                descripcion = "ZAMPA",
+                plantaId = "zampa"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.quilimbay,
+                descripcion = "QUILIMBAY",
+                plantaId = "quilimbay"
+            ),
+        )
+    ),
+    //****** PARADA 3 ******
+    MarkerPropio(
+        id = 13,
+        titulo = "Parada 3: ",
+        posicion = LatLng(-46.42122789063772, -67.52543072753343),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.cactusaustral,
+                descripcion = "CACTUS AUSTRAL",
+                plantaId = "cactusaustral"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.falsotomillo,
+                descripcion = "FALSO TOMILLO",
+                plantaId = "falsotomillo"
+            ),
+        )
+    ),
+    //****** PARADA 4 ******
+    MarkerPropio(
+        id = 14,
+        titulo = "Parada 4: ",
+        posicion = LatLng(-46.420499742722654, -67.52620638380976),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.tuna,
+                descripcion = "TUNA",
+                plantaId = "tuna"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.malaspina,
+                descripcion = "MALASPINA",
+                plantaId = "malaspina"
+            ),
+        )
+    ),
+    //****** PARADA 5 ******
+    MarkerPropio(
+        id = 15,
+        titulo = "Parada 5: ",
+        posicion = LatLng(-46.420298872010626, -67.52629741580539),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.yaoyin,
+                descripcion = "YAOYIN",
+                plantaId = "yaoyin"
+            ),
+        )
+    ),
+    //****** PARADA 6 ******
+    MarkerPropio(
+        id = 16,
+        titulo = "Parada 6: ",
+        posicion = LatLng(-46.4196848240697, -67.52697822485224),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.duraznillo,
+                descripcion = "DURAZNILLO",
+                plantaId = "duraznillo"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.botondeoro,
+                descripcion = "BOTÓN DE ORO",
+                plantaId = "botondeoro"
+            ),
+        )
+    ),
+    //****** PARADA 7 ******
+    MarkerPropio(
+        id = 17,
+        titulo = "Parada 7: ",
+        posicion = LatLng(-46.41940069021225, -67.52704440392718),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.sulupe,
+                descripcion = "SULUPE",
+                plantaId = "sulupe"
+            ),
+        )
+    ),
+    //****** PARADA 8 ******
+    MarkerPropio(
+        id = 18,
+        titulo = "Parada 8: ",
+        posicion = LatLng(-46.41879128556408, -67.52755258878095),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.algarrobillo,
+                descripcion = "ALGARROBILLO",
+                plantaId = "algarrobillo"
+            ),
+        )
+    ),
+    //****** PARADA 9 ******
+    MarkerPropio(
+        id = 19,
+        titulo = "Parada 9: ",
+        posicion = LatLng(-46.41834239988523, -67.52775824629732),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.maihuenia,
+                descripcion = "MAIHUENIA",
+                plantaId = "maihuenia"
+            ),
+        )
+    ),
+    //****** PARADA 10 ******
+    MarkerPropio(
+        id = 20,
+        titulo = "Parada 10: ",
+        posicion = LatLng(-46.41811395127593, -67.52793988930996),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.tomillo,
+                descripcion = "TOMILLO",
+                plantaId = "tomillo"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.fabiana,
+                descripcion = "FABIANA",
+                plantaId = "fabiana"
+            ),
+        )
+    ),
+    //****** PARADA  ******
 )
+
 
 
 // ***** Clases necesarias ****
