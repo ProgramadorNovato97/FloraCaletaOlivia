@@ -164,12 +164,12 @@ fun MapasScreen(
                         // ***** Mostramos Marker Inicio y Fin ****
                         Marker(
                             state = MarkerState(LatLng(-46.42253982376904, -67.52278891074239)),
-                            title = "Inicio del circuito",
+                            title = "Inicio de circuito",
                             icon = MapasService.NumMarker(context, "Ini", Color(0xFF1FFF49)),
                         )
                         Marker(
-                            state = MarkerState(LatLng(-46.417927440656086, -67.52823705796133)),
-                            title = "Final del circuito",
+                            state = MarkerState(LatLng(-46.4181411, -67.5278034)),
+                            title = "Fin de circuito",
                             icon = MapasService.NumMarker(context, "Fin", Color(0xFFFF4747)),
                         )
 
@@ -190,9 +190,9 @@ fun MapasScreen(
                             )
                         }
 
-                        // ************** Polyline para conectar markers ****************
+                        // ************** Polylines para conectar caminos ****************
                         MapasService.MiPolyline()
-
+                        MapasService.MiPolyline2()
                     }
 
                     // **** Mostramos los card ***
@@ -238,12 +238,12 @@ fun MapasScreen(
 }
 
 
-//****** PARADAS DE PRUEBA ******
+//****** MIS PARADAS DE PRUEBA ******
 
 val ListadeMarkers = listOf(
     MarkerPropio(
-        id = 1,
-        titulo = "Parada 1:",
+        id = 21,
+        titulo = "Parada 21:",
         posicion = LatLng(-46.45676127715445, -67.52002212577646),
         imagenes = listOf(
             ImagenMarker(
@@ -265,8 +265,8 @@ val ListadeMarkers = listOf(
     ),
 
     MarkerPropio(
-        id = 2,
-        titulo = "Parada 2: ",
+        id = 22,
+        titulo = "Parada 22: ",
         posicion = LatLng(-46.45726631838521, -67.52119080036859),
         imagenes = listOf(
             ImagenMarker(
@@ -277,11 +277,12 @@ val ListadeMarkers = listOf(
         )
     ),
 
+
     //****** PARADA 1 ******
     MarkerPropio(
-        id = 11,
+        id = 1,
         titulo = "Parada 1: ",
-        posicion = LatLng(-46.42242372486524, -67.5239205273016),
+        posicion = LatLng(-46.4224105, -67.5239494),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.unadegato,
@@ -292,9 +293,9 @@ val ListadeMarkers = listOf(
     ),
     //****** PARADA 2 ******
     MarkerPropio(
-        id = 12,
+        id = 2,
         titulo = "Parada 2: ",
-        posicion = LatLng(-46.42230547859598, -67.52437057863882),
+        posicion = LatLng(-46.4222783, -67.5242653),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.zampa,
@@ -310,27 +311,28 @@ val ListadeMarkers = listOf(
     ),
     //****** PARADA 3 ******
     MarkerPropio(
-        id = 13,
+        id = 3,
         titulo = "Parada 3: ",
-        posicion = LatLng(-46.42122789063772, -67.52543072753343),
+        posicion = LatLng(-46.4212241, -67.5253720),
         imagenes = listOf(
-            ImagenMarker(
-                drawable = R.drawable.cactusaustral,
-                descripcion = "CACTUS AUSTRAL",
-                plantaId = "cactusaustral"
-            ),
             ImagenMarker(
                 drawable = R.drawable.falsotomillo,
                 descripcion = "FALSO TOMILLO",
                 plantaId = "falsotomillo"
             ),
+            ImagenMarker(
+                drawable = R.drawable.cactusaustral,
+                descripcion = "CACTUS AUSTRAL",
+                plantaId = "cactusaustral"
+            ),
+
         )
     ),
     //****** PARADA 4 ******
     MarkerPropio(
-        id = 14,
+        id = 4,
         titulo = "Parada 4: ",
-        posicion = LatLng(-46.420499742722654, -67.52620638380976),
+        posicion = LatLng(-46.4206415, -67.5261311),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.tuna,
@@ -342,14 +344,24 @@ val ListadeMarkers = listOf(
                 descripcion = "MALASPINA",
                 plantaId = "malaspina"
             ),
+            ImagenMarker(
+                drawable = R.drawable.coiron,
+                descripcion = "COIRÓN",
+                plantaId = "coiron"
+            ),
         )
     ),
     //****** PARADA 5 ******
     MarkerPropio(
-        id = 15,
+        id = 5,
         titulo = "Parada 5: ",
-        posicion = LatLng(-46.420298872010626, -67.52629741580539),
+        posicion = LatLng(-46.4200740, -67.5266799),
         imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.matalaguna,
+                descripcion = "MATA LAGUNA",
+                plantaId = "matalaguna"
+            ),
             ImagenMarker(
                 drawable = R.drawable.yaoyin,
                 descripcion = "YAOYIN",
@@ -359,14 +371,19 @@ val ListadeMarkers = listOf(
     ),
     //****** PARADA 6 ******
     MarkerPropio(
-        id = 16,
+        id = 6,
         titulo = "Parada 6: ",
-        posicion = LatLng(-46.4196848240697, -67.52697822485224),
+        posicion = LatLng(-46.419634, -67.526907),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.duraznillo,
                 descripcion = "DURAZNILLO",
                 plantaId = "duraznillo"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.verbena,
+                descripcion = "VERBENA",
+                plantaId = "verbena"
             ),
             ImagenMarker(
                 drawable = R.drawable.botondeoro,
@@ -377,9 +394,9 @@ val ListadeMarkers = listOf(
     ),
     //****** PARADA 7 ******
     MarkerPropio(
-        id = 17,
+        id = 7,
         titulo = "Parada 7: ",
-        posicion = LatLng(-46.41940069021225, -67.52704440392718),
+        posicion = LatLng(-46.420192, -67.528466),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.sulupe,
@@ -390,9 +407,9 @@ val ListadeMarkers = listOf(
     ),
     //****** PARADA 8 ******
     MarkerPropio(
-        id = 18,
+        id = 8,
         titulo = "Parada 8: ",
-        posicion = LatLng(-46.41879128556408, -67.52755258878095),
+        posicion = LatLng(-46.419955, -67.528864),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.algarrobillo,
@@ -403,9 +420,9 @@ val ListadeMarkers = listOf(
     ),
     //****** PARADA 9 ******
     MarkerPropio(
-        id = 19,
+        id = 9,
         titulo = "Parada 9: ",
-        posicion = LatLng(-46.41834239988523, -67.52775824629732),
+        posicion = LatLng(-46.4187621, -67.5275014),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.maihuenia,
@@ -416,9 +433,9 @@ val ListadeMarkers = listOf(
     ),
     //****** PARADA 10 ******
     MarkerPropio(
-        id = 20,
+        id = 10,
         titulo = "Parada 10: ",
-        posicion = LatLng(-46.41811395127593, -67.52793988930996),
+        posicion = LatLng(-46.4181603, -67.5278547),
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.tomillo,
@@ -429,6 +446,11 @@ val ListadeMarkers = listOf(
                 drawable = R.drawable.fabiana,
                 descripcion = "FABIANA",
                 plantaId = "fabiana"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.brachiclados,
+                descripcion = "BRACHICLADOS",
+                plantaId = "brachiclados"
             ),
         )
     ),
