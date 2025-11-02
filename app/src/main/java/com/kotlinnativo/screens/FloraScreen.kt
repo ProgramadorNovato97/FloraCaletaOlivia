@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,7 +65,7 @@ fun FloraScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(plantas, key = { it.id }) { planta ->  // <-- Agregado key
+                    items(plantas, key = { it.id }) { planta ->
                         PlantaCard(
                             planta = planta,
                             onClick = { onNavigateToPlanta(planta.id) }
@@ -101,7 +102,7 @@ private fun PlantaCard(
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             if (imagenRes != 0) {
-                AsyncImage(  // <-- Cambio de Image a AsyncImage
+                AsyncImage(  // Cambio de Image a AsyncImage
                     model = imagenRes,
                     contentDescription = planta.nombre,
                     contentScale = ContentScale.Crop,
@@ -127,7 +128,10 @@ private fun PlantaCard(
 
             Text(
                 text = planta.nombre,
-                style = MaterialTheme.typography.bodyMedium.copy(lineHeight = 16.sp),
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    lineHeight = 16.sp,
+                    fontWeight = FontWeight.Bold
+                ),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()

@@ -18,7 +18,7 @@ import com.kotlinnativo.services.ColorsService
 @Preview
 @Composable
 fun MainScreen() {
-    var selectedTab by remember { mutableIntStateOf(1) } //La app empieza en el tab en Mapa
+    var selectedTab by remember { mutableIntStateOf(0) } // Tab de inicio
     var currentPlant by remember { mutableStateOf<String?>(null) } //Pasamos planta actual para mostrar en detalle
     var plantOrigin by remember { mutableIntStateOf(0) } //Origen de donde se partio a detalle
 
@@ -178,7 +178,43 @@ fun MainScreen() {
                             }
                             //****** Más paradas******
 
-
+                            //****** Hierbas Adicionales******
+                            "patadeperdiz" -> PlantaDetalleScreen(plantaId = "patadeperdiz") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "ortiga" -> PlantaDetalleScreen(plantaId = "ortiga") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "alfilerillo" -> PlantaDetalleScreen(plantaId = "alfilerillo") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "llanten" -> PlantaDetalleScreen(plantaId = "llanten") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "estrellita" -> PlantaDetalleScreen(plantaId = "estrellita") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "marancel" -> PlantaDetalleScreen(plantaId = "marancel") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "magallanatrialata" -> PlantaDetalleScreen(plantaId = "magallanatrialata") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "mostacilla" -> PlantaDetalleScreen(plantaId = "mostacilla") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "arjonatuberosa" -> PlantaDetalleScreen(plantaId = "arjonatuberosa") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
                         }
                     }
                 }

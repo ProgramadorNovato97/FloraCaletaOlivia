@@ -233,45 +233,9 @@ fun MapasScreen(
     }
 }
 
-
+//*****************************
 val ListadeMarkers = listOf(
-    MarkerPropio(
-        id = 21,
-        titulo = "Parada 21:",
-        posicion = LatLng(-46.45676127715445, -67.52002212577646),
-        imagenes = listOf(
-            ImagenMarker(
-                drawable = R.drawable.maihuenia,
-                descripcion = "MAIHUENIA",
-                plantaId = "maihuenia"
-            ),
-            ImagenMarker(
-                drawable = R.drawable.cactusaustral,
-                descripcion = "CACTUS AUSTRAL",
-                plantaId = "cactusaustral"
-            ),
-            ImagenMarker(
-                drawable = R.drawable.sulupe,
-                descripcion = "SULUPE",
-                plantaId = "sulupe"
-            ),
-        )
-    ),
-
-    MarkerPropio(
-        id = 22,
-        titulo = "Parada 22: ",
-        posicion = LatLng(-46.45726631838521, -67.52119080036859),
-        imagenes = listOf(
-            ImagenMarker(
-                drawable = R.drawable.unadegato,
-                descripcion = "UÑA DE GATO",
-                plantaId = "unadegato"
-            )
-        )
-    ),
-
-    MarkerPropio(
+      MarkerPropio(
         id = 1,
         titulo = "Parada 1: ",
         posicion = LatLng(-46.4224105, -67.5239494),
@@ -335,6 +299,11 @@ val ListadeMarkers = listOf(
                 drawable = R.drawable.malaspina,
                 descripcion = "MALASPINA",
                 plantaId = "malaspina"
+            ),
+            ImagenMarker(
+                drawable = R.drawable.chilca,
+                descripcion = "CHILCA",
+                plantaId = "chilca"
             ),
             ImagenMarker(
                 drawable = R.drawable.coiron,
