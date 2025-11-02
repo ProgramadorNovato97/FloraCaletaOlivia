@@ -63,7 +63,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "zampa",
                     nombre = "Zampa",
                     descripcion = "Atriplex lampa. Es un arbusto de amplio volumen y color grisáceo, que alcanza hasta 1 m. de altura. Se pueden encontrar plantas masculinas y femeninas, las cuales se distinguen a simple vista al florecer y que varían del color fucsia al amarillo anaranjado. Las femeninas cuando fructifican, toman un color amarillo – ocre. Los frutos son secos, pequeños y están protegidos por dos membranas que se abren como una almeja, dejándolos en libertad. Es común encontrarlo en suelos de materiales salinos. Se ha denominado también “yerba del diablo”, ya que los pueblos nativos lo utilizaban para alejar los malos espíritus.",
-                    imagenesRes = "zampa,zampa2,zampa3".toString(),
+                    imagenesRes = "zampa,zampa2,zampa3,zampa4".toString(),
                     latitud = -46.4222783,
                     longitud = -67.5242653
                 ),
@@ -80,7 +80,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "falsotomillo",
                     nombre = "Falso Tomillo",
                     descripcion = "Frankenia patagónica. Es una mata baja con ramas muy abiertas y desgarradas, tendidas sobre el suelo. En el inicio de la primavera, desarrolla hojas muy pequeñas y de color verde grisáceo por la presencia de sales. Suele confundirse con el tomillo (de ahí su nombre), pero al saborearla se detecta lo salada que es. Por esta característica, se denomina mata salada. Muchos arbustos como este, muestran un crecimiento totalmente diferente en espacios muy cercanos. Esta estrategia se denomina plasticidad fenotípica y tiene directa relación con las condiciones climáticas y otros factores que deben soportar del ambiente en el que viven. Sus flores son blancas y tenues. Se destacan a fines de enero y principios de febrero porque cuando no hay casi plantas florecidas, matizan sus ramas. En la estación más fría, su follaje se vuelve color ocre y se destacan las ramas de color gris claro terminadas en punta.",
-                    imagenesRes = "falsotomillo".toString(),
+                    imagenesRes = "falsotomillo,falsotomillo2,falsotomillo3".toString(),
                     latitud = -46.4212241,
                     longitud =  -67.5253720
                 ),
@@ -88,7 +88,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "cactusaustral",
                     nombre = "Cactus Austral",
                     descripcion = "Austrocactus bertinii. Es una planta columnar con costillas rectas y espinas radiales y o centrales algo arqueadas. Las flores son acampanadas rosado – amarillentas y de un tamaño grande, dispuestas próximas al ápice en número de tres – cinco o más, recubiertas externamente por mechones lanosos y cerdas oscuras. El estigma de la flor está formado por 16 lóbulos de color púrpura. Fácilmente observable debajo de otros arbustos. La época de floración es en el comienzo del verano. Sus flores atraen una gran diversidad e insectos polinizadores. Las semillas germinan con mucha facilidad.",
-                    imagenesRes = "cactusaustral,cactusaustral2,cactusaustral3".toString(),
+                    imagenesRes = "cactusaustral,cactusaustral2,cactusaustral3,cactusaustral4".toString(),
                     latitud = -46.4212241,
                     longitud =  -67.5253720
                 ),
@@ -105,7 +105,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "malaspina",
                     nombre = "Malaspina",
                     descripcion = "Retanilla patagónica. Es un arbusto de gran tamaño que muestra una arquitectura especial. Desarrolla espinas opuestas y gruesas que se transforman en ramas simétricas de color verde claro. Al inicio de la primavera, abundantes flores pequeñas de color blanco cremoso lo cubren cambiando su aspecto hostil. Simultáneamente, aparecen sus hojas que varían de tamaño de acuerdo a las condiciones de humedad y protección. Los frutos son carnosos cuando inmaduros y se secan descascarándose al madurar. Sus grandes semillas son muy apetecidas por los roedores de la zona. Es muy abundante en los cañadones costeros formando, en algunos casos, matorrales densos. Es compañera inseparable del duraznillo.",
-                    imagenesRes = "malaspina,malaspina2".toString(),
+                    imagenesRes = "malaspina,malaspina2,malaspina3".toString(),
                     latitud = -46.4206415,
                     longitud = -67.5261311
                 ),
@@ -113,7 +113,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "chilca",
                     nombre = "Chilca",
                     descripcion = "Baccharis darwinii. Es una planta leñosa que alcanza los 50 cm. De altura, similar al yuyo moro en el porte, pero no tiene aspecto ceniciento. Sus hojas son delgadas y las flores pequeñas de color blanco – amarillento, dispuestas en inflorescencias, en forma de cabezuela. Cuando todavía no han abierto, están tonalizadas por líneas moradas. En otoño, es muy vistosa, porque en los ápices de las ramas, persisten numerosas estrellitas plateadas. Estas formas provienen de un grupo de piezas dispuestas alrededor de la inflorescencia.",
-                    imagenesRes = "".toString(),
+                    imagenesRes = "chilca".toString(),
                     latitud = -46.4206415,
                     longitud = -67.5261311
                 ),
@@ -130,7 +130,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "matalaguna",
                     nombre = "Mata Laguna",
                     descripcion = "Lycium ameghinoi. Es un arbusto de corteza rugosa y rústica, cuya silueta se reconoce a distancia por su contorno zigzagueante. Es frecuente observar su leño cubierto por formaciones de color anaranjado, muy llamativas, fácilmente visibles cuando la planta se encuentra sin follaje. Dichos organismos se llaman líquenes y se desarrollan cuando el ambiente no está contaminado. En primavera, se cubre de hojas algo carnosas y más pequeñas que las del yaoyín. Las flores de color blanco-cremoso, se encuentran adheridas a la rama. Tienen forma de una diminuta campana. Se encuentra en floración desde octubre hasta diciembre.",
-                    imagenesRes = "matalaguna",
+                    imagenesRes = "matalaguna,matalaguna2,matalaguna3,matalaguna4",
                     latitud = -46.4200740,
                     longitud = -67.5266799
                 ),
@@ -138,7 +138,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "yaoyin",
                     nombre = "Yaoyín",
                     descripcion = "Lycium chilense. Es un arbusto que, de acuerdo al lugar en el que se desarrolla, presenta distinta densidad de follaje. Las ramificaciones son rectas, flexibles y terminadas en espinas. Hacia fines de verano y principio de otoño, pierde las hojas dejando sus ramas grises y delgadas. Las flores son pequeños embudos de color blanco-verdosos. Los frutos tienen forma de “tomate perita”, jugosa y translúcida, que varían su color desde el anaranjado hacia el púrpura.  Vive en terrenos algo arenosos y en sectores más protegidos de cañadones, generalmente se lo observa acompañado por verbena.",
-                    imagenesRes = "yaoyin",
+                    imagenesRes = "yaoyin,yaoyin2",
                     latitud = -46.4200740,
                     longitud = -67.5266799
                 ),
@@ -147,7 +147,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "duraznillo",
                     nombre = "Duraznillo",
                     descripcion = "Colliguaja integérrima. Es un arbusto típico siempre verde de la estepa patagónica.  Define junto a la malaspina, el Distrito florístico del Golfo San Jorge. Las hojas son grandes, de color verde botella brillante y al cortarlas, derraman una sustancia blanca llamada látex. Las comunidades nativas posiblemente la utilizaban para colocar en las puntas de lanza para la caza de guanacos. Cuando florece, se cubre de espigas rojizas que, al madurar, se vuelven amarillas y liberan abundante polen. En la base de la espiga, se desarrollan dos o tres frutos. Estos se parecen, por su forma y color, a pequeños duraznillos. Cuando maduran se transforman en frutos marrones y secos, como dos avellanas, que se abren liberando grandes semillas. Esta es una de las pocas especies que persiste el avance de los médanos. En medicina popular, se utiliza para quebraduras y dolores.",
-                    imagenesRes = "duraznillo,duraznillo2",
+                    imagenesRes = "duraznillo,duraznillo2,duraznillo3,duraznillo4",
                     latitud = -46.419634,
                     longitud = -67.526907
                 ),
@@ -155,7 +155,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "verbena",
                     nombre = "Verbena",
                     descripcion = "Junelia ligustrina. Es un arbusto de ramas flexibles. Se la observa muchas veces creciendo entre otros arbustos más rígidos. Las flores, de color amarillo-azufre con tintes rojizos, se disponen en como espigas cilíndricas. Forman grupos de flores pequeñas llamadas inflorescencias. Se puede ver en floración en los meses de noviembre-diciembre. Son fuertemente aromáticas, especialmente al atardecer.",
-                    imagenesRes = "verbena",
+                    imagenesRes = "verbena,verbena2",
                     latitud = -46.419634,
                     longitud = -67.526907
                 ),
@@ -181,7 +181,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "algarrobillo",
                     nombre = "Algarrobillo",
                     descripcion = "Prosopis denudans. Es un arbusto que alcanza los 2 metros de altura, ramoso desde la base formando una copa muy amplia. En esta zona, por su ubicación, se encuentra achaparrado y de pequeño porte.  Presenta espinas gruesas y rígidas que cambian de color a medida que transcurre el tiempo. Se pueden distinguir las ramas nuevas porque tienen un color rojizo brillante. En diciembre, se llena de abundantes espigas amarillas y finalizando el verano, se desarrollan legumbres de color marrón oscuro, las que permanecen durante años en la planta. Las legumbres o chauchas presentan distinto grado de enrollamiento, se pueden observar en forma de C, rectas o con una o más vueltas en espiral. Los pueblos nativos y estancieros seguramente, lo han utilizado como un alimento que se parece a una pasta de harina dulce.",
-                    imagenesRes = "algarrobillo",
+                    imagenesRes = "algarrobillo,algarrobillo2,algarrobillo3,algarrobillo4",
                     latitud = -46.419955,
                     longitud = -67.528864
                 ),
@@ -199,7 +199,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "tomillo",
                     nombre = "Tomillo",
                     descripcion = "Acantholippia seriphioides. Es un arbusto muy ramoso que habita zonas secas y áridas. Es generalmente bajo y aromático. Se reconoce fácilmente tomando las hojitas y frotándolas entre los dedos, ya que libera una fragancia cítrica especial. Se estudian sus aceites esenciales como estimulantes y se lo utiliza como condimento. En otoño – invierno, su follaje vira de tonos ocráceos intensos hasta el morado. Su mejor compañero es el tomillo rosa. Ambos en este periodo, se mimetizan, pero se lo puede reconocer por su aroma. A mediados de primavera, se cubre de pequeños ramilletes de flores blanco – cremosas. El tomillo es una de las plantas medicinales más antiguas. Procede de los países mediterráneos y crece con abundante sol en suelo seco, árido y rocoso. En la antigüedad, los médicos griegos Hipócrates, Teofrasto y Dioscórides y a lo tenían en alta estima por sus poderes curativos. Sus efectos expectorantes en caso de tos y bronquitis también han sido confirmados por la ciencia actual. Sus efectos calmantes de la tos y antiespasmódicos, incluso se han podido comprobar en la tos ferina. Empleado en forma de baños refuerza los nervios y actúa favorablemente en trastornos cutáneos de tipo inflamatorio. El tomillo también es una hierba de cocina sumamente apreciaba, ya que ayuda a digerir mejor las comidas.",
-                    imagenesRes = "tomillo",
+                    imagenesRes = "tomillo,tomillo2",
                     latitud = -46.4181603,
                     longitud = -67.5278547
                 ),
@@ -215,7 +215,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "brachiclados",
                     nombre = "Brachiclados",
                     descripcion = "Arbusto bajo y resistente. Se caracteriza por un crecimiento ramificado, con hojas pequeñas y angostas que se enrollan en los bordes lo que les ayuda a conservar agua. Posee flores, parecidas a margaritas, son de color amarillo y aparecen de manera solitaria en las puntas de las ramas. Están adaptadas a condiciones extremas de viento, sequías y suelos pobres. Suelen ser muy bajas, con el aspecto de una piedra, desarrollándose bien cerca del suelo. Cumplen un papel importante en el ecosistema: ayudan a evitar la erosión, brindan refugio a insectos polinizadores y mantienen la vegetación en ambientes áridos.",
-                    imagenesRes = "brachiclados",
+                    imagenesRes = "brachiclados,brachiclados2",
                     latitud = -46.4181603,
                     longitud = -67.5278547
                 ),

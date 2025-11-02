@@ -42,49 +42,28 @@ import com.kotlinnativo.R
 fun MapasScreen(
     onNavigateToPlanta: (String) -> Unit = { }
 ) {
-    val context = LocalContext.current // Contexto para icons de markers
+    val context = LocalContext.current
+
+    val caletaOliviaLatLng = LatLng(-46.419516367268194, -67.52635102128295)
+    val zoomInicial = 16f
 
     val fusedLocationClient = remember {
         LocationServices.getFusedLocationProviderClient(context)
-    }// Ultima localización proporcionada por el usuario
+    }
 
     var hasLocationPermission by remember { mutableStateOf(false) }
-    var currentLocation by remember { mutableStateOf<Location?>(null) }
-    var isLoadingLocation by remember { mutableStateOf(false) }
 
     val locationPermissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         hasLocationPermission = permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true ||
                 permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
-        if (hasLocationPermission) {
-            // Obtener ubicación inmediatamente después de dar permisos
-            isLoadingLocation = true
-            try {
-                fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                    currentLocation = location
-                    isLoadingLocation = false
-                }
-            } catch (e: SecurityException) {
-                isLoadingLocation = false
-            }
-        }
     }
+
     LaunchedEffect(Unit) {
         hasLocationPermission = ContextCompat.checkSelfPermission(
             context, Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
-        if (hasLocationPermission) {
-            isLoadingLocation = true
-            try {
-                fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                    currentLocation = location
-                    isLoadingLocation = false
-                }
-            } catch (e: SecurityException) {
-                isLoadingLocation = false
-            }
-        }
     }
 
 
@@ -92,76 +71,30 @@ fun MapasScreen(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        //*** Header Caleta en un click ***
         HeaderCaletaClick()
 
         Box(modifier = Modifier.fillMaxSize()) {
             when {
                 !hasLocationPermission -> {
-                    // Sin permisos - mostrar botón centrado
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-
-                        Text(
-                            text = "Se necesita acceso a la ubicación",
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Button(
-                            onClick = {
-                                locationPermissionLauncher.launch(
-                                    arrayOf(
-                                        Manifest.permission.ACCESS_FINE_LOCATION,
-                                        Manifest.permission.ACCESS_COARSE_LOCATION
-                                    )
-                                )
-                            }
-                        ) {
-                            Text("Solicitar Permisos")
-                        }
-                    }
-                }
-
-                // Mensaje mientras se Obteniene la ubicación
-                isLoadingLocation -> {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-
-                        CircularProgressIndicator()
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text("Obteniendo ubicación...")
-                    }
-                }
-
-                currentLocation != null -> {
-                    // Mostrar mapa con mi ubicación
-                    val myLatLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
                     val cameraPositionState = rememberCameraPositionState {
-                        position = CameraPosition.fromLatLngZoom(myLatLng, 16f)
+                        position = CameraPosition.fromLatLngZoom(caletaOliviaLatLng, zoomInicial)
                     }
 
 
-                    val markerState = rememberMarkerState() //***** Para Markers ****
+                    val markerState = rememberMarkerState()
+
                     GoogleMap(
                         modifier = Modifier.fillMaxSize(),
                         cameraPositionState = cameraPositionState,
                         properties = MapProperties(
-                            isMyLocationEnabled = true,
-                            mapType = MapType.SATELLITE //Vista satelite de mapa
+                            isMyLocationEnabled = false,
+                            mapType = MapType.SATELLITE
                         ),
                         uiSettings = MapUiSettings(
-                            myLocationButtonEnabled = true,
+                            myLocationButtonEnabled = false,
                             zoomControlsEnabled = true
                         )
                     ) {
-
-                        // ***** Mostramos Marker Inicio y Fin ****
                         Marker(
                             state = MarkerState(LatLng(-46.42253982376904, -67.52278891074239)),
                             title = "Inicio de circuito",
@@ -173,7 +106,6 @@ fun MapasScreen(
                             icon = MapasService.NumMarker(context, "Fin", Color(0xFFFF4747)),
                         )
 
-                        // **** Mostramos todos nuetra lista de marker propios ****
                         ListadeMarkers.forEach { markerPropio ->
                             Marker(
                                 state = MarkerState(position = markerPropio.posicion),
@@ -185,18 +117,109 @@ fun MapasScreen(
                                 ),
                                 onClick = {
                                     markerState.onMarkerClick(markerPropio)
-                                    true // Evento
+                                    true
                                 }
                             )
                         }
 
-                        // ************** Polylines para conectar caminos ****************
                         MapasService.MiPolyline()
                         MapasService.MiPolyline2()
                     }
 
-                    // **** Mostramos los card ***
-                    // **** Mostramos los card ***
+                    markerState.markerSeleccionado?.let { marker ->
+                        CardMarker(
+                            marker = marker,
+                            onCerrar = { markerState.cerrarCard() },
+                            onNavigateToPlanta = onNavigateToPlanta
+                        )
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.Black.copy(alpha = 0.3f)),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Card(
+                            modifier = Modifier.padding(16.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(16.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "Se necesita acceso a la ubicación",
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Button(
+                                    onClick = {
+                                        locationPermissionLauncher.launch(
+                                            arrayOf(
+                                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                                Manifest.permission.ACCESS_COARSE_LOCATION
+                                            )
+                                        )
+                                    }
+                                ) {
+                                    Text("Solicitar Permisos")
+                                }
+                            }
+                        }
+                    }
+                }
+
+                else -> {
+                    val cameraPositionState = rememberCameraPositionState {
+                        position = CameraPosition.fromLatLngZoom(caletaOliviaLatLng, zoomInicial)
+                    }
+
+                    val markerState = rememberMarkerState()
+
+                    GoogleMap(
+                        modifier = Modifier.fillMaxSize(),
+                        cameraPositionState = cameraPositionState,
+                        properties = MapProperties(
+                            isMyLocationEnabled = hasLocationPermission,
+                            mapType = MapType.SATELLITE
+                        ),
+                        uiSettings = MapUiSettings(
+                            myLocationButtonEnabled = hasLocationPermission,
+                            zoomControlsEnabled = true
+                        )
+                    ) {
+                        Marker(
+                            state = MarkerState(LatLng(-46.42253982376904, -67.52278891074239)),
+                            title = "Inicio de circuito",
+                            icon = MapasService.NumMarker(context, "Ini", Color(0xFF1FFF49)),
+                        )
+                        Marker(
+                            state = MarkerState(LatLng(-46.4181411, -67.5278034)),
+                            title = "Fin de circuito",
+                            icon = MapasService.NumMarker(context, "Fin", Color(0xFFFF4747)),
+                        )
+
+                        ListadeMarkers.forEach { markerPropio ->
+                            Marker(
+                                state = MarkerState(position = markerPropio.posicion),
+                                title = markerPropio.titulo,
+                                icon = MapasService.NumMarker(
+                                    context,
+                                    markerPropio.id.toString(),
+                                    Color(0xFFFF9A24)
+                                ),
+                                onClick = {
+                                    markerState.onMarkerClick(markerPropio)
+                                    true
+                                }
+                            )
+                        }
+
+                        MapasService.MiPolyline()
+                        MapasService.MiPolyline2()
+                    }
+
                     markerState.markerSeleccionado?.let { marker ->
                         CardMarker(
                             marker = marker,
@@ -205,40 +228,11 @@ fun MapasScreen(
                         )
                     }
                 }
-
-                else -> {
-                    // Caso de fallo en obtener ubicación
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-
-                        Text("No se pudo obtener la ubicación")
-                        Button(
-                            onClick = {
-                                isLoadingLocation = true
-                                try {
-                                    fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                                        currentLocation = location
-                                        isLoadingLocation = false
-                                    }
-                                } catch (e: SecurityException) {
-                                    isLoadingLocation = false
-                                }
-                            }
-                        ) {
-                            Text("Reintentar")
-                        }
-                    }
-                }
             }
         }
     }
 }
 
-
-//****** MIS PARADAS DE PRUEBA ******
 
 val ListadeMarkers = listOf(
     MarkerPropio(
@@ -277,8 +271,6 @@ val ListadeMarkers = listOf(
         )
     ),
 
-
-    //****** PARADA 1 ******
     MarkerPropio(
         id = 1,
         titulo = "Parada 1: ",
@@ -291,7 +283,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 2 ******
+
     MarkerPropio(
         id = 2,
         titulo = "Parada 2: ",
@@ -309,7 +301,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 3 ******
+
     MarkerPropio(
         id = 3,
         titulo = "Parada 3: ",
@@ -326,9 +318,9 @@ val ListadeMarkers = listOf(
                 plantaId = "cactusaustral"
             ),
 
-        )
+            )
     ),
-    //****** PARADA 4 ******
+
     MarkerPropio(
         id = 4,
         titulo = "Parada 4: ",
@@ -351,7 +343,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 5 ******
+
     MarkerPropio(
         id = 5,
         titulo = "Parada 5: ",
@@ -369,7 +361,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 6 ******
+
     MarkerPropio(
         id = 6,
         titulo = "Parada 6: ",
@@ -392,7 +384,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 7 ******
+
     MarkerPropio(
         id = 7,
         titulo = "Parada 7: ",
@@ -405,7 +397,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 8 ******
+
     MarkerPropio(
         id = 8,
         titulo = "Parada 8: ",
@@ -418,7 +410,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 9 ******
+
     MarkerPropio(
         id = 9,
         titulo = "Parada 9: ",
@@ -431,7 +423,7 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA 10 ******
+
     MarkerPropio(
         id = 10,
         titulo = "Parada 10: ",
@@ -454,14 +446,12 @@ val ListadeMarkers = listOf(
             ),
         )
     ),
-    //****** PARADA  ******
 )
 
 
 
-// ***** Clases necesarias ****
 data class ImagenMarker(
-    val drawable: Int, // R.drawable.imagen1
+    val drawable: Int,
     val descripcion: String,
     val plantaId: String? = null
 )
@@ -473,19 +463,16 @@ data class MarkerPropio(
     val imagenes: List<ImagenMarker>
 )
 
-// Estado para manejar los markers y el card
 class MarkerState {
     var markerSeleccionado by mutableStateOf<MarkerPropio?>(null)
         private set
 
     fun onMarkerClick(marker: MarkerPropio) {
         if (markerSeleccionado?.id == marker.id) {
-            // Si clickeo el mismo marker, lo cierro
             markerSeleccionado = null
         } else {
-            // Si es diferente, cierro el actual y abro el nuevo
-            markerSeleccionado = null // Primero cierro
-            markerSeleccionado = marker // Luego abro el nuevo
+            markerSeleccionado = null
+            markerSeleccionado = marker
         }
     }
 
@@ -494,13 +481,11 @@ class MarkerState {
     }
 }
 
-// Composable para usar el estado
 @Composable
 fun rememberMarkerState(): MarkerState {
     return remember { MarkerState() }
 }
 
-//Carousel reutilizable
 @Composable
 fun CarouselSimple(
     imagenes: List<ImagenMarker>,
@@ -510,7 +495,6 @@ fun CarouselSimple(
 ) {
     var imagenActual by remember { mutableIntStateOf(0) }
 
-    // Validar que el índice esté dentro del rango
     if (imagenActual >= imagenes.size) {
         imagenActual = 0
     }
@@ -518,7 +502,6 @@ fun CarouselSimple(
     if (imagenes.isEmpty()) return
 
     Column(modifier = modifier) {
-        // Imagen con descripción superpuesta
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -538,9 +521,7 @@ fun CarouselSimple(
                 contentScale = ContentScale.Crop
             )
 
-            // Botones de navegación (solo si hay más de una imagen)
             if (imagenes.size > 1) {
-                // Botón anterior
                 IconButton(
                     onClick = {
                         imagenActual = if (imagenActual > 0)
@@ -563,7 +544,6 @@ fun CarouselSimple(
                     )
                 }
 
-                // Botón siguiente
                 IconButton(
                     onClick = {
                         imagenActual = (imagenActual + 1) % imagenes.size
@@ -584,7 +564,6 @@ fun CarouselSimple(
                 }
             }
 
-            // Descripción superpuesta
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -610,7 +589,6 @@ fun CarouselSimple(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Indicadores
         if (imagenes.size > 1) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -654,7 +632,6 @@ fun CardMarker(
                 .fillMaxWidth()
                 .padding(horizontal = 8.dp, vertical = 1.dp),
         ) {
-            // Header con título y botón cerrar
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -683,7 +660,7 @@ fun CardMarker(
             Spacer(modifier = Modifier.height(1.dp))
             CarouselSimple(
                 imagenes = marker.imagenes,
-                markerId = marker.id, // Agregado para resetear estado
+                markerId = marker.id,
                 onImagenClick = onNavigateToPlanta,
                 modifier = Modifier.fillMaxWidth()
             )

@@ -151,7 +151,7 @@ fun PlantaDetalleScreen(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(320.dp)
+                    .height(490.dp)//Alto de imagen
                     .clipToBounds()
             ) {
                 if (imagenesRes.isNotEmpty()) {
