@@ -54,7 +54,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "unadegato",
                     nombre = "Uña de Gato",
                     descripcion = "Chuquiraga Aurea. Es una planta baja y leñosa de hojas delgadas como agujas. De allí, se denomina también pinchabola o colchón de suegra. Se extiende sobre el suelo formando almohadones de gran magnitud y en terrenos bajos. Arbustos de este género (Chuquiraga), tienen la capacidad de desarrollar una raíz principal muy profunda, pudiendo alcanzar los 20 metros de ser necesario. A finales de noviembre, se cubre de flores de color amarillo – dorado. Cuando fructifican, los panaderos se diseminan lentamente. Por largo tiempo, permanecen en la planta restos secos y brillantes del mismo color de las flores que, por su aspecto, semejan las conocidas siemprevivas de los arreglos florales.",
-                    imagenesRes = "unadegato,unadegato2".toString(),
+                    imagenesRes = "unadegato,unadegato2,unadegato3".toString(),
                     latitud = -46.4224105,
                     longitud = -67.5239494
                 ),

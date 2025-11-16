@@ -254,12 +254,12 @@ val ListadeMarkers = listOf(
         posicion = LatLng(-46.4222783, -67.5242653),
         imagenes = listOf(
             ImagenMarker(
-                drawable = R.drawable.zampa,
+                drawable = R.drawable.zampa4,
                 descripcion = "ZAMPA",
                 plantaId = "zampa"
             ),
             ImagenMarker(
-                drawable = R.drawable.quilimbay,
+                drawable = R.drawable.quilimbay2,
                 descripcion = "QUILIMBAY",
                 plantaId = "quilimbay"
             ),
@@ -319,7 +319,7 @@ val ListadeMarkers = listOf(
         posicion = LatLng(-46.4200740, -67.5266799),
         imagenes = listOf(
             ImagenMarker(
-                drawable = R.drawable.matalaguna,
+                drawable = R.drawable.matalaguna4,
                 descripcion = "MATA LAGUNA",
                 plantaId = "matalaguna"
             ),
@@ -373,7 +373,7 @@ val ListadeMarkers = listOf(
         posicion = LatLng(-46.419955, -67.528864),
         imagenes = listOf(
             ImagenMarker(
-                drawable = R.drawable.algarrobillo,
+                drawable = R.drawable.algarrobillo3,
                 descripcion = "ALGARROBILLO",
                 plantaId = "algarrobillo"
             ),
@@ -386,7 +386,7 @@ val ListadeMarkers = listOf(
         posicion = LatLng(-46.4187621, -67.5275014),
         imagenes = listOf(
             ImagenMarker(
-                drawable = R.drawable.maihuenia,
+                drawable = R.drawable.maihuenia4,
                 descripcion = "MAIHUENIA",
                 plantaId = "maihuenia"
             ),
