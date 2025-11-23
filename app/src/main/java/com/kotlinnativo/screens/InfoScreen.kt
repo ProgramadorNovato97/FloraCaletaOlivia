@@ -123,7 +123,7 @@ fun InfoScreen() {
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Ir al cartel")
+                Text("Ir al inicio del circuito")
             }
         }
         //****

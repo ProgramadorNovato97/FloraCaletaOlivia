@@ -24,6 +24,7 @@ import com.kotlinnativo.data.PlantaDatabase
 import com.kotlinnativo.data.PlantaRepository
 import com.kotlinnativo.viewmodel.FloraViewModel
 
+
 @Composable
 fun FloraScreen(
     onNavigateToPlanta: (String) -> Unit = {}
@@ -34,6 +35,20 @@ fun FloraScreen(
     val viewModel: FloraViewModel = viewModel { FloraViewModel(repository) }
 
     val plantas by viewModel.plantas.collectAsState()
+
+    // *** NUEVO: Estado para el buscador ***
+    var textoBusqueda by remember { mutableStateOf("") }
+
+    // *** NUEVO: Filtrar plantas según búsqueda ***
+    val plantasFiltradas = remember(plantas, textoBusqueda) {
+        if (textoBusqueda.isEmpty()) {
+            plantas
+        } else {
+            plantas.filter { planta ->
+                planta.nombre.contains(textoBusqueda, ignoreCase = true)
+            }
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -47,6 +62,18 @@ fun FloraScreen(
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // *** NUEVO: Campo de búsqueda ***
+            OutlinedTextField(
+                value = textoBusqueda,
+                onValueChange = { textoBusqueda = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 4.dp),
+                placeholder = { Text("Buscar planta...") },
+                singleLine = true,
+                shape = RoundedCornerShape(12.dp)
+            )
+
             if (plantas.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -59,13 +86,26 @@ fun FloraScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
+            } else if (plantasFiltradas.isEmpty()) {
+                // *** NUEVO: Mensaje cuando no hay resultados ***
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "No se encontraron plantas",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             } else {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(plantas, key = { it.id }) { planta ->
+                    // *** CAMBIO: Usar plantasFiltradas en lugar de plantas ***
+                    items(plantasFiltradas, key = { it.id }) { planta ->
                         PlantaCard(
                             planta = planta,
                             onClick = { onNavigateToPlanta(planta.id) }
