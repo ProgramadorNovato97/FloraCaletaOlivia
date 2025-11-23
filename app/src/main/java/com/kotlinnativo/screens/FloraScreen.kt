@@ -36,10 +36,10 @@ fun FloraScreen(
 
     val plantas by viewModel.plantas.collectAsState()
 
-    // *** NUEVO: Estado para el buscador ***
+    // Estado para el buscador
     var textoBusqueda by remember { mutableStateOf("") }
 
-    // *** NUEVO: Filtrar plantas según búsqueda ***
+    // Filtrar plantas
     val plantasFiltradas = remember(plantas, textoBusqueda) {
         if (textoBusqueda.isEmpty()) {
             plantas
@@ -62,7 +62,7 @@ fun FloraScreen(
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // *** NUEVO: Campo de búsqueda ***
+            // Campo de búsqueda
             OutlinedTextField(
                 value = textoBusqueda,
                 onValueChange = { textoBusqueda = it },
@@ -104,7 +104,7 @@ fun FloraScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    // *** CAMBIO: Usar plantasFiltradas en lugar de plantas ***
+
                     items(plantasFiltradas, key = { it.id }) { planta ->
                         PlantaCard(
                             planta = planta,

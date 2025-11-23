@@ -48,38 +48,8 @@ fun InfoScreen() {
     ) {
         //*** Header Circuito Flora ***
         HeaderCaletaClick()
-        /*
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(36.dp),
-            color = ColorsService.Header,
-            shadowElevation = 4.dp
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "Circuito Flora",
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.weight(1f),
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
-        } */
 
 
-        //***
         Column(
             modifier = Modifier.fillMaxSize()
                 .verticalScroll(rememberScrollState())
