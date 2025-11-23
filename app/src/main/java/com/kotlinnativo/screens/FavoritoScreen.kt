@@ -78,6 +78,14 @@ fun FavoritosScreen(
             } catch (e: SecurityException) {
                 // Error silencioso
             }
+        } else {
+            // Solicitar permisos automáticamente si no los tiene
+            locationPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
         }
     }
 
