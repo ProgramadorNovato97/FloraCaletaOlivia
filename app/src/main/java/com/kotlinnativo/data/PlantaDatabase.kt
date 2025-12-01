@@ -156,7 +156,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "verbena",
                     nombre = "Verbena",
                     descripcion = "Junelia ligustrina (Parada 6). Es un arbusto de ramas flexibles. Se la observa muchas veces creciendo entre otros arbustos más rígidos. Las flores, de color amarillo-azufre con tintes rojizos, se disponen en como espigas cilíndricas. Forman grupos de flores pequeñas llamadas inflorescencias. Se puede ver en floración en los meses de noviembre-diciembre. Son fuertemente aromáticas, especialmente al atardecer.",
-                    imagenesRes = "verbena,verbena2",
+                    imagenesRes = "verbena,verbena2,vervena3",
                     latitud = -46.419634,
                     longitud = -67.526907
                 ),
@@ -200,7 +200,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "tomillo",
                     nombre = "Tomillo",
                     descripcion = "Acantholippia Seriphioides (Parada 10). Es un arbusto muy ramoso que habita zonas secas y áridas. Es generalmente bajo y aromático. Se reconoce fácilmente tomando las hojitas y frotándolas entre los dedos, ya que libera una fragancia cítrica especial. Se estudian sus aceites esenciales como estimulantes y se lo utiliza como condimento. En otoño – invierno, su follaje vira de tonos ocráceos intensos hasta el morado. Su mejor compañero es el tomillo rosa. Ambos en este periodo, se mimetizan, pero se lo puede reconocer por su aroma. A mediados de primavera, se cubre de pequeños ramilletes de flores blanco – cremosas. El tomillo es una de las plantas medicinales más antiguas. Procede de los países mediterráneos y crece con abundante sol en suelo seco, árido y rocoso. En la antigüedad, los médicos griegos Hipócrates, Teofrasto y Dioscórides y a lo tenían en alta estima por sus poderes curativos. Sus efectos expectorantes en caso de tos y bronquitis también han sido confirmados por la ciencia actual. Sus efectos calmantes de la tos y antiespasmódicos, incluso se han podido comprobar en la tos ferina. Empleado en forma de baños refuerza los nervios y actúa favorablemente en trastornos cutáneos de tipo inflamatorio. El tomillo también es una hierba de cocina sumamente apreciaba, ya que ayuda a digerir mejor las comidas.",
-                    imagenesRes = "tomillo,tomillo2",
+                    imagenesRes = "tomillo,tomillo2,tomillo3,tomillo4",
                     latitud = -46.4181603,
                     longitud = -67.5278547
                 ),
@@ -244,7 +244,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "alfilerillo",
                     nombre = "Alfilerillo ",
                     descripcion = "Erodium Cicutarium. A esta hierba se la conoce también como peludilla, por la abundante cantidad de pelos que presenta. Tiene hojas muy divididas y prolijamente extendidas sobre el suelo en forma de abanico. La tonalidad puede variar desde el rojo al anaranjado. Las flores son de color fucsia y los frutos pequeños y secos. Están caracterizados por tener una flechilla en forma de tirabuzón, que le permite adherirse a cualquier superficie, como el pelo de los animales, medias y pantalones. Se propaga con mucha facilidad, cubriendo la superficie. Crece en terrenos cultivados, suelos modificados y lugares abiertos desde la meseta hasta la costa. Su distribución es mundial. Es consumida por los animales y empleada como medicinal en infusiones. Se realizan cataplasmas para curar heridas y úlceras.",
-                    imagenesRes = "alfilerillo",
+                    imagenesRes = "alfilerillo,alfilerillo2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
                 ),
@@ -292,7 +292,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "arjonatuberosa",
                     nombre = "Arjona Tuberosa",
                     descripcion = "Es una hierba que alcanza los 20 cm. De altura, pubescente en su totalidad. Las hojas son enteras, envainadoras, algo coriáceas, terminadas en punta. Los tallos subterráneos poseen estalones muy ramificados. Las flores se disponen en el vástago central y son de color blanco – violáceo, muy perfumadas y cubiertas de vellosidad. A esta especie suele vérsela en floración, en los meses de octubre – noviembre, en suelos bien drenados, generalmente, cubiertas de otras plantas mayores.",
-                    imagenesRes = "arjonatuberosa",
+                    imagenesRes = "arjonatuberosa,arjonatuberosa2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
                 ),
