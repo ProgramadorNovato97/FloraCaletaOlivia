@@ -241,7 +241,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     longitud = -67.52635102128295
                 ),
                 Planta(
-                    id = "alfilerillo ",
+                    id = "alfilerillo",
                     nombre = "Alfilerillo ",
                     descripcion = "Erodium Cicutarium. A esta hierba se la conoce también como peludilla, por la abundante cantidad de pelos que presenta. Tiene hojas muy divididas y prolijamente extendidas sobre el suelo en forma de abanico. La tonalidad puede variar desde el rojo al anaranjado. Las flores son de color fucsia y los frutos pequeños y secos. Están caracterizados por tener una flechilla en forma de tirabuzón, que le permite adherirse a cualquier superficie, como el pelo de los animales, medias y pantalones. Se propaga con mucha facilidad, cubriendo la superficie. Crece en terrenos cultivados, suelos modificados y lugares abiertos desde la meseta hasta la costa. Su distribución es mundial. Es consumida por los animales y empleada como medicinal en infusiones. Se realizan cataplasmas para curar heridas y úlceras.",
                     imagenesRes = "alfilerillo",
