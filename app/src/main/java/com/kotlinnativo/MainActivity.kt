@@ -12,7 +12,7 @@ import com.kotlinnativo.screens.MainScreen
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
 
         // *** Colores de app ***
         val colorHeader = Color(0xFFf4efef)
@@ -21,6 +21,9 @@ class MainActivity : ComponentActivity() {
         window.statusBarColor = android.graphics.Color.parseColor("#f4efef")
         // Iconos oscuros
         WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
+
+        // Problema edgetoedge
+        WindowCompat.setDecorFitsSystemWindows(window, true)
 
         // ************** Pantalla inicial **************
         setContent {

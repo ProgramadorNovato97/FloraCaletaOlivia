@@ -223,11 +223,11 @@ abstract class PlantaDatabase : RoomDatabase() {
                 // ****** Agregamos más paradas ******
 
 
-                // ****** Hierbas adicionales ******
+                // ****** HIERBAS adicionales ******
                 Planta(
                     id = "patadeperdiz",
                     nombre = "Pata de Perdiz",
-                    descripcion = "Hoffmannseggia Trifoliata. Su nombre vulgar proviene de poseer hojas divididas en tres semejando la pata de perdiz. Es una hierba pequeña de color verde morado cuyo follaje se extiende sobre el suelo pedregoso. Sus flores son grandes y anaranjadas, con pequeñas manchas oscuras. Se disponen a lo largo de un talluelo, siendo las inferiores, las primeras en abrir. Produce frutos en forma de chaucha de pared muy delgada, lo que permite contar las semillas. Cuando los frutos maduran, se desprenden fácilmente. Es común su desarrollo en bordes de camino y en áreas descubiertas entre los arbustos y coirones.",
+                    descripcion = "Hoffmannseggia Trifoliata (Parada libre). Su nombre vulgar proviene de poseer hojas divididas en tres semejando la pata de perdiz. Es una hierba pequeña de color verde morado cuyo follaje se extiende sobre el suelo pedregoso. Sus flores son grandes y anaranjadas, con pequeñas manchas oscuras. Se disponen a lo largo de un talluelo, siendo las inferiores, las primeras en abrir. Produce frutos en forma de chaucha de pared muy delgada, lo que permite contar las semillas. Cuando los frutos maduran, se desprenden fácilmente. Es común su desarrollo en bordes de camino y en áreas descubiertas entre los arbustos y coirones.",
                     imagenesRes = "patadeperdiz,patadeperdiz2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -235,7 +235,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "ortiga",
                     nombre = "Ortiga",
-                    descripcion = "Amsinckia Hispida. Es una hierba anual que alcanza los 4 cm. De altura. La planta se presenta totalmente cubierta por pelos blanquecinos y rígidos. Las flores son pequeñas, de color amarillo – anaranjado. Se disponen en la porción superior del talluelo orientadas hacia un lado y enrolladas en espiral. Las flores se van abriendo desde arriba hacia abajo. Su atractivo aspecto invita a tomarla entre las manos, pero al tocarla se siente lo punzante que es. De esta característica, deriva el nombre vulgar. Su rigidez le permite mantenerse en pie durante largo tiempo cuando se seca.",
+                    descripcion = "Amsinckia Hispida (Parada libre). Es una hierba anual que alcanza los 4 cm. De altura. La planta se presenta totalmente cubierta por pelos blanquecinos y rígidos. Las flores son pequeñas, de color amarillo – anaranjado. Se disponen en la porción superior del talluelo orientadas hacia un lado y enrolladas en espiral. Las flores se van abriendo desde arriba hacia abajo. Su atractivo aspecto invita a tomarla entre las manos, pero al tocarla se siente lo punzante que es. De esta característica, deriva el nombre vulgar. Su rigidez le permite mantenerse en pie durante largo tiempo cuando se seca.",
                     imagenesRes = "ortiga,ortiga2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -243,7 +243,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "alfilerillo",
                     nombre = "Alfilerillo ",
-                    descripcion = "Erodium Cicutarium. A esta hierba se la conoce también como peludilla, por la abundante cantidad de pelos que presenta. Tiene hojas muy divididas y prolijamente extendidas sobre el suelo en forma de abanico. La tonalidad puede variar desde el rojo al anaranjado. Las flores son de color fucsia y los frutos pequeños y secos. Están caracterizados por tener una flechilla en forma de tirabuzón, que le permite adherirse a cualquier superficie, como el pelo de los animales, medias y pantalones. Se propaga con mucha facilidad, cubriendo la superficie. Crece en terrenos cultivados, suelos modificados y lugares abiertos desde la meseta hasta la costa. Su distribución es mundial. Es consumida por los animales y empleada como medicinal en infusiones. Se realizan cataplasmas para curar heridas y úlceras.",
+                    descripcion = "Erodium Cicutarium (Parada libre). A esta hierba se la conoce también como peludilla, por la abundante cantidad de pelos que presenta. Tiene hojas muy divididas y prolijamente extendidas sobre el suelo en forma de abanico. La tonalidad puede variar desde el rojo al anaranjado. Las flores son de color fucsia y los frutos pequeños y secos. Están caracterizados por tener una flechilla en forma de tirabuzón, que le permite adherirse a cualquier superficie, como el pelo de los animales, medias y pantalones. Se propaga con mucha facilidad, cubriendo la superficie. Crece en terrenos cultivados, suelos modificados y lugares abiertos desde la meseta hasta la costa. Su distribución es mundial. Es consumida por los animales y empleada como medicinal en infusiones. Se realizan cataplasmas para curar heridas y úlceras.",
                     imagenesRes = "alfilerillo,alfilerillo2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -251,7 +251,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "llanten",
                     nombre = "Llantén",
-                    descripcion = "Plantago Patagónica. Es una hierba anual común en médanos y otros tipos de suelos sueltos o modificados, donde forma verdaderos mantos de un color verde ceniciento. Las hojas basales, forman una roseta, lineales y ascendentes, cubiertas por una porosidad muy fina.",
+                    descripcion = "Plantago Patagónica (Parada libre). Es una hierba anual común en médanos y otros tipos de suelos sueltos o modificados, donde forma verdaderos mantos de un color verde ceniciento. Las hojas basales, forman una roseta, lineales y ascendentes, cubiertas por una porosidad muy fina.",
                     imagenesRes = "llanten,llanten2,llanten3",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -259,7 +259,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "estrellita",
                     nombre = "Estrellita",
-                    descripcion = "Tristagma Patagonicum. Es una hierba vivaz, pequeña y muy delgada, que alcanza los 9 cm. De altura. Su flor es blanca, elegante y muy atractiva. El aspecto es de una estrella y presenta en el lado externo, líneas pardo- verdosas. En época de floración, se la puede observar cercana a los arbustos y esparcida entre coirones. Presenta un bulbo subterráneo pequeño y blanco. Es una de las tantas plantas bulbosas, que semejan por su belleza, a las que se cultivan en los jardines. Los suelos en los que habita son arenosos y sueltos.",
+                    descripcion = "Tristagma Patagonicum (Parada libre). Es una hierba vivaz, pequeña y muy delgada, que alcanza los 9 cm. De altura. Su flor es blanca, elegante y muy atractiva. El aspecto es de una estrella y presenta en el lado externo, líneas pardo- verdosas. En época de floración, se la puede observar cercana a los arbustos y esparcida entre coirones. Presenta un bulbo subterráneo pequeño y blanco. Es una de las tantas plantas bulbosas, que semejan por su belleza, a las que se cultivan en los jardines. Los suelos en los que habita son arenosos y sueltos.",
                     imagenesRes = "estrellita,estrellita2,estrellita3",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -267,7 +267,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "marancel",
                     nombre = "Marancel",
-                    descripcion = "Sisyrinchium Junceum. Es una hierba con pocas hojas basales, que pasan desapercibidas. Tiene el aspecto de un lirio. Se destaca el eje floral con 2 a 5 flores de color blanquecino con venas purpúreas.  Elige vivir en suelos arenosos y sueltos. Cuando encuentra el lugar más apropiado, cómodamente se extiende formando un sendero florido.",
+                    descripcion = "Sisyrinchium Junceum (Parada libre). Es una hierba con pocas hojas basales, que pasan desapercibidas. Tiene el aspecto de un lirio. Se destaca el eje floral con 2 a 5 flores de color blanquecino con venas purpúreas.  Elige vivir en suelos arenosos y sueltos. Cuando encuentra el lugar más apropiado, cómodamente se extiende formando un sendero florido.",
                     imagenesRes = "marancel,marancel2,marancel3",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -275,7 +275,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "magallanatrialata",
                     nombre = "Magallana Trialata",
-                    descripcion = "Es una hierba trepadora que no llega a alcanzar 1 cm. De longitud. Los pétalos son amarillos – anaranjados y el fruto es salado (sámara), con tres alas recubriendo una sola semilla grande. Esta enredadera suele verse comúnmente en médanos u otros suelos sueltos, donde sus tubérculos alcanzan una considerable profundidad. Es a partir de estos, que la planta se renueva anualmente. Florece desde fines de septiembre a principios de octubre y fructifica en noviembre y diciembre. Crece sobre matas de Quilimbay.",
+                    descripcion = "(Parada libre). Es una hierba trepadora que no llega a alcanzar 1 cm. De longitud. Los pétalos son amarillos – anaranjados y el fruto es salado (sámara), con tres alas recubriendo una sola semilla grande. Esta enredadera suele verse comúnmente en médanos u otros suelos sueltos, donde sus tubérculos alcanzan una considerable profundidad. Es a partir de estos, que la planta se renueva anualmente. Florece desde fines de septiembre a principios de octubre y fructifica en noviembre y diciembre. Crece sobre matas de Quilimbay.",
                     imagenesRes = "magallanatrialata,magallanatriata2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -283,7 +283,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "mostacilla",
                     nombre = "Mostacilla",
-                    descripcion = "Diplotaxis Tenuifolia. Es una hierba perenne de base leñosa, que brota anualmente. Las flores son hermafroditas amarillas, de cuatro pétalos. Son polinizadas por una gran variedad de insectos. El fruto es una vaina alargada con muchas semillas de gran fertilidad. El rebrote comienza a fines del invierno. Florece en la primavera hasta avanzado el verano. Esta planta cosmopolita, conocida como mostacilla, es común encontrarla en terrenos baldíos, banquinas de rutas y caminos rurales y en muchos casos, como planta colonizadora de suelos en los que se ha extraído la flora autóctona.",
+                    descripcion = "Diplotaxis Tenuifolia (Parada libre). Es una hierba perenne de base leñosa, que brota anualmente. Las flores son hermafroditas amarillas, de cuatro pétalos. Son polinizadas por una gran variedad de insectos. El fruto es una vaina alargada con muchas semillas de gran fertilidad. El rebrote comienza a fines del invierno. Florece en la primavera hasta avanzado el verano. Esta planta cosmopolita, conocida como mostacilla, es común encontrarla en terrenos baldíos, banquinas de rutas y caminos rurales y en muchos casos, como planta colonizadora de suelos en los que se ha extraído la flora autóctona.",
                     imagenesRes = "mostacilla,mostacilla2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -291,7 +291,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "arjonatuberosa",
                     nombre = "Arjona Tuberosa",
-                    descripcion = "Es una hierba que alcanza los 20 cm. De altura, pubescente en su totalidad. Las hojas son enteras, envainadoras, algo coriáceas, terminadas en punta. Los tallos subterráneos poseen estalones muy ramificados. Las flores se disponen en el vástago central y son de color blanco – violáceo, muy perfumadas y cubiertas de vellosidad. A esta especie suele vérsela en floración, en los meses de octubre – noviembre, en suelos bien drenados, generalmente, cubiertas de otras plantas mayores.",
+                    descripcion = "(Parada libre). Es una hierba que alcanza los 20 cm. De altura, pubescente en su totalidad. Las hojas son enteras, envainadoras, algo coriáceas, terminadas en punta. Los tallos subterráneos poseen estalones muy ramificados. Las flores se disponen en el vástago central y son de color blanco – violáceo, muy perfumadas y cubiertas de vellosidad. A esta especie suele vérsela en floración, en los meses de octubre – noviembre, en suelos bien drenados, generalmente, cubiertas de otras plantas mayores.",
                     imagenesRes = "arjonatuberosa,arjonatuberosa2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
