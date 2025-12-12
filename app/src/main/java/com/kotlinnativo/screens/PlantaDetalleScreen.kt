@@ -102,7 +102,11 @@ fun PlantaDetalleScreen(
         }.filter { it != 0 }
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.systemBars)
+    ) {
         // *** Boton volver ***
         Surface(
             modifier = Modifier
