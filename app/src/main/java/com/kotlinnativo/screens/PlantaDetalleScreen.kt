@@ -146,7 +146,7 @@ fun PlantaDetalleScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .windowInsetsPadding(WindowInsets.systemBars)
+
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
