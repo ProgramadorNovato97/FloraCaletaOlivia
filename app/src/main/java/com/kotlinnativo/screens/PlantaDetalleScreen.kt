@@ -279,6 +279,7 @@ fun PlantaDetalleScreen(
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Justify,
                 lineHeight = 21.sp
+
             )
         }
     }
