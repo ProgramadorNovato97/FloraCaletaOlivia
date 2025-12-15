@@ -51,8 +51,7 @@ fun FloraScreen(
     }
 
     Column(
-        modifier = Modifier.fillMaxSize()
-        .windowInsetsPadding(WindowInsets.systemBars),
+        modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         HeaderCaletaClick()

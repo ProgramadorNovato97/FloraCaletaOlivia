@@ -105,7 +105,7 @@ fun PlantaDetalleScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.systemBars)
+
     ) {
         // *** Boton volver ***
         Surface(
@@ -150,7 +150,6 @@ fun PlantaDetalleScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -250,10 +249,10 @@ fun PlantaDetalleScreen(
 
             Row(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 6.dp),
+                    .fillMaxSize(),
+            //.padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                //horizontalArrangement = Arrangement.SpaceBetween
             ) {
 
                 Text(
@@ -279,7 +278,7 @@ fun PlantaDetalleScreen(
                 text = plantaActual.descripcion,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Justify,
-                lineHeight = 20.sp
+                lineHeight = 21.sp
             )
         }
     }
