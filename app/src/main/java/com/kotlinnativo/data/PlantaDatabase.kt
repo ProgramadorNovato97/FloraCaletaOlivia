@@ -155,7 +155,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "verbena",
                     nombre = "Verbena",
-                    descripcion = "Junelia ligustrina (Parada 6). Es un arbusto de ramas flexibles. Se la observa muchas veces creciendo entre otros arbustos más rígidos. Las flores, de color amarillo-azufre con tintes rojizos, se disponen en como espigas cilíndricas. Forman grupos de flores pequeñas llamadas inflorescencias. Se puede ver en floración en los meses de noviembre-diciembre. Son fuertemente aromáticas, especialmente al atardecer.",
+                    descripcion = "Mulguraea ligustrina (Parada 6). Es un arbusto de ramas flexibles. Se la observa muchas veces creciendo entre otros arbustos más rígidos. Las flores, de color amarillo-azufre con tintes rojizos, se disponen en como espigas cilíndricas. Forman grupos de flores pequeñas llamadas inflorescencias. Se puede ver en floración en los meses de noviembre-diciembre. Son fuertemente aromáticas, especialmente al atardecer.",
                     imagenesRes = "verbena,verbena2,vervena3",
                     latitud = -46.419634,
                     longitud = -67.526907
@@ -293,6 +293,14 @@ abstract class PlantaDatabase : RoomDatabase() {
                     nombre = "Arjona Tuberosa",
                     descripcion = "(Parada libre). Es una hierba que alcanza los 20 cm. De altura, pubescente en su totalidad. Las hojas son enteras, envainadoras, algo coriáceas, terminadas en punta. Los tallos subterráneos poseen estalones muy ramificados. Las flores se disponen en el vástago central y son de color blanco – violáceo, muy perfumadas y cubiertas de vellosidad. A esta especie suele vérsela en floración, en los meses de octubre – noviembre, en suelos bien drenados, generalmente, cubiertas de otras plantas mayores.",
                     imagenesRes = "arjonatuberosa,arjonatuberosa2",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ),
+                Planta(
+                    id = "colapiche",
+                    nombre = "Colapiche",
+                    descripcion = "(Parada libre). Del género Nassauvia, es un arbusto muy pequeño similar al mancaperro, pero que crece a mayor altura. Presenta un aspecto gris todo el año y en primavera se distingue por sus diminutas flores blancas. Sus hojas curvas, pequeñas y espinosas son su rasgo más destacado. Los pueblos nativos usaban plantas de este género como peines.",
+                    imagenesRes = "colapiche",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
                 ),

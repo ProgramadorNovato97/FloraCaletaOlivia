@@ -215,6 +215,10 @@ fun MainScreen() {
                                 currentPlant = null
                                 selectedTab = plantOrigin
                             }
+                            "colapiche" -> PlantaDetalleScreen(plantaId = "colapiche") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
                         }
                     }
                 }
