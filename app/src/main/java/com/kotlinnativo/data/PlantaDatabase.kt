@@ -55,7 +55,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "unadegato",
                     nombre = "Uña de Gato",
                     descripcion = "Chuquiraga Aurea (Parada 1). Es una planta baja y leñosa de hojas delgadas como agujas. De allí, se denomina también pinchabola o colchón de suegra. Se extiende sobre el suelo formando almohadones de gran magnitud y en terrenos bajos. Arbustos de este género (Chuquiraga), tienen la capacidad de desarrollar una raíz principal muy profunda, pudiendo alcanzar los 20 metros de ser necesario. A finales de noviembre, se cubre de flores de color amarillo – dorado. Cuando fructifican, los panaderos se diseminan lentamente. Por largo tiempo, permanecen en la planta restos secos y brillantes del mismo color de las flores que, por su aspecto, semejan las conocidas siemprevivas de los arreglos florales.",
-                    imagenesRes = "unadegato,unadegato2,unadegato3".toString(),
+                    imagenesRes = "unadegato,unadegato2,unadegato3, unadegato4".toString(),
                     latitud = -46.4224105,
                     longitud = -67.5239494
                 ),
@@ -164,7 +164,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     id = "botondeoro",
                     nombre = "Botón de Oro",
                     descripcion = "Grindelia Chiloensis (Parada 6). Es una planta muy ramosa en la base y resinosa, característica de regiones secas, rocosas o arenosas en toda la Patagonia. Sus hojas son grandes. Las flores de color amarillo, similares a margaritas, se ubican en los extremos de las ramas. En el pimpollo se acumula una sustancia lechosa llamada resina que, al tocarla, es muy pegajosa. Una vez fructificada y diseminados sus frutos permanecen, por largo tiempo, los talluelos rígidos de color marrón brillante.  Por su belleza, estas formas son colectadas para arreglos florales y artesanías. Además, se utiliza toda la planta para infusiones que bajan la fiebre y para curar dolores como una especie de ungüento.",
-                    imagenesRes = "botondeoro,botondeoro2,botondeoro3,botondeoro4".toString(),
+                    imagenesRes = "botondeoro,botondeoro2,botondeoro3,botondeoro4, botondeoro5".toString(),
                     latitud = -46.419634,
                     longitud = -67.526907
                 ),
