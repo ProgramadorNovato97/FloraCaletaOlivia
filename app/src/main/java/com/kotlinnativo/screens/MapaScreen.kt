@@ -10,6 +10,10 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.compose.ui.graphics.Color
 import android.location.Location
+import android.os.Build
+import android.os.Looper
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -37,7 +41,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
@@ -73,7 +81,41 @@ fun MapasScreen(
         }
     }
 
-    LaunchedEffect(Unit) {
+    //
+    val paradasActivadas = remember { mutableSetOf<Int>() }
+    val markerState = rememberMarkerState()
+    val locationCallback = remember (markerState){
+        object : LocationCallback() {
+            override fun onLocationResult(result: LocationResult) {
+                val ubicacion = result.lastLocation ?: return
+
+                ListadeMarkers.forEach { parada ->
+                    val distancia = FloatArray(1)
+                    Location.distanceBetween(
+                        ubicacion.latitude, ubicacion.longitude,
+                        parada.posicion.latitude, parada.posicion.longitude,
+                        distancia
+                    )
+                    //distancia 15m minimo cerca del marker
+                    if (distancia[0] <= 15f && !paradasActivadas.contains(parada.id)) {
+                        paradasActivadas.add(parada.id)
+                        markerState.onMarkerClick(parada)
+
+                        // Vibración
+                        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500L, VibrationEffect.DEFAULT_AMPLITUDE))
+                        } else {
+                            vibrator.vibrate(500L)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //
+
+    LaunchedEffect(hasLocationPermission) {  // escucha cambios del permiso
         hasLocationPermission = ContextCompat.checkSelfPermission(
             context, Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
@@ -85,9 +127,23 @@ fun MapasScreen(
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 )
             )
+        } else {
+
+            fusedLocationClient.requestLocationUpdates(
+                LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 3000L)
+                    .setMinUpdateDistanceMeters(3f)
+                    .build(),
+                locationCallback,
+                Looper.getMainLooper()
+            )
         }
     }
 
+    DisposableEffect(Unit) {
+        onDispose {
+            fusedLocationClient.removeLocationUpdates(locationCallback)
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -102,7 +158,7 @@ fun MapasScreen(
                         position = CameraPosition.fromLatLngZoom(caletaOliviaLatLng, zoomInicial)
                     }
 
-                    val markerState = rememberMarkerState()
+                  //  val markerState = rememberMarkerState()
 
                     GoogleMap(
                         modifier = Modifier.fillMaxSize(),
@@ -214,7 +270,7 @@ fun MapasScreen(
                         position = CameraPosition.fromLatLngZoom(caletaOliviaLatLng, zoomInicial)
                     }
 
-                    val markerState = rememberMarkerState()
+                  //  val markerState = rememberMarkerState()
 
                     GoogleMap(
                         modifier = Modifier.fillMaxSize(),
@@ -282,7 +338,7 @@ private fun abrirConfiguracionApp(context: Context) {
 //*****************************
 val ListadeMarkers = listOf(
 
-/*
+/* MARKER DE PRUEBA
     MarkerPropio(
         id = 100,
         titulo = "Parada de prueba: ",
@@ -296,6 +352,8 @@ val ListadeMarkers = listOf(
         )
     ),
 */
+
+    //MARKERS
     MarkerPropio(
         id = 1,
         titulo = "Parada 1: ",
