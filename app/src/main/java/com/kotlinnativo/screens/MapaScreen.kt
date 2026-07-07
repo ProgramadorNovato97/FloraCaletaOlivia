@@ -338,7 +338,7 @@ private fun abrirConfiguracionApp(context: Context) {
 //*****************************
 val ListadeMarkers = listOf(
 
-/* MARKER DE PRUEBA
+// MARKERS DE PRUEBA
     MarkerPropio(
         id = 100,
         titulo = "Parada de prueba: ",
@@ -346,12 +346,36 @@ val ListadeMarkers = listOf(
         imagenes = listOf(
             ImagenMarker(
                 drawable = R.drawable.maihuenia4,
-                descripcion = "MAIHUENIA PRUEBA",
+                descripcion = "CANCHA PRUEBA",
                 plantaId = "maihuenia"
             ),
         )
     ),
-*/
+    MarkerPropio(
+        id = 102,
+        titulo = "Parada de prueba: ",
+        posicion = LatLng(-45.91968621832433, -67.57422228844003),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.maihuenia4,
+                descripcion = "VIVIANA PRUEBA",
+                plantaId = "maihuenia"
+            ),
+        )
+    ),
+    MarkerPropio(
+        id = 103,
+        titulo = "Parada de prueba: ",
+        posicion = LatLng(-46.4330382735315, -67.52069825401306),
+        imagenes = listOf(
+            ImagenMarker(
+                drawable = R.drawable.maihuenia4,
+                descripcion = "UACO PRUEBA",
+                plantaId = "maihuenia"
+            ),
+        )
+    ),
+
 
     //MARKERS
     MarkerPropio(
