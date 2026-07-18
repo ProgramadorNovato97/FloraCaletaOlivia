@@ -3,6 +3,8 @@ package com.kotlinnativo.screens
 import com.kotlinnativo.services.MapasService
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,6 +12,7 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.compose.ui.graphics.Color
 import android.location.Location
+import android.media.RingtoneManager
 import android.os.Build
 import android.os.Looper
 import android.os.VibrationEffect
@@ -40,6 +43,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -50,6 +55,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 import com.kotlinnativo.R
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -81,10 +87,58 @@ fun MapasScreen(
         }
     }
 
+// Notificación de cercania en la barra de estado
+    var hasNotificationPermission by remember {
+        mutableStateOf(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            } else true
+        )
+    }
+
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        hasNotificationPermission = granted
+    }
+
+    LaunchedEffect(Unit) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
+    fun mostrarNotificacionProximidad(context: Context, titulo: String) {
+        val channelId = "proximidad_channel"
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Proximidad de paradas",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            val manager = context.getSystemService(NotificationManager::class.java)
+            manager.createNotificationChannel(channel)
+        }
+        //Notificación mensaje
+        val notificacion = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(R.mipmap.pruebaic_launcher)
+            .setContentTitle("Caleta en un Click")
+            .setContentText("${titulo} cerca ~15m")
+            .setSubText("Circuito Flora")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .build()
+
+        NotificationManagerCompat.from(context).notify(titulo.hashCode(), notificacion)
+    }
+
+
     //
     val paradasActivadas = remember { mutableSetOf<Int>() }
     val markerState = rememberMarkerState()
-    val locationCallback = remember (markerState){
+    val locationCallback = remember(markerState){
         object : LocationCallback() {
             override fun onLocationResult(result: LocationResult) {
                 val ubicacion = result.lastLocation ?: return
@@ -96,8 +150,8 @@ fun MapasScreen(
                         parada.posicion.latitude, parada.posicion.longitude,
                         distancia
                     )
-                    //distancia 15m minimo cerca del marker
-                    if (distancia[0] <= 15f && !paradasActivadas.contains(parada.id)) {
+                    //distancia 15m mínima cerca del marker
+                    if (distancia[0] <= 150f && !paradasActivadas.contains(parada.id)) {
                         paradasActivadas.add(parada.id)
                         markerState.onMarkerClick(parada)
 
@@ -108,6 +162,12 @@ fun MapasScreen(
                         } else {
                             vibrator.vibrate(500L)
                         }
+                        // Sonido de notificación
+                        val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                        val ringtone = RingtoneManager.getRingtone(context, notification)
+                        ringtone.play()
+                        // Notificación de proximidad
+                        mostrarNotificacionProximidad(context, parada.titulo)
                     }
                 }
             }
@@ -198,11 +258,12 @@ fun MapasScreen(
                                 }
                             )
                         }
-
+                        //Trazado de camino azul
                         MapasService.MiPolyline()
                         MapasService.MiPolyline2()
                     }
 
+                    // seleccionar marker para ir pantalla
                     markerState.markerSeleccionado?.let { marker ->
                         CardMarker(
                             marker = marker,
@@ -340,8 +401,8 @@ val ListadeMarkers = listOf(
 
 // MARKERS DE PRUEBA
     MarkerPropio(
-        id = 100,
-        titulo = "Parada de prueba: ",
+        id = 99,
+        titulo = "\uD83D\uDCCDParada 99",
         posicion = LatLng(-46.457259954417246, -67.52118961016035),
         imagenes = listOf(
             ImagenMarker(
@@ -352,8 +413,8 @@ val ListadeMarkers = listOf(
         )
     ),
     MarkerPropio(
-        id = 102,
-        titulo = "Parada de prueba: ",
+        id = 100,
+        titulo = "Parada de prueba",
         posicion = LatLng(-45.91968621832433, -67.57422228844003),
         imagenes = listOf(
             ImagenMarker(
@@ -364,8 +425,8 @@ val ListadeMarkers = listOf(
         )
     ),
     MarkerPropio(
-        id = 103,
-        titulo = "Parada de prueba: ",
+        id = 101,
+        titulo = "Parada de prueba",
         posicion = LatLng(-46.4330382735315, -67.52069825401306),
         imagenes = listOf(
             ImagenMarker(
@@ -380,7 +441,7 @@ val ListadeMarkers = listOf(
     //MARKERS
     MarkerPropio(
         id = 1,
-        titulo = "Parada 1: ",
+        titulo = "\uD83D\uDCCDParada 1 ",
         posicion = LatLng(-46.4224105, -67.5239494),
         imagenes = listOf(
             ImagenMarker(
@@ -393,7 +454,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 2,
-        titulo = "Parada 2: ",
+        titulo = "\uD83D\uDCCDParada 2",
         posicion = LatLng(-46.4222783, -67.5242653),
         imagenes = listOf(
             ImagenMarker(
@@ -411,7 +472,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 3,
-        titulo = "Parada 3: ",
+        titulo = "\uD83D\uDCCDParada 3",
         posicion = LatLng(-46.4212241, -67.5253720),
         imagenes = listOf(
             ImagenMarker(
@@ -430,7 +491,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 4,
-        titulo = "Parada 4: ",
+        titulo = "\uD83D\uDCCDParada 4",
         posicion = LatLng(-46.4206415, -67.5261311),
         imagenes = listOf(
             ImagenMarker(
@@ -458,7 +519,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 5,
-        titulo = "Parada 5: ",
+        titulo = "\uD83D\uDCCDParada 5",
         posicion = LatLng(-46.4200740, -67.5266799),
         imagenes = listOf(
             ImagenMarker(
@@ -476,7 +537,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 6,
-        titulo = "Parada 6: ",
+        titulo = "\uD83D\uDCCDParada 6",
         posicion = LatLng(-46.419634, -67.526907),
         imagenes = listOf(
             ImagenMarker(
@@ -499,7 +560,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 7,
-        titulo = "Parada 7: ",
+        titulo = "\uD83D\uDCCDParada 7",
         posicion = LatLng(-46.420192, -67.528466),
         imagenes = listOf(
             ImagenMarker(
@@ -512,7 +573,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 8,
-        titulo = "Parada 8: ",
+        titulo = "\uD83D\uDCCDParada 8",
         posicion = LatLng(-46.419955, -67.528864),
         imagenes = listOf(
             ImagenMarker(
@@ -525,7 +586,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 9,
-        titulo = "Parada 9: ",
+        titulo = "\uD83D\uDCCDParada 9",
         posicion = LatLng(-46.4187621, -67.5275014),
         imagenes = listOf(
             ImagenMarker(
@@ -538,7 +599,7 @@ val ListadeMarkers = listOf(
 
     MarkerPropio(
         id = 10,
-        titulo = "Parada 10: ",
+        titulo = "\uD83D\uDCCDParada 10",
         posicion = LatLng(-46.4181603, -67.5278547),
         imagenes = listOf(
             ImagenMarker(

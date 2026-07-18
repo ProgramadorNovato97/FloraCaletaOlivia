@@ -71,7 +71,7 @@ fun InfoScreen() {
                 description = "La caminata comienza en el sendero junto al cartel 'Bienvenidos a Caleta Olivia' (Acceso Norte de la ciudad)."
             )
             InfoSection(
-                title = "🌱 ¿Qué vas a ver?",
+                title = "\uD83C\uDF3F ¿Qué vas a ver?",
                 description = "Especies autóctonas de la estepa, su relación con la fauna terrestre y el mar, además de miradores panorámicos."
             )
             InfoSection(
