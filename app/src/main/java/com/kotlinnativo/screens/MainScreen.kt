@@ -1,18 +1,40 @@
 package com.kotlinnativo.screens
 
+import android.Manifest
+import android.R
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.location.Location
+import android.media.RingtoneManager
+import android.os.Build
+import android.os.Looper
+import android.os.VibrationEffect
+import android.os.Vibrator
+import androidx.annotation.RequiresPermission
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.Favorite
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.Priority
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+import com.kotlinnativo.MainActivity
 import com.kotlinnativo.services.ColorsService
 
 @Preview
@@ -22,6 +44,72 @@ fun MainScreen() {
     var currentPlant by remember { mutableStateOf<String?>(null) } //Pasamos planta actual para mostrar en detalle
     var plantOrigin by remember { mutableIntStateOf(0) } //Origen de donde se partio a detalle
 
+
+    // Notificacion proximidad de paradas
+    val context = LocalContext.current
+    val paradasActivadas = remember { mutableSetOf<Int>() }
+    val fusedLocationClient = remember { LocationServices.getFusedLocationProviderClient(context) }
+
+    val locationCallback = remember {
+        object : LocationCallback() {
+            override fun onLocationResult(result: LocationResult) {
+                val ubicacion = result.lastLocation ?: return
+
+                ListadeMarkers.forEach { parada ->
+                    val distancia = FloatArray(1)
+                    Location.distanceBetween(
+                        ubicacion.latitude, ubicacion.longitude,
+                        parada.posicion.latitude, parada.posicion.longitude,
+                        distancia
+                    )
+                    // DISTANCIA
+                    if (distancia[0] <= 150f && !paradasActivadas.contains(parada.id)) {
+                        paradasActivadas.add(parada.id)
+
+                        mostrarNotificacionProximidad(context, parada.titulo)
+
+                        val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500L, VibrationEffect.DEFAULT_AMPLITUDE))
+                        } else {
+                            vibrator.vibrate(500L)
+                        }
+
+                        val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                        val ringtone = RingtoneManager.getRingtone(context, notification)
+                        ringtone.play()
+                    }
+                }
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        try {
+            fusedLocationClient.requestLocationUpdates(
+                LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2000L)
+                    .setMinUpdateDistanceMeters(1f)
+                    .build(),
+                locationCallback,
+                Looper.getMainLooper()
+            )
+        } catch (e: SecurityException) { }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            fusedLocationClient.removeLocationUpdates(locationCallback)
+        }
+    }
+    //
+    LaunchedEffect(MainActivity.irAMapa) {
+        if (MainActivity.irAMapa) {
+            selectedTab = 1
+            currentPlant = null
+            MainActivity.irAMapa = false
+        }
+    }
+    //
 
     Scaffold(
         bottomBar = {
@@ -257,6 +345,10 @@ fun MainScreen() {
             }
         }
     }
+
+
+
+
 }
 
 
@@ -298,3 +390,37 @@ fun HeaderCaletaClick() {
     }
 }
 
+// Notificaciones
+@RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
+fun mostrarNotificacionProximidad(context: Context, titulo: String) {
+    val channelId = "proximidad_channel"
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val channel = NotificationChannel(
+            channelId,
+            "Proximidad de paradas",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        val manager = context.getSystemService(NotificationManager::class.java)
+        manager.createNotificationChannel(channel)
+    }
+    val intent = Intent(context, MainActivity::class.java).apply {
+        putExtra("ir_a_mapa", true)
+        flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+    }
+    val pendingIntent = PendingIntent.getActivity(
+        context, 0, intent,
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
+
+
+    val notificacion = NotificationCompat.Builder(context, channelId)
+        .setSmallIcon(com.kotlinnativo.R.mipmap.pruebaic_launcher)
+        .setContentTitle("Caleta en un Click")
+        .setContentText("${titulo} cerca ~15m")
+        .setSubText("Circuito Flora")
+        .setContentIntent(pendingIntent)
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
+        .setAutoCancel(true)
+        .build()
+    NotificationManagerCompat.from(context).notify(titulo.hashCode(), notificacion)
+}

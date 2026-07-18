@@ -1,10 +1,7 @@
 package com.kotlinnativo.screens
 
 import com.kotlinnativo.services.MapasService
-
 import android.Manifest
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -41,10 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -55,8 +49,6 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
 import com.kotlinnativo.R
-import kotlinx.coroutines.launch
-
 
 @Composable
 fun MapasScreen(
@@ -87,55 +79,7 @@ fun MapasScreen(
         }
     }
 
-// Notificación de cercania en la barra de estado
-    var hasNotificationPermission by remember {
-        mutableStateOf(
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
-            } else true
-        )
-    }
 
-    val notificationPermissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { granted ->
-        hasNotificationPermission = granted
-    }
-
-    LaunchedEffect(Unit) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        }
-    }
-    fun mostrarNotificacionProximidad(context: Context, titulo: String) {
-        val channelId = "proximidad_channel"
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                channelId,
-                "Proximidad de paradas",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            val manager = context.getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(channel)
-        }
-        //Notificación mensaje
-        val notificacion = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.mipmap.pruebaic_launcher)
-            .setContentTitle("Caleta en un Click")
-            .setContentText("${titulo} cerca ~15m")
-            .setSubText("Circuito Flora")
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(true)
-            .build()
-
-        NotificationManagerCompat.from(context).notify(titulo.hashCode(), notificacion)
-    }
-
-
-    //
     val paradasActivadas = remember { mutableSetOf<Int>() }
     val markerState = rememberMarkerState()
     val locationCallback = remember(markerState){
@@ -150,24 +94,24 @@ fun MapasScreen(
                         parada.posicion.latitude, parada.posicion.longitude,
                         distancia
                     )
-                    //distancia 15m mínima cerca del marker
+                    //DISTANCIA 15m mínima cerca del marker
                     if (distancia[0] <= 150f && !paradasActivadas.contains(parada.id)) {
-                        paradasActivadas.add(parada.id)
-                        markerState.onMarkerClick(parada)
-
-                        // Vibración
+                       // Vibración
                         val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             vibrator.vibrate(VibrationEffect.createOneShot(500L, VibrationEffect.DEFAULT_AMPLITUDE))
                         } else {
                             vibrator.vibrate(500L)
                         }
+
                         // Sonido de notificación
                         val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
                         val ringtone = RingtoneManager.getRingtone(context, notification)
                         ringtone.play()
-                        // Notificación de proximidad
-                        mostrarNotificacionProximidad(context, parada.titulo)
+
+                        // Mostrar carousel
+                        paradasActivadas.add(parada.id)
+                        markerState.onMarkerClick(parada)
                     }
                 }
             }
@@ -190,8 +134,8 @@ fun MapasScreen(
         } else {
 
             fusedLocationClient.requestLocationUpdates(
-                LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 3000L)
-                    .setMinUpdateDistanceMeters(3f)
+                LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2000L)
+                    .setMinUpdateDistanceMeters(1f)
                     .build(),
                 locationCallback,
                 Looper.getMainLooper()
@@ -414,7 +358,7 @@ val ListadeMarkers = listOf(
     ),
     MarkerPropio(
         id = 100,
-        titulo = "Parada de prueba",
+        titulo = "\uD83D\uDCCDParada Vivi",
         posicion = LatLng(-45.91968621832433, -67.57422228844003),
         imagenes = listOf(
             ImagenMarker(
@@ -426,7 +370,7 @@ val ListadeMarkers = listOf(
     ),
     MarkerPropio(
         id = 101,
-        titulo = "Parada de prueba",
+        titulo = "\uD83D\uDCCDParada Uni",
         posicion = LatLng(-46.4330382735315, -67.52069825401306),
         imagenes = listOf(
             ImagenMarker(
