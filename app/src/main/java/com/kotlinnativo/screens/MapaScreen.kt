@@ -388,6 +388,13 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 1 ",
         posicion = LatLng(-46.4224105, -67.5239494),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada1700x300,
+                descripcion = "",
+                plantaId = "parada01"
+            ),
+            //carousel img
             ImagenMarker(
                 drawable = R.drawable.unadegato,
                 descripcion = "UÑA DE GATO",
@@ -401,6 +408,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 2",
         posicion = LatLng(-46.4222783, -67.5242653),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada2700x300,
+                descripcion = "",
+                plantaId = "parada02"
+            ),
             ImagenMarker(
                 drawable = R.drawable.zampa4,
                 descripcion = "ZAMPA",
@@ -419,6 +432,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 3",
         posicion = LatLng(-46.4212241, -67.5253720),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada3700x300,
+                descripcion = "",
+                plantaId = "parada03"
+            ),
             ImagenMarker(
                 drawable = R.drawable.falsotomillo,
                 descripcion = "FALSO TOMILLO",
@@ -429,8 +448,7 @@ val ListadeMarkers = listOf(
                 descripcion = "CACTUS AUSTRAL",
                 plantaId = "cactusaustral"
             ),
-
-            )
+        )
     ),
 
     MarkerPropio(
@@ -438,6 +456,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 4",
         posicion = LatLng(-46.4206415, -67.5261311),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada4700x300,
+                descripcion = "",
+                plantaId = "parada04"
+            ),
             ImagenMarker(
                 drawable = R.drawable.tuna,
                 descripcion = "TUNA",
@@ -466,6 +490,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 5",
         posicion = LatLng(-46.4200740, -67.5266799),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada5700x300,
+                descripcion = "",
+                plantaId = "parada05"
+            ),
             ImagenMarker(
                 drawable = R.drawable.matalaguna4,
                 descripcion = "MATA LAGUNA",
@@ -484,6 +514,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 6",
         posicion = LatLng(-46.419634, -67.526907),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada6700x300,
+                descripcion = "",
+                plantaId = "parada06"
+            ),
             ImagenMarker(
                 drawable = R.drawable.duraznillo,
                 descripcion = "DURAZNILLO",
@@ -507,6 +543,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 7",
         posicion = LatLng(-46.420192, -67.528466),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada7700x300,
+                descripcion = "",
+                plantaId = "parada07"
+            ),
             ImagenMarker(
                 drawable = R.drawable.sulupe,
                 descripcion = "SULUPE",
@@ -520,6 +562,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 8",
         posicion = LatLng(-46.419955, -67.528864),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada8700x300,
+                descripcion = "",
+                plantaId = "parada08"
+            ),
             ImagenMarker(
                 drawable = R.drawable.algarrobillo3,
                 descripcion = "ALGARROBILLO",
@@ -533,6 +581,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 9",
         posicion = LatLng(-46.4187621, -67.5275014),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada9700x300,
+                descripcion = "",
+                plantaId = "parada09"
+            ),
             ImagenMarker(
                 drawable = R.drawable.maihuenia4,
                 descripcion = "MAIHUENIA",
@@ -546,6 +600,12 @@ val ListadeMarkers = listOf(
         titulo = "\uD83D\uDCCDParada 10",
         posicion = LatLng(-46.4181603, -67.5278547),
         imagenes = listOf(
+            // Img panoramica
+            ImagenMarker(
+                drawable = R.drawable.parada10700x300,
+                descripcion = "",
+                plantaId = "parada10"
+            ),
             ImagenMarker(
                 drawable = R.drawable.tomillo,
                 descripcion = "TOMILLO",

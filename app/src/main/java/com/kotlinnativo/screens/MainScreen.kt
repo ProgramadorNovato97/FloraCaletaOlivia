@@ -165,6 +165,49 @@ fun MainScreen() {
                     } else {
                         when (currentPlant) {
                             //****** parada 1 ******
+                            "parada01" -> PlantaDetalleScreen(plantaId = "parada01") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada02" -> PlantaDetalleScreen(plantaId = "parada02") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada03" -> PlantaDetalleScreen(plantaId = "parada03") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada04" -> PlantaDetalleScreen(plantaId = "parada04") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada05" -> PlantaDetalleScreen(plantaId = "parada05") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada06" -> PlantaDetalleScreen(plantaId = "parada06") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada07" -> PlantaDetalleScreen(plantaId = "parada07") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada08" -> PlantaDetalleScreen(plantaId = "parada08") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada09" -> PlantaDetalleScreen(plantaId = "parada09") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+                            "parada10" -> PlantaDetalleScreen(plantaId = "parada10") {
+                                currentPlant = null
+                                selectedTab = plantOrigin
+                            }
+
+
+                            //***
                             "unadegato" -> PlantaDetalleScreen(plantaId = "unadegato") {
                                 currentPlant = null
                                 selectedTab = plantOrigin //Para regresar nuevamente

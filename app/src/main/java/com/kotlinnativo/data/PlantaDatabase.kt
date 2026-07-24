@@ -54,7 +54,9 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "unadegato",
                     nombre = "Uña de Gato",
-                    descripcion = "Chuquiraga Aurea (Parada 1). Es una planta baja y leñosa de hojas delgadas como agujas. De allí, se denomina también pinchabola o colchón de suegra. Se extiende sobre el suelo formando almohadones de gran magnitud y en terrenos bajos. Arbustos de este género (Chuquiraga), tienen la capacidad de desarrollar una raíz principal muy profunda, pudiendo alcanzar los 20 metros de ser necesario. A finales de noviembre, se cubre de flores de color amarillo – dorado. Cuando fructifican, los panaderos se diseminan lentamente. Por largo tiempo, permanecen en la planta restos secos y brillantes del mismo color de las flores que, por su aspecto, semejan las conocidas siemprevivas de los arreglos florales.",
+                    descripcion = "Chuquiraga Aurea (Parada 1). Es una planta baja y leñosa de hojas delgadas como agujas. De allí, se denomina también pinchabola o colchón de suegra. Se extiende sobre el suelo formando almohadones de gran magnitud y en terrenos bajos.\n" +
+                            "Arbustos de este género (Chuquiraga), tienen la capacidad de desarrollar una raíz principal muy profunda, pudiendo alcanzar los 20 metros de ser necesario. A finales de noviembre, se cubre de flores de color amarillo – dorado. Cuando fructifican, los panaderos se diseminan lentamente.\n" +
+                            "Por largo tiempo, permanecen en la planta restos secos y brillantes del mismo color de las flores que, por su aspecto, semejan las conocidas siemprevivas de los arreglos florales.",
                     imagenesRes = "unadegato,unadegato2,unadegato3, unadegato4".toString(),
                     latitud = -46.4224105,
                     longitud = -67.5239494
@@ -71,7 +73,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "quilimbay",
                     nombre = "Quilimbay",
-                    descripcion = "Chuquiraga Avellanedae (Parada 2). Es un arbusto de hasta 1 m. de altura cuyas hojas, anchas y duras, terminan en una pequeña espina. Tiene una floración prolongada y permanecen restos secos de color amarillo intenso gran parte del año. Comienza a fines de noviembre y entre diciembre y enero se encuentra en plenitud. Los frutos son panaderos blancos y peludos que viajan en grupos llevados por el viento. Es utilizado en medicina popular para calmar las irritaciones de garganta. Flores y frutos son consumidos por el ganado. Se asocia a uña de gato en suelos arcillosos y a falso tomillo en arcilloso – salinos. Es muy abundante en la estepa patagónica.",
+                    descripcion = "Chuquiraga Avellanedae (Parada 2). Es un arbusto de hasta 1 m. de altura cuyas hojas, anchas y duras, terminan en una pequeña espina. Tiene una floración prolongada y permanecen restos secos de color amarillo intenso gran parte del año. Comienza a fines de noviembre y entre diciembre y enero se encuentra en plenitud.\n" +
+                            "Los frutos son panaderos blancos y peludos que viajan en grupos llevados por el viento. Es utilizado en medicina popular para calmar las irritaciones de garganta. Flores y frutos son consumidos por el ganado. Se asocia a uña de gato en suelos arcillosos y a falso tomillo en arcilloso – salinos. Es muy abundante en la estepa patagónica.",
                     imagenesRes = "quilimbay,quilimbay2,quilimbay3,quilimbay4",
                     latitud = -46.4222783,
                     longitud = -67.5242653
@@ -80,7 +83,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "falsotomillo",
                     nombre = "Falso Tomillo",
-                    descripcion = "Frankenia Patagónica (Parada 3). Es una mata baja con ramas muy abiertas y desgarradas, tendidas sobre el suelo. En el inicio de la primavera, desarrolla hojas muy pequeñas y de color verde grisáceo por la presencia de sales. Suele confundirse con el tomillo (de ahí su nombre), pero al saborearla se detecta lo salada que es. Por esta característica, se denomina mata salada. Muchos arbustos como este, muestran un crecimiento totalmente diferente en espacios muy cercanos. Esta estrategia se denomina plasticidad fenotípica y tiene directa relación con las condiciones climáticas y otros factores que deben soportar del ambiente en el que viven. Sus flores son blancas y tenues. Se destacan a fines de enero y principios de febrero porque cuando no hay casi plantas florecidas, matizan sus ramas. En la estación más fría, su follaje se vuelve color ocre y se destacan las ramas de color gris claro terminadas en punta.",
+                    descripcion = "Frankenia Patagónica (Parada 3). Es una mata baja con ramas muy abiertas y desgarradas, tendidas sobre el suelo. En el inicio de la primavera, desarrolla hojas muy pequeñas y de color verde grisáceo por la presencia de sales. Suele confundirse con el tomillo (de ahí su nombre), pero al saborearla se detecta lo salada que es. Por esta característica, se denomina mata salada. \n" +
+                            "Muchos arbustos como este, muestran un crecimiento totalmente diferente en espacios muy cercanos. Esta estrategia se denomina plasticidad fenotípica y tiene directa relación con las condiciones climáticas y otros factores que deben soportar del ambiente en el que viven. Sus flores son blancas y tenues. Se destacan a fines de enero y principios de febrero porque cuando no hay casi plantas florecidas, matizan sus ramas. En la estación más fría, su follaje se vuelve color ocre y se destacan las ramas de color gris claro terminadas en punta.",
                     imagenesRes = "falsotomillo,falsotomillo2,falsotomillo3".toString(),
                     latitud = -46.4212241,
                     longitud =  -67.5253720
@@ -97,7 +101,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "tuna",
                     nombre = "Tuna",
-                    descripcion = "Maihuenopsis Darwinii (Parada 4). Es un cactus bajo y rastrero, formado por eslabones carnosos de color verde, con numerosas espinas. En primavera, intensifican su color y se vuelven turgentes, preparándose para la floración. Presentan numerosos estambres densamente agrupados. Cuando los frutos maduran, matizan de color anaranjado intenso el almohadón de espinas. Su fruto es azucarado y lo consumen los animales. Son plantas adaptadas al clima desértico, durante la noche con temperaturas bajo cero en la mayor parte del año y durante el día, con intensa radiación solar. Esta familia es endémica de América. La distribución de esta especie es exclusiva de América del Sur.",
+                    descripcion = "Maihuenopsis Darwinii (Parada 4). Es un cactus bajo y rastrero, formado por eslabones carnosos de color verde, con numerosas espinas. En primavera, intensifican su color y se vuelven turgentes, preparándose para la floración. Presentan numerosos estambres densamente agrupados. \n" +
+                            "Cuando los frutos maduran, matizan de color anaranjado intenso el almohadón de espinas. Su fruto es azucarado y lo consumen los animales. Son plantas adaptadas al clima desértico, durante la noche con temperaturas bajo cero en la mayor parte del año y durante el día, con intensa radiación solar. Esta familia es endémica de América. La distribución de esta especie es exclusiva de América del Sur.",
                     imagenesRes = "tuna,tuna2,tuna3,tuna4".toString(),
                     latitud = -46.4206415,
                     longitud = -67.5261311
@@ -105,7 +110,9 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "malaspina",
                     nombre = "Malaspina",
-                    descripcion = "Retanilla Patagónica (Parada 4). Es un arbusto de gran tamaño que muestra una arquitectura especial. Desarrolla espinas opuestas y gruesas que se transforman en ramas simétricas de color verde claro. Al inicio de la primavera, abundantes flores pequeñas de color blanco cremoso lo cubren cambiando su aspecto hostil. Simultáneamente, aparecen sus hojas que varían de tamaño de acuerdo a las condiciones de humedad y protección. Los frutos son carnosos cuando inmaduros y se secan descascarándose al madurar. Sus grandes semillas son muy apetecidas por los roedores de la zona. Es muy abundante en los cañadones costeros formando, en algunos casos, matorrales densos. Es compañera inseparable del duraznillo.",
+                    descripcion = "Retanilla Patagónica (Parada 4). Es un arbusto de gran tamaño que muestra una arquitectura especial. Desarrolla espinas opuestas y gruesas que se transforman en ramas simétricas de color verde claro. \n" +
+                            "Al inicio de la primavera, abundantes flores pequeñas de color blanco cremoso lo cubren cambiando su aspecto hostil. Simultáneamente, aparecen sus hojas que varían de tamaño de acuerdo a las condiciones de humedad y protección. Los frutos son carnosos cuando inmaduros y se secan descascarándose al madurar. \n" +
+                            "Sus grandes semillas son muy apetecidas por los roedores de la zona. Es muy abundante en los cañadones costeros formando, en algunos casos, matorrales densos. Es compañera inseparable del duraznillo.",
                     imagenesRes = "malaspina,malaspina2,malaspina3".toString(),
                     latitud = -46.4206415,
                     longitud = -67.5261311
@@ -113,7 +120,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "chilca",
                     nombre = "Chilca",
-                    descripcion = "Baccharis Darwinii (Parada 4). Es una planta leñosa que alcanza los 50 cm. De altura, similar al yuyo moro en el porte, pero no tiene aspecto ceniciento. Sus hojas son delgadas y las flores pequeñas de color blanco – amarillento, dispuestas en inflorescencias, en forma de cabezuela. Cuando todavía no han abierto, están tonalizadas por líneas moradas. En otoño, es muy vistosa, porque en los ápices de las ramas, persisten numerosas estrellitas plateadas. Estas formas provienen de un grupo de piezas dispuestas alrededor de la inflorescencia.",
+                    descripcion = "Baccharis Darwinii (Parada 4). Es una planta leñosa que alcanza los 50 cm. De altura, similar al yuyo moro en el porte, pero no tiene aspecto ceniciento. Sus hojas son delgadas y las flores pequeñas de color blanco – amarillento, dispuestas en inflorescencias, en forma de cabezuela. Cuando todavía no han abierto, están tonalizadas por líneas moradas.\n" +
+                            "En otoño, es muy vistosa, porque en los ápices de las ramas, persisten numerosas estrellitas plateadas. Estas formas provienen de un grupo de piezas dispuestas alrededor de la inflorescencia.",
                     imagenesRes = "chilca".toString(),
                     latitud = -46.4206415,
                     longitud = -67.5261311
@@ -121,7 +129,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "coiron",
                     nombre = "Coirón",
-                    descripcion = "Stipa Humilis (Parada 4). Es una hierba que caracteriza el paisaje estepario de Patagonia. Su nombre se debe a que mantiene la forma de “llama”, dado que no es consumida por los herbívoros. Las hojas son pajizas blanco-amarillentas, al apoyar la mano sobre ellas, se percibe su rigidez. Sus flores diminutas y simples se reúnen en una espiga muy tenue y grácil. Los frutos son pequeños y plumosos. Poseen una larga y delgada extensión llamada arista que, en su base, se enrolla como una espira y en el extremo, se dobla en ángulo recto. Estas características le permiten ser desplazados por el viento, clavarse en el suelo y así, cubrir nuevos espacios. Entre el follaje, persisten durante el año, pequeñas cintas doradas que corresponden a restos de la espiga.",
+                    descripcion = "Stipa Humilis (Parada 4). Es una hierba que caracteriza el paisaje estepario de Patagonia. Su nombre se debe a que mantiene la forma de “llama”, dado que no es consumida por los herbívoros. Las hojas son pajizas blanco-amarillentas, al apoyar la mano sobre ellas, se percibe su rigidez. Sus flores diminutas y simples se reúnen en una espiga muy tenue y grácil. Los frutos son pequeños y plumosos. Poseen una larga y delgada extensión llamada arista que, en su base, se enrolla como una espira y en el extremo, se dobla en ángulo recto.\n" +
+                            "Estas características le permiten ser desplazados por el viento, clavarse en el suelo y así, cubrir nuevos espacios. Entre el follaje, persisten durante el año, pequeñas cintas doradas que corresponden a restos de la espiga.",
                     imagenesRes = "coiron".toString(),
                     latitud = -46.4206415,
                     longitud = -67.5261311
@@ -130,7 +139,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "matalaguna",
                     nombre = "Mata Laguna",
-                    descripcion = "Lycium Ameghinoi (Parada 5). Es un arbusto de corteza rugosa y rústica, cuya silueta se reconoce a distancia por su contorno zigzagueante. Es frecuente observar su leño cubierto por formaciones de color anaranjado, muy llamativas, fácilmente visibles cuando la planta se encuentra sin follaje. Dichos organismos se llaman líquenes y se desarrollan cuando el ambiente no está contaminado. En primavera, se cubre de hojas algo carnosas y más pequeñas que las del yaoyín. Las flores de color blanco-cremoso, se encuentran adheridas a la rama. Tienen forma de una diminuta campana. Se encuentra en floración desde octubre hasta diciembre.",
+                    descripcion = "Lycium Ameghinoi (Parada 5). Es un arbusto de corteza rugosa y rústica, cuya silueta se reconoce a distancia por su contorno zigzagueante. Es frecuente observar su leño cubierto por formaciones de color anaranjado, muy llamativas, fácilmente visibles cuando la planta se encuentra sin follaje. Dichos organismos se llaman líquenes y se desarrollan cuando el ambiente no está contaminado. \n" +
+                            "En primavera, se cubre de hojas algo carnosas y más pequeñas que las del yaoyín. Las flores de color blanco-cremoso, se encuentran adheridas a la rama. Tienen forma de una diminuta campana. Se encuentra en floración desde octubre hasta diciembre.",
                     imagenesRes = "matalaguna,matalaguna2,matalaguna3,matalaguna4",
                     latitud = -46.4200740,
                     longitud = -67.5266799
@@ -147,7 +157,9 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "duraznillo",
                     nombre = "Duraznillo",
-                    descripcion = "Colliguaja Integérrima (Parada 6). Es un arbusto típico siempre verde de la estepa patagónica.  Define junto a la malaspina, el Distrito florístico del Golfo San Jorge. Las hojas son grandes, de color verde botella brillante y al cortarlas, derraman una sustancia blanca llamada látex. Las comunidades nativas posiblemente la utilizaban para colocar en las puntas de lanza para la caza de guanacos. Cuando florece, se cubre de espigas rojizas que, al madurar, se vuelven amarillas y liberan abundante polen. En la base de la espiga, se desarrollan dos o tres frutos. Estos se parecen, por su forma y color, a pequeños duraznillos. Cuando maduran se transforman en frutos marrones y secos, como dos avellanas, que se abren liberando grandes semillas. Esta es una de las pocas especies que persiste el avance de los médanos. En medicina popular, se utiliza para quebraduras y dolores.",
+                    descripcion = "Colliguaja Integérrima (Parada 6). Es un arbusto típico siempre verde de la estepa patagónica.  Define junto a la malaspina, el Distrito florístico del Golfo San Jorge. Las hojas son grandes, de color verde botella brillante y al cortarlas, derraman una sustancia blanca llamada látex. \n" +
+                            "Las comunidades nativas posiblemente la utilizaban para colocar en las puntas de lanza para la caza de guanacos. Cuando florece, se cubre de espigas rojizas que, al madurar, se vuelven amarillas y liberan abundante polen. \n" +
+                            "En la base de la espiga, se desarrollan dos o tres frutos. Estos se parecen, por su forma y color, a pequeños duraznillos. Cuando maduran se transforman en frutos marrones y secos, como dos avellanas, que se abren liberando grandes semillas. Esta es una de las pocas especies que persiste el avance de los médanos. En medicina popular, se utiliza para quebraduras y dolores.",
                     imagenesRes = "duraznillo,duraznillo2,duraznillo3,duraznillo4",
                     latitud = -46.419634,
                     longitud = -67.526907
@@ -163,7 +175,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "botondeoro",
                     nombre = "Botón de Oro",
-                    descripcion = "Grindelia Chiloensis (Parada 6). Es una planta muy ramosa en la base y resinosa, característica de regiones secas, rocosas o arenosas en toda la Patagonia. Sus hojas son grandes. Las flores de color amarillo, similares a margaritas, se ubican en los extremos de las ramas. En el pimpollo se acumula una sustancia lechosa llamada resina que, al tocarla, es muy pegajosa. Una vez fructificada y diseminados sus frutos permanecen, por largo tiempo, los talluelos rígidos de color marrón brillante.  Por su belleza, estas formas son colectadas para arreglos florales y artesanías. Además, se utiliza toda la planta para infusiones que bajan la fiebre y para curar dolores como una especie de ungüento.",
+                    descripcion = "Grindelia Chiloensis (Parada 6). Es una planta muy ramosa en la base y resinosa, característica de regiones secas, rocosas o arenosas en toda la Patagonia. Sus hojas son grandes. Las flores de color amarillo, similares a margaritas, se ubican en los extremos de las ramas. En el pimpollo se acumula una sustancia lechosa llamada resina que, al tocarla, es muy pegajosa. \n" +
+                            "Una vez fructificada y diseminados sus frutos permanecen, por largo tiempo, los talluelos rígidos de color marrón brillante.  Por su belleza, estas formas son colectadas para arreglos florales y artesanías. Además, se utiliza toda la planta para infusiones que bajan la fiebre y para curar dolores como una especie de ungüento.",
                     imagenesRes = "botondeoro,botondeoro2,botondeoro3,botondeoro4, botondeoro5".toString(),
                     latitud = -46.419634,
                     longitud = -67.526907
@@ -172,7 +185,9 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "sulupe",
                     nombre = "Sulupe",
-                    descripcion = "Ephedra Ochreata (Parada 7). Es una planta de gran tamaño, muy ramificada desde la base. Sus ramas son verdes, cilíndricas que se adelgazan hacia la parte superior. Las hojas son muy pequeñas, transformadas en escamas de color pardo grisáceo, que se disponen alrededor de los nudos. Se pueden encontrar plantas femeninas y masculinas. Es más frecuente detectar las plantas masculinas a finales de octubre, porque en los nudos se desarrollan numerosos botones amarillos de los que sobresalen los estambres. En las plantas femeninas, se observan pequeños conos de color verde cuando inmaduros. En los meses de diciembre – enero, se vuelven carnosos y jugosos de color rojo. Estos frutos son apetecidos por los animales de la zona. Contienen una sustancia llamada efedrina. Su uso en medicina casera no es aconsejable. Dicha especie es una representante de la estepa patagónica, que pertenece al grupo de Gimnospermas nativas de los bosques andinos patagónicos, tales como el alerce, ciprés de la cordillera y araucaria, lo que quiere decir que sus antecesores evolutivos son muy antiguos. Por dicho motivo, no tiene flores.",
+                    descripcion = "Ephedra Ochreata (Parada 7). Es una planta de gran tamaño, muy ramificada desde la base. Sus ramas son verdes, cilíndricas que se adelgazan hacia la parte superior. Las hojas son muy pequeñas, transformadas en escamas de color pardo grisáceo, que se disponen alrededor de los nudos. \n" +
+                            "Se pueden encontrar plantas femeninas y masculinas. Es más frecuente detectar las plantas masculinas a finales de octubre, porque en los nudos se desarrollan numerosos botones amarillos de los que sobresalen los estambres. En las plantas femeninas, se observan pequeños conos de color verde cuando inmaduros. \n" +
+                            "En los meses de diciembre – enero, se vuelven carnosos y jugosos de color rojo. Estos frutos son apetecidos por los animales de la zona. Contienen una sustancia llamada efedrina. Su uso en medicina casera no es aconsejable. Dicha especie es una representante de la estepa patagónica, que pertenece al grupo de Gimnospermas nativas de los bosques andinos patagónicos, tales como el alerce, ciprés de la cordillera y araucaria, lo que quiere decir que sus antecesores evolutivos son muy antiguos. Por dicho motivo, no tiene flores.",
                     imagenesRes = "sulupe,sulupe2,sulupe3,sulupe4".toString(),
                     latitud = -46.420192,
                     longitud = -67.528466
@@ -181,7 +196,9 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "algarrobillo",
                     nombre = "Algarrobillo",
-                    descripcion = "Prosopis Denudans (Parada 8). Es un arbusto que alcanza los 2 metros de altura, ramoso desde la base formando una copa muy amplia. En esta zona, por su ubicación, se encuentra achaparrado y de pequeño porte.  Presenta espinas gruesas y rígidas que cambian de color a medida que transcurre el tiempo. Se pueden distinguir las ramas nuevas porque tienen un color rojizo brillante. En diciembre, se llena de abundantes espigas amarillas y finalizando el verano, se desarrollan legumbres de color marrón oscuro, las que permanecen durante años en la planta. Las legumbres o chauchas presentan distinto grado de enrollamiento, se pueden observar en forma de C, rectas o con una o más vueltas en espiral. Los pueblos nativos y estancieros seguramente, lo han utilizado como un alimento que se parece a una pasta de harina dulce.",
+                    descripcion = "Prosopis Denudans (Parada 8). Es un arbusto que alcanza los 2 metros de altura, ramoso desde la base formando una copa muy amplia. En esta zona, por su ubicación, se encuentra achaparrado y de pequeño porte.  Presenta espinas gruesas y rígidas que cambian de color a medida que transcurre el tiempo. Se pueden distinguir las ramas nuevas porque tienen un color rojizo brillante. \n" +
+                            "En diciembre, se llena de abundantes espigas amarillas y finalizando el verano, se desarrollan legumbres de color marrón oscuro, las que permanecen durante años en la planta. Las legumbres o chauchas presentan distinto grado de enrollamiento, se pueden observar en forma de C, rectas o con una o más vueltas en espiral.\n" +
+                            "Los pueblos nativos y estancieros seguramente, lo han utilizado como un alimento que se parece a una pasta de harina dulce.",
                     imagenesRes = "algarrobillo,algarrobillo2,algarrobillo3,algarrobillo4",
                     latitud = -46.419955,
                     longitud = -67.528864
@@ -199,7 +216,9 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "tomillo",
                     nombre = "Tomillo",
-                    descripcion = "Acantholippia Seriphioides (Parada 10). Es un arbusto muy ramoso que habita zonas secas y áridas. Es generalmente bajo y aromático. Se reconoce fácilmente tomando las hojitas y frotándolas entre los dedos, ya que libera una fragancia cítrica especial. Se estudian sus aceites esenciales como estimulantes y se lo utiliza como condimento. En otoño – invierno, su follaje vira de tonos ocráceos intensos hasta el morado. Su mejor compañero es el tomillo rosa. Ambos en este periodo, se mimetizan, pero se lo puede reconocer por su aroma. A mediados de primavera, se cubre de pequeños ramilletes de flores blanco – cremosas. El tomillo es una de las plantas medicinales más antiguas. Procede de los países mediterráneos y crece con abundante sol en suelo seco, árido y rocoso. En la antigüedad, los médicos griegos Hipócrates, Teofrasto y Dioscórides y a lo tenían en alta estima por sus poderes curativos. Sus efectos expectorantes en caso de tos y bronquitis también han sido confirmados por la ciencia actual. Sus efectos calmantes de la tos y antiespasmódicos, incluso se han podido comprobar en la tos ferina. Empleado en forma de baños refuerza los nervios y actúa favorablemente en trastornos cutáneos de tipo inflamatorio. El tomillo también es una hierba de cocina sumamente apreciaba, ya que ayuda a digerir mejor las comidas.",
+                    descripcion = "Acantholippia Seriphioides (Parada 10). Es un arbusto muy ramoso que habita zonas secas y áridas. Es generalmente bajo y aromático. Se reconoce fácilmente tomando las hojitas y frotándolas entre los dedos, ya que libera una fragancia cítrica especial. Se estudian sus aceites esenciales como estimulantes y se lo utiliza como condimento.\n" +
+                            "En otoño – invierno, su follaje vira de tonos ocráceos intensos hasta el morado. Su mejor compañero es el tomillo rosa. Ambos en este periodo, se mimetizan, pero se lo puede reconocer por su aroma. A mediados de primavera, se cubre de pequeños ramilletes de flores blanco – cremosas. \n" +
+                            "El tomillo es una de las plantas medicinales más antiguas. Procede de los países mediterráneos y crece con abundante sol en suelo seco, árido y rocoso. En la antigüedad, los médicos griegos Hipócrates, Teofrasto y Dioscórides y a lo tenían en alta estima por sus poderes curativos. Sus efectos expectorantes en caso de tos y bronquitis también han sido confirmados por la ciencia actual. Sus efectos calmantes de la tos y antiespasmódicos, incluso se han podido comprobar en la tos ferina. Empleado en forma de baños refuerza los nervios y actúa favorablemente en trastornos cutáneos de tipo inflamatorio. Finalmente, el tomillo también es una hierba de cocina sumamente apreciaba, ya que ayuda a digerir mejor las comidas.",
                     imagenesRes = "tomillo,tomillo2,tomillo3,tomillo4",
                     latitud = -46.4181603,
                     longitud = -67.5278547
@@ -220,6 +239,7 @@ abstract class PlantaDatabase : RoomDatabase() {
                     latitud = -46.4181603,
                     longitud = -67.5278547
                 ),
+
                 // ****** Agregamos más paradas ******
 
 
@@ -227,7 +247,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "patadeperdiz",
                     nombre = "Pata de Perdiz",
-                    descripcion = "Hoffmannseggia Trifoliata (Parada libre). Su nombre vulgar proviene de poseer hojas divididas en tres semejando la pata de perdiz. Es una hierba pequeña de color verde morado cuyo follaje se extiende sobre el suelo pedregoso. Sus flores son grandes y anaranjadas, con pequeñas manchas oscuras. Se disponen a lo largo de un talluelo, siendo las inferiores, las primeras en abrir. Produce frutos en forma de chaucha de pared muy delgada, lo que permite contar las semillas. Cuando los frutos maduran, se desprenden fácilmente. Es común su desarrollo en bordes de camino y en áreas descubiertas entre los arbustos y coirones.",
+                    descripcion = "Hoffmannseggia Trifoliata (Parada libre). Su nombre vulgar proviene de poseer hojas divididas en tres semejando la pata de perdiz. \n" +
+                            "Es una hierba pequeña de color verde morado cuyo follaje se extiende sobre el suelo pedregoso. Sus flores son grandes y anaranjadas, con pequeñas manchas oscuras. Se disponen a lo largo de un talluelo, siendo las inferiores, las primeras en abrir. Produce frutos en forma de chaucha de pared muy delgada, lo que permite contar las semillas. Cuando los frutos maduran, se desprenden fácilmente. Es común su desarrollo en bordes de camino y en áreas descubiertas entre los arbustos y coirones.",
                     imagenesRes = "patadeperdiz,patadeperdiz2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -235,7 +256,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "ortiga",
                     nombre = "Ortiga",
-                    descripcion = "Amsinckia Hispida (Parada libre). Es una hierba anual que alcanza los 4 cm. De altura. La planta se presenta totalmente cubierta por pelos blanquecinos y rígidos. Las flores son pequeñas, de color amarillo – anaranjado. Se disponen en la porción superior del talluelo orientadas hacia un lado y enrolladas en espiral. Las flores se van abriendo desde arriba hacia abajo. Su atractivo aspecto invita a tomarla entre las manos, pero al tocarla se siente lo punzante que es. De esta característica, deriva el nombre vulgar. Su rigidez le permite mantenerse en pie durante largo tiempo cuando se seca.",
+                    descripcion = "Amsinckia Hispida (Parada libre). Es una hierba anual que alcanza los 4 cm. De altura. La planta se presenta totalmente cubierta por pelos blanquecinos y rígidos. Las flores son pequeñas, de color amarillo – anaranjado. Se disponen en la porción superior del talluelo orientadas hacia un lado y enrolladas en espiral. Las flores se van abriendo desde arriba hacia abajo. \n" +
+                            "Su atractivo aspecto invita a tomarla entre las manos, pero al tocarla se siente lo punzante que es. De esta característica, deriva el nombre vulgar. Su rigidez le permite mantenerse en pie durante largo tiempo cuando se seca.",
                     imagenesRes = "ortiga,ortiga2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -243,7 +265,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "alfilerillo",
                     nombre = "Alfilerillo ",
-                    descripcion = "Erodium Cicutarium (Parada libre). A esta hierba se la conoce también como peludilla, por la abundante cantidad de pelos que presenta. Tiene hojas muy divididas y prolijamente extendidas sobre el suelo en forma de abanico. La tonalidad puede variar desde el rojo al anaranjado. Las flores son de color fucsia y los frutos pequeños y secos. Están caracterizados por tener una flechilla en forma de tirabuzón, que le permite adherirse a cualquier superficie, como el pelo de los animales, medias y pantalones. Se propaga con mucha facilidad, cubriendo la superficie. Crece en terrenos cultivados, suelos modificados y lugares abiertos desde la meseta hasta la costa. Su distribución es mundial. Es consumida por los animales y empleada como medicinal en infusiones. Se realizan cataplasmas para curar heridas y úlceras.",
+                    descripcion = "Erodium Cicutarium (Parada libre). A esta hierba se la conoce también como peludilla, por la abundante cantidad de pelos que presenta. Tiene hojas muy divididas y prolijamente extendidas sobre el suelo en forma de abanico. La tonalidad puede variar desde el rojo al anaranjado. Las flores son de color fucsia y los frutos pequeños y secos. \n" +
+                            "Están caracterizados por tener una flechilla en forma de tirabuzón, que le permite adherirse a cualquier superficie, como el pelo de los animales, medias y pantalones. Se propaga con mucha facilidad, cubriendo la superficie. Crece en terrenos cultivados, suelos modificados y lugares abiertos desde la meseta hasta la costa. Su distribución es mundial, es consumida por los animales y a su vez empleada como medicina en infusiones. Se realizan cataplasmas para curar heridas y úlceras.",
                     imagenesRes = "alfilerillo,alfilerillo2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -259,7 +282,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "estrellita",
                     nombre = "Estrellita",
-                    descripcion = "Tristagma Patagonicum (Parada libre). Es una hierba vivaz, pequeña y muy delgada, que alcanza los 9 cm. De altura. Su flor es blanca, elegante y muy atractiva. El aspecto es de una estrella y presenta en el lado externo, líneas pardo- verdosas. En época de floración, se la puede observar cercana a los arbustos y esparcida entre coirones. Presenta un bulbo subterráneo pequeño y blanco. Es una de las tantas plantas bulbosas, que semejan por su belleza, a las que se cultivan en los jardines. Los suelos en los que habita son arenosos y sueltos.",
+                    descripcion = "Tristagma Patagonicum (Parada libre). Es una hierba vivaz, pequeña y muy delgada, que alcanza los 9 cm. De altura. Su flor es blanca, elegante y muy atractiva. El aspecto es de una estrella y presenta en el lado externo, líneas pardo- verdosas.\n" +
+                            "En época de floración, se la puede observar cercana a los arbustos y esparcida entre coirones. Presenta un bulbo subterráneo pequeño y blanco. Es una de las tantas plantas bulbosas, que semejan por su belleza, a las que se cultivan en los jardines. Los suelos en los que habita son arenosos y sueltos.",
                     imagenesRes = "estrellita,estrellita2,estrellita3",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -283,7 +307,8 @@ abstract class PlantaDatabase : RoomDatabase() {
                 Planta(
                     id = "mostacilla",
                     nombre = "Mostacilla",
-                    descripcion = "Diplotaxis Tenuifolia (Parada libre). Es una hierba perenne de base leñosa, que brota anualmente. Las flores son hermafroditas amarillas, de cuatro pétalos. Son polinizadas por una gran variedad de insectos. El fruto es una vaina alargada con muchas semillas de gran fertilidad. El rebrote comienza a fines del invierno. Florece en la primavera hasta avanzado el verano. Esta planta cosmopolita, conocida como mostacilla, es común encontrarla en terrenos baldíos, banquinas de rutas y caminos rurales y en muchos casos, como planta colonizadora de suelos en los que se ha extraído la flora autóctona.",
+                    descripcion = "Diplotaxis Tenuifolia (Parada libre). Es una hierba perenne de base leñosa, que brota anualmente. Las flores son hermafroditas amarillas, de cuatro pétalos. Son polinizadas por una gran variedad de insectos. El fruto es una vaina alargada con muchas semillas de gran fertilidad. El rebrote comienza a fines del invierno. Florece en la primavera hasta avanzado el verano. \n" +
+                            "Esta planta cosmopolita, conocida como mostacilla, es común encontrarla en terrenos baldíos, banquinas de rutas y caminos rurales y en muchos casos, como planta colonizadora de suelos en los que se ha extraído la flora autóctona.",
                     imagenesRes = "mostacilla,mostacilla2",
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
@@ -304,6 +329,106 @@ abstract class PlantaDatabase : RoomDatabase() {
                     latitud = -46.419516367268194,
                     longitud = -67.52635102128295
                 ),
+
+                // ****** INFORMACION COMPLEMENTARIA DE PARADAS ******
+                Planta(
+                    id = "parada01",
+                    nombre = "Parada 1",
+                    descripcion = "📍Parada 1 de 10 - Siguiente parada a 42m.\n" +
+                            "🌿Especie a observar: \"Uña de Gato\" \n" +
+                            "Esta parada está ubicada a la derecha del sendero y constituye el primer punto de interés de nuestro circuito. A nuestra izquierda podemos observar la zona urbana adyacente del barrio Altos del Golfo.",
+                    imagenesRes = "parada1",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ),
+                Planta(
+                    id = "parada02",
+                    nombre = "Parada 2",
+                    descripcion = "📍Parada 2 de 10 - Siguiente parada a 145m.\n" +
+                            "🌿Especie a observar: \"Zampa y Quilimbay\" \n" +
+                            "Esta parada está ubicada a la derecha del sendero. En primer lugar podremos distinguir la especie Zampa y continuando el sendero unos pasos más arriba, podremos observar la especie Quilimbay.",
+                    imagenesRes = "parada2",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ),
+                Planta(
+                    id = "parada03",
+                    nombre = "Parada 3",
+                    descripcion = "📍Parada 3 de 10 - Siguiente parada a 105m.\n" +
+                            "🌿Especie a observar: \"Falso Tomillo y Cactus Austral\" \n" +
+                            "Esta parada está ubicada a la derecha del sendero. El Cactus Austral, es una especie que suele observarse debajo de otros arbustos. En esta paradas podemos observar un ejemplar debajo de un Quilimbay. Unos pasos más adelante, encontramos un ejemplar de Falso Tomillo.",
+                    imagenesRes = "parada3",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ),
+                Planta(
+                    id = "parada04",
+                    nombre = "Parada 4",
+                    descripcion = "📍Parada 4 de 10 - Siguiente parada a 74m.\n" +
+                            "🌿Especie a observar: \"Tuna, Malaspina, Chilca y Coirón\" \n" +
+                            "Esta parada está ubicada a la izquierda del sendero. Los ejemplares de esta parada están dispersos. En primer lugar, podemos observar un ejemplar de la especie Tuna. Unos metros más adelante continuando por el sendero encontramos un espécimen de Malaspina y a los pies de éste un Coirón. A continuación podemos ver un ejemplar de Chilca.",
+                    imagenesRes = "parada4a,parada4b,parada4c,parada4d",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ),
+                Planta(
+                    id = "parada05",
+                    nombre = "Parada 5",
+                    descripcion = "📍Parada 5 de 10 - Siguiente parada a 48m.\n" +
+                            "🌿Especie a observar: \"Mata Laguna y Yaoyin\" \n" +
+                            "Esta parada está ubicada a la izquierda del sendero. El Yaoyin es una especie que suele crecer junto a la Verbena. A la vera del sendero, podemos observar un ejemplar de Yaoyín junto a uno de Verbena. Unos metros más atrás, podemos observar un espécimen de Mata Laguna, que se distingue por su gran porte y contorno zigzagueante.",
+                    imagenesRes = "parada5",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ),
+                Planta(
+                    id = "parada06",
+                    nombre = "Parada 6",
+                    descripcion = "📍Parada 6 de 10 - Siguiente parada a 155m.\n" +
+                            "🌿Especie a observar: \"Duraznillo, Verbena y Botón de Oro\" \n" +
+                            "En esta parada observamos especies de ambos lados del sendero. Del lado izquierdo, encontramos un ejemplar de Botón de Oro. Del lado derecho, en primer lugar se destaca un espécimen de duraznillo, arbusto típico siempre verde. Unos metros más adelante, observamos un ejemplar de Verbena.",
+                    imagenesRes = "parada6a,parada6b",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ), Planta(
+                    id = "parada07",
+                    nombre = "Parada 7",
+                    descripcion = "📍Parada 7 de 10 - Siguiente parada a 58m.\n" +
+                            "🌿Especie a observar: \"Sulupe\" \n" +
+                            "En esta parada podemos observar un ejemplar de Sulupe, a la izquierda del sendero. Es un arbusto de gran tamaño de color verde.",
+                    imagenesRes = "parada7",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ), Planta(
+                    id = "parada08",
+                    nombre = "Parada 8",
+                    descripcion = "📍Parada 8 de 10 - Siguiente parada a 276m.\n" +
+                            "🌿Especie a observar: \"Algarrobillo\" \n" +
+                            "En esta parada, a la izquierda del sendero, observamos un ejemplar de Algarrobillo que suele tener las características legumbres o chauchas con distinto grado de enrollamiento.",
+                    imagenesRes = "parada8",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ), Planta(
+                    id = "parada09",
+                    nombre = "Parada 9",
+                    descripcion = "📍Parada 9 de 10 - Siguiente parada a 70m.\n" +
+                            "🌿Especie a observar: \"Maihuenia Patagónica\" \n" +
+                            "Esta parada está ubicada a la derecha del sendero, después de realizar un ascenso pronunciado. Podemos observar un ejemplar de Maihuenia Patagónica, que se desarrolla como un denso cojín de poca altura con espinas en grupos de a tres.",
+                    imagenesRes = "parada9",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ), Planta(
+                    id = "parada10",
+                    nombre = "Parada 10",
+                    descripcion = "📍Parada final del circuito.\n" +
+                            "🌿Especie a observar: \"Tomillo, Fabiana y Brachiclados\" \n" +
+                            "Las especies a observar en esta parada se encuentran dispersas. En primer lugar, encontramos un ejemplar de Fabiana, que es un arbusto muy ramoso que se encuentra como cojín al ras del suelo de apariencia áfila (sin hojas). Unos metros más adelante, podemos observar un ejemplar de Tomillo, en forma de arbusto bajo. Muy cerca, vemos un espécimen de Brachiclados.",
+                    imagenesRes = "parada10a,parada10b",
+                    latitud = -46.419516367268194,
+                    longitud = -67.52635102128295
+                ),
+
+//***
             )
 
             plantaDao.insertarPlantas(plantas)

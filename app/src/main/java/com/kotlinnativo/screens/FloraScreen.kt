@@ -39,15 +39,14 @@ fun FloraScreen(
     // Estado para el buscador
     var textoBusqueda by remember { mutableStateOf("") }
 
+
     // Filtrar plantas
     val plantasFiltradas = remember(plantas, textoBusqueda) {
-        if (textoBusqueda.isEmpty()) {
-            plantas
-        } else {
-            plantas.filter { planta ->
-                planta.nombre.contains(textoBusqueda, ignoreCase = true)
+        plantas
+            .filter { planta -> !planta.id.startsWith("parada", ignoreCase = true) }
+            .filter { planta ->
+                textoBusqueda.isEmpty() || planta.nombre.contains(textoBusqueda, ignoreCase = true)
             }
-        }
     }
 
     Column(
@@ -87,7 +86,7 @@ fun FloraScreen(
                     )
                 }
             } else if (plantasFiltradas.isEmpty()) {
-                // *** NUEVO: Mensaje cuando no hay resultados ***
+                // *** Mensaje cuando no hay resultados ***
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
